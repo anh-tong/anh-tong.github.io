@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-description: <a href="#">Graduate School of AI @ KAIST</a>
+description: Machine Learning Researcher @ KAIST
 
 # profile:
 #   align: right
