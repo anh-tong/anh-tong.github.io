@@ -15,56 +15,56 @@ t & \mapsto X_t(\omega)
 \end{aligned}
 \end{equation}
 
-Indistinguishable $$\mathbb{P}(X_t(\omega)= Y_t(\omega)) = 1 \forall \omega, t$$. This also means "almost sure".
+Indistinguishable $$\mathbb{P}(X_t(\omega)= Y_t(\omega)) = 1 \quad \forall \omega, t$$. This also means "almost sure".
 
-Filtration $$\{\mathcal{F}_t\}_{t>0}$$ is defined to track the set of observable events **up to** time $t$.
+Filtration $$\{\mathcal{F}_t\}_{t>0}$$ is defined to track the set of observable events **up to** time $$t$$.
 
 Martingale is a stochastic process staying the same on average
 \begin{equation}
 X_s = \mathbb{E}[X_t| \mathcal{F}_s]
 \end{equation}
 
-Submartingale if integrable and $$X_s \leq \mathbb{E}[X_t| \mathcal{F}_s]$$
+Submartingale if integrable and $$X_s \leq \mathbb{E}[X_t]$$
 
-Supermartingale if integrable and $$X_s \geq \mathbb{E}[X_t| \mathcal{F}_s]$$
+Supermartingale if integrable and $$X_s \geq \mathbb{E}[X_t | \mathcal{F}_s]$$
 
 ### Elemetary integrals
 Martingales and submartingales are well-behaved under stochastic integration. 
 
 Elemetery process
 $$
-    \eta_t = Z_0 1_{\{t=0\}} + \sum_{k=1}^n Z_k 1_{\{s_k < t \leq t_k\}}
+    \xi_t = Z_0 1_{\{t=0\}} + \sum_{k=1}^n Z_k 1_{\{s_k < t \leq t_k\}}
 $$
 
 Stochastic integrals of such elementary process is
 
 
 $$
-    \int_0^\infty \eta dX = \sum_{k=1}^n Z_k(X_{t_k} - X_{s_k})
+    \int_0^\infty \xi dX = \sum_{k=1}^n Z_k(X_{t_k} - X_{s_k})
 $$
 
-**Theorem ** 
+**Theorem**
 An adapted integrable process $$X$$ is 
 + a martingale iff
   \begin{equation}
-    \mathbb{E}\left[\int_0^\infty \eta dX \right] = 0
+    \mathbb{E}\left[\int_0^\infty \xi dX \right] = 0
   \end{equation}
-for all bounded elementary processes $$\eta$$.
+for all bounded elementary processes $$\xi$$.
 + a submartingale iff
   \begin{equation}
-    \mathbb{E}\left[\int_0^\infty \eta dX \right] \geq 0
+    \mathbb{E}\left[\int_0^\infty \xi dX \right] \geq 0
   \end{equation}
 **Proof**
 Prove the second one. Suppose $$X$$ is submartingale.
 
 \begin{equation}
-    \mathbb{E}\left[\int_0^\infty \eta dX\right] = \sum_{k=1}^n \mathbb{E}[Z_k(X_{t_k} - X_{s_k})]
+    \mathbb{E}\left[\int_0^\infty \xi dX\right] = \sum_{k=1}^n \mathbb{E}[Z_k(X_{t_k} - X_{s_k})]
  = \sum_{k=1}^n \mathbb{E}[Z_k(\mathbb{E}[X_{t_k}|\mathcal{F}_{s_k}] - X_{s})] \geq 0
- \end{equation} 
+\end{equation} 
 
-Conversely, choose any $$s < t \in \mathbb{R}_+$$, define a process $$\eta_u = 1_A 1_{\{s <u \leq t\}}$$ where $$A \in \mathcal{F}_s$$ and
+Conversely, choose any $$s < t \in \mathbb{R}_+$$, define a process $$\xi_u = 1_A 1_{\{s <u \leq t\}}$$ where $$A \in \mathcal{F}_s$$ and
 \begin{equation}
-    \mathbb{E}[1_A(X_t-X_s)]= \mathbb{E}\left[\int_0^\infty \eta dX\right] \geq 0
+    \mathbb{E}[1_A(X_t-X_s)]= \mathbb{E}\left[\int_0^\infty \xi dX\right] \geq 0
 \end{equation}
 Choose $$A = \{\mathbb{E}[X_t | \mathcal{F}_s] \leq X_s\}$$, 
 
