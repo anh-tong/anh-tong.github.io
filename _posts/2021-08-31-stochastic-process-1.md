@@ -24,9 +24,9 @@ Martingale is a stochastic process staying the same on average
 X_s = \mathbb{E}[X_t| \mathcal{F}_s]
 \end{equation}
 
-Submartingale if integrable and $$X_s \leq \mathbb{E}[X_t]$$
+Submartingale if integrable and \[ X_s \leq \mathbb{E} [X_t | {\mathcal{F}_s} ] \]
 
-Supermartingale if integrable and $$X_s \geq \mathbb{E}[X_t | \mathcal{F}_s]$$
+Supermartingale if integrable and $$X_s \geq \mathbb{E} [X_t | {\mathcal{F}_s}] $$
 
 ### Elemetary integrals
 Martingales and submartingales are well-behaved under stochastic integration. 
