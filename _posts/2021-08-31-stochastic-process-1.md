@@ -64,10 +64,10 @@ for all  bounded elementary process $$\xi$$
 **Proof**
 Prove the second one. Suppose $$X$$ is submartingale.
 
-\begin{equation}
+$$
     \mathbb{E}\left[\int_0^\infty \xi dX\right] = \sum_{k=1}^n \mathbb{E}[Z_k(X_{t_k} - X_{s_k})]
  = \sum_{k=1}^n \mathbb{E}[Z_k(\mathbb{E}[X_{t_k} \mid \mathcal{F}_{s_k}] - X_{s})] \geq 0
-\end{equation}
+$$
 
 Conversely, choose any $$s < t \in \mathbb{R}_+$$, define a process $$\xi_u = 1_A 1_{\{s <u \leq t\}}$$ where $$A \in \mathcal{F}_s$$ and
 \begin{equation}
