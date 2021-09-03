@@ -21,7 +21,7 @@ Indistinguishable $$\mathbb{P}(X_t(\omega)= Y_t(\omega)) = 1 \quad \forall \omeg
 ##### Filtration
 **Filtration** $$\{\mathcal{F}_t\}_{t>0}$$ is defined to track the set of observable events **up to** time $$t$$.
 
-A stochastic process $$X$$ is *adapted* if $$X_t$$ is an $$F_t$$-measurable random variable from each time $$t \geq 0$$. 
+A stochastic process $$X$$ is *adapted* if $$X_t$$ is an $$\mathcal{F}_t$$-measurable random variable from each time $$t \geq 0$$. 
 
 **Martingale** is a stochastic process staying the same on average
 \begin{equation}
@@ -80,3 +80,55 @@ Choose $$A = \{\mathbb{E}[X_t \mid \mathcal{F}_s] \leq X_s\}$$,
 \end{equation}
 
 Any non-positive random variable whose expectation is zero must be equal to zero, almost surely. Therefore, $$E[X_t \mid \mathcal{F}_s] \geq X_s$$
+
+#### Upcrossings, Downcrossings, and Martingale Convergence
+
+The number of times that a process passes upwards and downwards through an interval. 
+
+A sequence converges iff the number of upcrossings is finite for all intervals.
+
+**Lemma (Doob's upcrossing lemma)** Let $$X_t$$ be a supermartingales with time $$t$$ in a countable index set, the number of upcrossings $$(b- a) \mathbb{E}[U[a, b]]\leq \sup_t \mathbb{E}[(a - X_t) \vee 0]$$
+
+**Theorem (Doob's Forward Convergence Theorem)** If martingale and the expected absolute value is bounded, then the process converges with prob. $$1$$. 
+
+*Proof*. Use the previous lemma, and <a href="https://en.wikipedia.org/wiki/Fatou's_lemma#Standard_statement_of_Fatou.27s_lemma"> Fatou's lemma </a>. 
+
+**Theorem (Levy's upward theorem)** With $$\{\mathcal{F}_n\}_{n \in \mathbb{N}}$$ and $$\mathcal{F}_\infty=\sigma(\cup_n \mathcal{F}_n)$$. For any integral random variable $$X$$, $$\mathbb{E}[X \mid \mathcal{F}_n] \to \mathbb{E}[X \mid \mathcal{F}_\infty]$$, with a prob. $$1$$.
+
+**Theorem (Levy's downward theorem)** Similar to the above result but $$\mathcal{F}_\infty=\sigma(\cap_n \mathcal{F}_n)$$
+
+**The Strong Law of Large Numbers** 
+The sample mean of i.i.d. random variables converges to the mean with the prob. one. 
+
+It is easy to use the above result to prove this (while challenging with elementary probability). 
+
+Let $$S_n = X_1 + X_2 + \dots + X_n$$, define $$\mathcal{F}_n = \sigma(S_n, S_{n+1}, \dots)$$, then
+$$\mathbb{E}[X_1 \mid \mathcal{F}_n]=\mathbb{E}[X_2 \mid \mathcal{F}_n]=\dots = \mathbb{E}[X_n \mid \mathcal{F}_n]$$
+
+$$\mathbb{E}[X_1 \mid \mathcal{F}_n] = \frac{1}{n}\left(\mathbb{E}[X_1 \mid \mathcal{F}_n]+\mathbb{E}[X_2 \mid \mathcal{F}_n]+\dots + \mathbb{E}[X_n \mid \mathcal{F}_n]\right) = \frac{S_n}{n}$$
+By Levy's downward theorem, $$\frac{S_n}{n}=\mathbb{E}[X_1 \mid \mathcal{F}_n] \to \mathbb{E}[X_1 \mid \mathcal{F}_\infty]$$
+
+#### Cadlag Modifications
+Motivation:
+
++ Choose good versions of stochastic processes
++ The following result guarantees that many of stochastic process have a right-contiuous version and have left limits everywhere. (Right Continuous and Left Limits)
+
+These processes are called *càdlàg* or cadlag. 
+
+**Theorem** Let $$X$$ be an adapted stochastic process and either
+
++ $$X$$ 
+is integrable and
+$$\mathbb{E}\left[\int_0^t 1_AdX\right]$$ 
+is bounded with $$A$$
+is elementary
+
++ $$\int_0^t 1_AdX$$
+is bounded in probability.
+
+Then it has a cadlag version.
+
+**Theorem** Let $$X$$ be a martingale which is right-continuous in probability. Then, it has a cadlag version.
+
+**Theorem** Let $$\{X_t\}_{t \in \mathbb{T}}$$ be a submartingale w.r.t. a filtered probability space. Then $$X_{t_n}$$ is uniformly integrable for any sequence $$t_n$$ bounded bellow in $$\mathbb{T}$$.
