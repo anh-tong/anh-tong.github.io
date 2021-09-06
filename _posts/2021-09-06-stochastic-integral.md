@@ -35,3 +35,20 @@ If $$\xi^n \to \xi$$ and bounded, then $$\int_0^t\xi^n dX \to \int_0^t \xi dX$$
 
 ### Quadratic Variations and Integration by Parts
 
++ Increment $$\delta X_t = X_{t + \delta t} - X_t$$
++ Consider product $$\delta (XY) = X\delta Y + Y\delta X + \delta X \delta Y$$
++ Chop $$[0, t]$$ into $$n$$ parts and sum all term 
+
+$$
+    X_t Y_t - X_0Y_0 = \sum_{k=1}^n X_{t_k}\delta Y_{t_k} + \sum_{k=1}^n Y_{t_k}\delta X_{t_k} + \sum_{k=1}^n \delta X_{t_k} \delta Y_{t_k}
+$$
+
+Observation:
++ If these processes are **continuously differentiable**, $$\delta X_{t_k} \delta Y_{t_k} = \mathcal{O}(1/n^2)$$, while the first two first terms are $$\mathcal{O}(1/n)$$.
+
+$$
+X_t Y_t - X_0Y_0 = \sum_{k=1}^n \underbrace{X_{t_k}\delta Y_{t_k}}_{\mathcal{O}(1/n)} + \sum_{k=1}^n \underbrace{Y_{t_k}\delta X_{t_k}}_{\mathcal{O}(1/n)} + \sum_{k=1}^n \underbrace{\delta X_{t_k} \delta Y_{t_k}}_{\mathcal{O}(1/n^2) \to 0} = \int_0^t X dY + \int_0^t Y dX.
+$$
+
++ On the other hand, if $$X, Y$$ are Brownian motions, as we know, $$\delta X = \mathcal{O}(\sqrt{\delta t})$$. So the last term does not vanish, is the reason for introducing *quadratic covariation* of $$X$$ and $$Y$$.
+
