@@ -1,12 +1,12 @@
 ---
 layout: distill
 title: White Noise Theory
-date: 
+date: 2021-09-06
 description: An introduction of white noise theory
 ---
 
 ### Introduction
-Recently, I have picked up some background of white noise theory after ready this paper <d-cite><\d-cite>. White noise theory developed by Hida generalizes the white noise in functional views. 
+Recently, I have picked up some background of white noise theory after ready this paper <d-cite>multifractional</d-cite>. White noise theory developed by Hida generalizes the white noise in functional views. 
 
 Starting from a classical results for a Browian montion, $$B_t$$, the following holds
 
@@ -46,6 +46,9 @@ $$
 $$
 then the measure $$\mu$$ is called the white noise probability measure. 
 
+
+The Lévy process also is defined based on its characteristic function in <a href="https://en.wikipedia.org/wiki/L%C3%A9vy_process">Lévy-Khintchine formula</a>.
+
 We have the following properties:
 
 + The expectation $$\mathbb{E}[\langle \omega, f\rangle] = 0$$
@@ -53,3 +56,29 @@ We have the following properties:
 
 ### Brownian motion case
 We can see that Brownian motion can fit under the definition of white noise theory.
+
+$$
+    \chi_{[0, t]}(s)=\begin{cases} 1 & \text{ if } 0 \leq s \leq t\\
+    - 1 &\text{ if } t \leq s \leq 0 \\
+    0 &\text{ otherwise}
+    \end{cases}
+$$
+
+We can define $$\tilde{B}_t=\langle \omega, \chi_{[0, t]}(\cdot)\rangle$$. Furthermore, we can say the $$\tilde{B}_t$$ is a Gaussian process with zero mean and covariance
+
+$$
+\mathbb{E}[\tilde{B}_t, \tilde{B}_s] = \min(t,s).
+$$
+This is exactly the definition of Brownian motion. We can verify this by examining the characteristic function
+
+$$
+\begin{align*}
+\mathbb{E}\left[\exp(i \sum_{j=1}^n c_j\tilde{B}_{t_j} )\right] = & \mathbb{E}\left[\exp\left(i \langle \omega, \sum_{j=0}^n c_j\chi_{[0, t_j]}  \rangle \right) \right] = \exp \left(-\frac{1}{2}\lVert \sum_j c_j\chi_{[0, t_j]}\rVert^2 \right) \\
+=& \exp\left(-\frac{1}{2}\sum_{i,j}c_i c_j\int \chi_{[0, t_i]}(s)\chi_{[0, t_j]}(s)ds\right) \\
+=& \exp\left(-\frac{1}{2}\sum_{i,j}c_i c_j \min(t_i, t_j)\right)
+\end{align*}
+$$
+This is the charateristic of a multivariate Gaussian distribution.
+
+### Conclusion
+Although the mathematical formulation presented aboved is elegant, having applications in finance <d-cite>multifractional</d-cite>, it is not clear if there is any implication yet. One potential direction is to use in generative model for time series where Brownian motion is the main source of random noise. 
