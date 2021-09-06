@@ -37,7 +37,7 @@ If $$\xi^n \to \xi$$ and bounded, then $$\int_0^t\xi^n dX \to \int_0^t \xi dX$$
 
 + Increment $$\delta X_t = X_{t + \delta t} - X_t$$
 + Consider product $$\delta (XY) = X\delta Y + Y\delta X + \delta X \delta Y$$
-+ Chop $$[0, t]$$ into $$n$$ parts and sum all term 
++ Chop $$[0, t]$$ into $$n$$ parts and sum all terms
 
 $$
     X_t Y_t - X_0Y_0 = \sum_{k=1}^n X_{t_k}\delta Y_{t_k} + \sum_{k=1}^n Y_{t_k}\delta X_{t_k} + \sum_{k=1}^n \delta X_{t_k} \delta Y_{t_k}
@@ -52,3 +52,18 @@ $$
 
 + On the other hand, if $$X, Y$$ are Brownian motions, as we know, $$\delta X = \mathcal{O}(\sqrt{\delta t})$$. So the last term does not vanish, is the reason for introducing *quadratic covariation* of $$X$$ and $$Y$$.
 
+Define:
++ $$[X]_t^P = \sum_{n=1}^\infty (X_{\tau_n \wedge t} - X_{\tau_{n-1} \wedge t})^2$$
+
++ $$[X, Y]_t^P = \sum_{n=1}^\infty (X_{\tau_n \wedge t} - X_{\tau_{n-1} \wedge t})(Y_{\tau_n \wedge t} - Y_{\tau_{n-1} \wedge t})$$
+
+**Theorem (Quadratic Variations and Covariations)**
+
++ $$[X]^{P_n} \to [X]$$
++ $$[X, Y]^{P_n} \to [X, Y]$$
+
+**Theorem (Integration by Parts)** If $$X, Y$$ are semimartingales then
+
+$$
+    XY = X_0Y_0 \int X_{-} dY + \int Y_{-}dX + [X,Y]
+$$
