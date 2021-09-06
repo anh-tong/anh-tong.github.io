@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: distill
 title: Stochastic Processes - Some definitions
 date: 2021-08-31 11:12:00
 description: Stochastic Process - Some definitions
@@ -31,6 +31,25 @@ X_s = \mathbb{E}[X_t \mid \mathcal{F}_s]. \notag
 **Submartingale** if integrable and $$X_s \leq \mathbb{E} [X_t \mid {\mathcal{F}_s} ]$$
 
 **Supermartingale** if integrable and $$X_s \geq \mathbb{E} [X_t \mid {\mathcal{F}_s}]$$
+
+#### Stopping times
+A stopping time is a random time which is adapted to the underlying filtration. Formally, A stopping time is a map $$\tau: \Omega \to \mathbb{R}_+ \cap \{\infty\}$$ such that the event $$\{\tau \leq t\} \in \mathcal{F}_t$$ for each $$t \geq 0$$. 
+
+**Theorem (Debut theorem)** Let $$X$$ be an adapted right-continuous stochastic process defined on a complete filtered probability space. 
+
+$$
+  \tau(\omega) = \inf \{t \in \mathbb{R}_+: X_t(\omega) \geq K\}
+$$
+
+is a stopping time. 
+
+A process $$X$$ stopped at the random time $$\tau$$ is denoted by $$X^\tau$$
+
+$$
+  X^\tau_t(\omega) = X_{t \wedge \tau (\omega)}(\omega).
+$$
+
+
 
 #### Elemetary integrals
 Martingales and submartingales are well-behaved under stochastic integration. 

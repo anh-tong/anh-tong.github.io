@@ -31,6 +31,7 @@ Extending to finite dimesion where we have to deal with isotropic multivariate G
 $$
     \varphi(t) = \mathbb{E}[\exp(i\langle t, X \rangle)] = \exp\left(-\frac{1}{2}\lVert t \rVert^2\right)
 $$
+
 where $$t = [t_1, \dots, t_n]^\top$$ and $$\lVert t\rVert = \sqrt{t_1^2 +\dots, t_n^2}$$. Here the inner product $$\langle x, y \rangle = x_1y_1 + \dots + x_ny_n$$. 
 
 Obviously, this case is equivalent to Gaussian white noise with finite sample. However, stochastic process can be defined over a contiuous index set. It is natural to generalize even more. 
@@ -44,6 +45,7 @@ Obviously, this case is equivalent to Gaussian white noise with finite sample. H
 $$
     \int_{\mathcal{S}'(\mathbb{R})} \exp(i \langle \omega, f \rangle) \mu d\omega = \exp \left(-\frac{1}{2}\lVert f \rVert^2_{L^2(\mathbb{R})}\right),
 $$
+
 then the measure $$\mu$$ is called the white noise probability measure. 
 
 
@@ -69,6 +71,7 @@ We can define $$\tilde{B}_t=\langle \omega, \chi_{[0, t]}(\cdot)\rangle$$. Furth
 $$
 \mathbb{E}[\tilde{B}_t, \tilde{B}_s] = \min(t,s).
 $$
+
 This is exactly the definition of Brownian motion. We can verify this by examining the characteristic function
 
 $$
@@ -78,6 +81,7 @@ $$
 =& \exp\left(-\frac{1}{2}\sum_{i,j}c_i c_j \min(t_i, t_j)\right)
 \end{align*}
 $$
+
 This is the charateristic of a multivariate Gaussian distribution.
 
 ### Conclusion
