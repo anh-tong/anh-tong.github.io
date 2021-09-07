@@ -1,7 +1,8 @@
 ---
 layout: page
-title: Experience
+title: experience
 permalink: /experience/
+nav: true
 ---
 
 <!-- ## Experience -->
