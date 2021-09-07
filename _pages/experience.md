@@ -12,6 +12,7 @@ nav: true
 + Sept. 2015 - Feb. 2021: Ulsan National Institute of Science and Technology (UNIST), Ulsan, South Korea.
     + Ph.D. in Computer Science (advisor: <a href="http://sailab.kaist.ac.kr/members/jaesik/">Jaesik Choi</a>).
 
+
 + Sept. 2008 - Sept. 2013: Hanoi University of Science and Technology, Hanoi, Vietnam.
     + B.E. in Mathematics and Informatics.
 
@@ -21,6 +22,7 @@ nav: true
     
 + Mar. 2020 - May 2020: Research Intern, VinAI Research, VinGroup, Hanoi, Vietnam. 
     + Host: <a href="https://sites.google.com/site/buihhung/">Hung Bui</a> and Toan Tran. 
+    
 
 + Sept. 2014- Jul. 2015: Data Scientist, VinEcom, VinGroup, Hanoi, Vietnam.
 
