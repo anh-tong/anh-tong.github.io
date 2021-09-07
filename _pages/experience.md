@@ -1,18 +1,16 @@
 ---
-layout: default
-title: experience
+layout: page
+title: Experience
 permalink: /experience/
 ---
 
-## Experience
+<!-- ## Experience -->
 
 ### Education
 
 + Sept. 2015 - Feb. 2021: Ulsan National Institute of Science and Technology (UNIST), Ulsan, South Korea.
-
     + Ph.D. in Computer Science (advisor: <a href="http://sailab.kaist.ac.kr/members/jaesik/">Jaesik Choi</a>).
 + Sept. 2008 - Sept. 2013: Hanoi University of Science and Technology, Hanoi, Vietnam.
-
     + B.E. in Mathematics and Informatics.
 
 ### Work experience

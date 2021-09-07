@@ -73,8 +73,8 @@ panelbear_analytics: XXXXXXXXX # panelbear analytics site ID
 # Blog
 # -----------------------------------------------------------------------------
 
-blog_name: Anh Tong's blog  # your blog must have a name for it to show up in the nav bar
-blog_description: Notes about Machine Learning 
+blog_name: Collection of notes  # your blog must have a name for it to show up in the nav bar
+blog_description:  Machine Learning, Stats, Programming and Stuff
 permalink: /blog/:year/:title/
 
 # Pagination
