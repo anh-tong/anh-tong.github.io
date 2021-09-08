@@ -58,12 +58,54 @@ Define:
 + $$[X, Y]_t^P = \sum_{n=1}^\infty (X_{\tau_n \wedge t} - X_{\tau_{n-1} \wedge t})(Y_{\tau_n \wedge t} - Y_{\tau_{n-1} \wedge t})$$
 
 **Theorem (Quadratic Variations and Covariations)**
-
+Let $$X, Y$$ be semimartingales. Then, there exist cadlag adapted process $$[X]$$ and $$[X, Y]$$. For any sequence $$P_n$$ of stochastic partition on $$\mathbb{R}_+$$, 
 + $$[X]^{P_n} \to [X]$$
 + $$[X, Y]^{P_n} \to [X, Y]$$
+These convergences are of <a href="https://almostsuremath.com/2009/12/22/u-c-p-convergence/">uniform convergence on compacts in probability</a>(ucp)
 
 **Theorem (Integration by Parts)** If $$X, Y$$ are semimartingales then
 
 $$
     XY = X_0Y_0 \int X_{-} dY + \int Y_{-}dX + [X,Y]
 $$
+
+**Quadratic variation of Brownian motion** 
+Because Brownian motion, $$B$$, is a semimartingale, there exists quadratic varitions. Let us partition and define
+
+$$
+    V^n = \sum_{k=1}^n (B_{kt/n} - B_{(k-1)t/n})^2
+$$
+
+By defintion of Brownian motion, $$B_{kt/n} - B_{(k-1)t/n} \sim \mathcal{N}(0, t/n)$$.
+
+Squares of these differences have mean $$t/n$$ and variance $$2t^2/n^2$$ (in fact, it is somewhat similar to chi-squared distribution).
+
+$$
+    \mathbb{E}[V^n] = t \quad, \quad \text{Var}(V^n) = 2t^2/n \to 0 \quad \text{ when } n \to \infty
+$$
+
+So we can say when $$n \to \infty$$
+
+$$
+    \mathbb{E}[(V^n - t)^2] \to 0 \quad \Rightarrow [B]_t = t
+$$
+
+For covariations of two Brownian motions $$B^1, B^2$$, the following resembles the above result
+
+$$
+    [B^1, B^2]_t = \rho t
+$$
+
+where $$\rho$$ is the correlation between $$B^1$$ and $$B^2$$
+
+### Properties of Quadratic Variations
+Importance: Lead to Ito's lemma
+
+Recall the notation $$\Delta [X]_t = [X]_t - [X]_{t-}$$ is the jump of a process.
+
+**Lemma** If $$X, Y$$ are semimartingales then
+
+$$
+\Delta [X,Y] = \Delta X \Delta Y
+$$
+
