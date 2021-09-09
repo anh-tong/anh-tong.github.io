@@ -157,7 +157,7 @@ $$
 Next, the proof is based on two results
 
 $$
-\sum_{k=1}^n U_{t^n_{k-1}}\delta_{n, k}Y \to \int_0^T U_ dY \quad, \quad \sum_{k=1}^n U_{t^n_{k-1}}\delta_{n, k}Y\delta_{n, k}Z \to \int_0^T U_ d[Y, Z]
+\sum_{k=1}^n U_{t^n_{k-1}}\delta_{n, k}Y \to \int_0^T U_{-} dY \quad, \quad \sum_{k=1}^n U_{t^n_{k-1}}\delta_{n, k}Y\delta_{n, k}Z \to \int_0^T U_{-} d[Y, Z]
 $$
 
 Replace $$U$$ with respective terms, to obtain the finally result.
