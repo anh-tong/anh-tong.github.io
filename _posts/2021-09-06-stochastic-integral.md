@@ -61,6 +61,7 @@ Define:
 Let $$X, Y$$ be semimartingales. Then, there exist cadlag adapted process $$[X]$$ and $$[X, Y]$$. For any sequence $$P_n$$ of stochastic partition on $$\mathbb{R}_+$$, 
 + $$[X]^{P_n} \to [X]$$
 + $$[X, Y]^{P_n} \to [X, Y]$$
+
 These convergences are of <a href="https://almostsuremath.com/2009/12/22/u-c-p-convergence/">uniform convergence on compacts in probability</a>(ucp)
 
 **Theorem (Integration by Parts)** If $$X, Y$$ are semimartingales then
@@ -109,3 +110,54 @@ $$
 \Delta [X,Y] = \Delta X \Delta Y
 $$
 
+### Ito's Lemma
+
+We do calculus with a function $$f(x)$$ where $$x(t)$$ is a stochastic process. Traditional calculus cannot apply here because we often do have $$x(t)$$ differentiable. 
+
+
+Ito's lemma works on semimartingales (cadlag, adapted, exist integral), and can be expressed as
+
+$$
+df(X) = f'(X)dX + \frac{1}{2}f''(X)dX^2
+$$
+
+This can be derive from a Taylor expansion. Here, $$dX^2 = d[X]$$ (quadratic variation). 
+
+**Theorem (Ito's Lemma)** Let $$X=(X^1, \dots, X^d)$$ be continous d-dimensional semimartingale. For any twice differential function $$f$$, $$f(X)$$ is a semimartingale and
+
+$$
+df(X) = \sum D_if(X)dX^i + \frac{1}{2} \sum D_{ij}f(X)d[X^i, X^j]
+$$
+
+Or in the integration form,
+
+$$
+f(X) = f(X_0) + \sum_{i=1}^d \int D_if(X)dX^i + \frac{1}{2} \sum_{i,j=1}^d \int D_{ij}f(X)d[X^i, X^j]
+$$
+
+Key obsevarion for the proof is the properties of covariations
+
+$$
+[f(X), Y] = \sum_{i=1}^d \int D_i f(X)d[X^i, Y]
+$$
+
+**Proof** 
+Let $$\delta X = X_t - X_s$$, and from Taylor expansion
+
+$$
+    f(X_t) = f(X_s) + D_if(X_s)\delta X^i + \frac{1}{2} D_{ij}f(X_s)\delta X^i \delta X^j + R_{st}
+$$
+
+We can say that $$R_{st}$$ vanishes faster than other term. We perform partition just like the variation and covariation, 
+
+$$
+    f(X_T) = F(X_0) + \sum_k D_if(X_{t^n_{k-1}})\delta_{n,k} X^i + \frac{1}{2} \sum_k D_{ij}f(X_{t^n_{k-1}})\delta_{n,k} X^i \delta_{n,k} X^j + R_{t^n_{k-1},t^n_{k}}
+$$
+
+Next, the proof is based on two results
+
+$$
+\sum_{k=1}^n U_{t^n_{k-1}}\delta_{n, k}Y \to \int_0^T U_ dY \quad, \quad \sum_{k=1}^n U_{t^n_{k-1}}\delta_{n, k}Y\delta_{n, k}Z \to \int_0^T U_ d[Y, Z]
+$$
+
+Replace $$U$$ with respective terms, to obtain the finally result.
