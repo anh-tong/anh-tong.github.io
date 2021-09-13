@@ -11,7 +11,7 @@ This note is to summarize the stochastic integral of <a href="https://almostsure
 
 By the Riemann-Stieltjes integral $$\int g df$$ is well-defined if $$g$$ is continuous and $$f$$ is **differentiable**. However, stochastic processes do not always satisfy the differentiation condition, for example, Brownian motion which is nowhere differentiable. Therefore, we need new way to define integral involving stochastic process.
 
-The stochastic integration proposed by Kiyoshi Ito define integrals for stochastic process including adapted processes then extending to martingales and semimartingales. The integral is in fact defined via Lebesgue  sense (or <a href="https://en.wikipedia.org/wiki/Dominated_convergence_theorem">dominated convergence theorem</a>), i.e,
+The stochastic integration proposed by Kiyoshi Ito defines integrals for stochastic process including adapted processes then extending to martingales and semimartingales. The integral is in fact defined via Lebesgue  sense (or <a href="https://en.wikipedia.org/wiki/Dominated_convergence_theorem">dominated convergence theorem</a>), i.e,
 
 $$
 \lim_{n \to \infty} \int \lvert f_n - f\rvert d\mu = 0 \quad \Rightarrow \quad \lim_{n \to \infty} \int f_n d\mu = \int f d\mu
@@ -161,3 +161,65 @@ $$
 $$
 
 Replace $$U$$ with respective terms, to obtain the finally result.
+
+### The generalized Ito Formula
+
+Motivation: Ito's lemma is applicable for continuous processes. This section will generalize to noncontinous semimartingales. 
+
+Continous part of quadratic varations and covariations defined as
+
+$$
+\begin{align*}
+[X]^c_t = & [X]_t - \sum_{s\leq t} \Delta X_s^2 \\
+[X,Y]^c_t = & [X,Y]_t - \sum_{s\leq t} \Delta X_s \Delta Y_s
+\end{align*}
+$$
+
+**Theorem (Generalized Ito Formula)** Let $$X=(X^1, \dots, X^d)$$ be a semimartingales such that $$X_t, X_{t-}$$ take values in an open subset. Then, for any twice differentiable functionn $$f$$, $$f(X)$$ is a semimartingales and
+
+$$
+    df(X) = D_if(X_{-})dX^i + \frac{1}{2}D_{ij}f(X)d[X^i, X^j]^c + (\Delta f(X)- D_i f(X_{-}) \Delta X^i)
+$$
+
+**Example: The Doleans exponential**
+The Dolean exponential of a semimartingales $$X$$:
+
+$$
+U = 1 + \int U_{-}dX
+$$
+
+Continous part: $$d[U]^c = U_{-}d[X]^c$$ and the jumps: $$\Delta U = U_{-}\Delta X$$.
+
+By the generalized Ito formula, 
+
+$$
+\begin{align*}
+d\log (U) &= U^{-1}_{-}dU - \frac{1}{2}U^{-2}_{-} d[U]^c + (\Delta \log(U) - U^{-1}_{-}\Delta U)\\
+&= dX - \frac{1}{2}d[X]^c + (\log (1 + \Delta X) - \Delta X)
+\end{align*}
+$$
+
+Then we can integrate above and get the solution w.r.t. $$X$$
+
+**Proof (Generalized Ito Formula)**
+
+Again, we use a Taylor expansion
+
+$$
+f(X_t) = f(X_s) + D_i f(X_s)\delta X^i + \frac{1}{2}D_{ij}f(X_s) \delta X^i \delta X^j + R_{s,t}
+$$
+
+Partitioning interval $$[0, T]$$, we have
+
+$$
+f(X_T) = f(X_0) + \sum_{k=1}^n D_i f(X_{t^n_{k-1}})\delta_{n,k} X^i + \frac{1}{2} \sum_{k=1}^n D_{ij}f(X_{t^n_{k-1}})\delta_{n,k} X^i \delta_{n,k} X^j + \sum_{k=1}^n R_{t^n_{k-1}, t^n_k}
+$$
+
+While the first two integral can be derived similarly to the proof of Ito formula, the remaining term $$\sum_{k=1}^n R_{t^n_{k-1}, t^n_k}$$. 
+
+$$
+\begin{align*}
+R_{s,t} = & f(X_t) - f(X_s) -D_i f(X_s) \delta X^i - \frac{1}{2}f(X_s)\delta X^i \delta X^j\\
+\to & \Delta f(X_u) - D_i f(X_{u-})\Delta X_u^i - \frac{1}{2} D_{ij} f(X_{u-})\Delta X^i_u \Delta Y^i_u
+\end{align*}
+$$
