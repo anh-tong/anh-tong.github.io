@@ -223,3 +223,48 @@ R_{s,t} = & f(X_t) - f(X_s) -D_i f(X_s) \delta X^i - \frac{1}{2}f(X_s)\delta X^i
 \to & \Delta f(X_u) - D_i f(X_{u-})\Delta X_u^i - \frac{1}{2} D_{ij} f(X_{u-})\Delta X^i_u \Delta Y^i_u
 \end{align*}
 $$
+
+The above result is obtained based on the following result.
+
+**Lemma** Let $$X$$ be a semimartingales and $$R_{s,t}$$ be of size $$o(\lVert X_t - X_s \rVert^2)$$. Suppose there is a process $$r_u$$ satisfying
+
+$$
+R_{s, t} \to r_u
+$$
+
+Then, $$\sum_{t\leq T} \mid r_t \mid$$ is almost surely finite and 
+
+$$
+\sum_{k=1}^n R_{t^n_{k-1}, t^n_k} \sum_{t\leq T}  r_t
+$$
+
+**Proof**
+
+Because $$R_{s,t}=o(\lVert X_t - X_s \rVert^2)$$, we have a random variable
+
+$$
+U(\epsilon) = \sup \{\lVert X_t - X_s \rVert^2 R_{s,t}: 0 < \lVert X_t - X_s \rVert \leq \epsilon\}
+$$
+
+This goes to zero when $$\epsilon \to 0$$. 
+
+$$
+\sum_{t\leq T} \mid r_t \mid \leq V \sum_{t\leq T} \lVert \Delta X_t \rVert^2 \leq V[X^i, X^i] \leq \infty
+$$
+
+Consider two cases:
+
++ Case 1: $$R_{s,t} = 0$$ when 
+$$\lVert X_t - X_s \rVert < \epsilon$$ 
+This case is however simple because each term in the sum consists of finite numbers of terms and each term goes to zero.
+
++ Case 2: $$R_{s,t} = 0$$ when 
+$$\lVert X_t - X_s \rVert \geq \epsilon$$
+Then
+
+$$
+\mid \sum_{k=1}^n R_{t^n_{k-1}, t^n_k}\mid \leq U(\epsilon) \sum_{k=1}^n \lVert \delta_{n,k} X \rVert^2 \to U(\epsilon) [X^i, X^i]_T
+$$
+
+in probability as $$n \to \infty$$
+
