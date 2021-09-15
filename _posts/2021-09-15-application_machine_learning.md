@@ -31,8 +31,18 @@ $$
 
 where $$G$$ stands for a function computing gradients and is injected with a random variable $$\omega$$. 
 
-Studing the dynamic of gradient descent methods has been seen in some work including Neural Tangent Kernel <d-cite>neural_tangent_kernel</d-cite>
-<!-- TODO: A related topic is Neural Tangent Kernel but no stochaticity is considered  -->
+Studing the dynamic of gradient descent methods has been seen in some work including  <d-cite key="neural_tangent_kernel"> Neural Tangent Kernel</d-cite>. 
+
+#### Diffusion process
+
+A diffusion process is defined as a Markove process if it satisfies
+
++ $$p(\lVert X_{t+h} - X_t \rVert > r \mid X_t = x) = o(h),$$
++ $$\mathbb{E}[(X_{t+h} - X_t) \mathbb{1}_{\{\lVert X_{t+h} - X_t \rVert \leq r\}} \mid X_t = x] = hb(x) + o(h),$$
++ $$\mathbb{E}[(X_{t+h} - X_t)(X_{t+h} - X_t)^\top \mathbb{1}_{\{\lVert X_{t+h} - X_t \rVert \leq r\}} \mid X_t = x] = hA(x) + o(h),$$
+for some $$b(\cdot) \in \mathbb{R}^d, A(\cdot) = A^\top (\cdot) \in \mathbb{R}^{d\times d}_+$$.
+
+
 
 <!-- TODO: Diffusion process -->
 <!-- TODO: Kolmogorov equation: constructing diffusion process -->
