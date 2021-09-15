@@ -55,16 +55,18 @@ $$
 where,
 
 $$
-\mathcal{L}f(x) = b(x)^\top \nabla f(x) + \frac{1}{2} \int_0^t \text{tr}[A(x) \nabla^2 f(W_s)]\text{d}s
+\mathcal{L}f(x) = b(x)^\top \nabla f(x) + \frac{1}{2} \text{tr}[A(x) \nabla^2 f(x)]\text{d}s
 $$
 
-*Example of Brownian motion* As we know that Brownian motion $$W_t$$ has zero mean ($$b=0$$) and covariance $$A = \mathbf{I}$$, we can have the expectation
+*Example of Brownian motion* 
+
+As we know that Brownian motion $$W_t$$ has zero mean ($$b=0$$) and covariance $$A = \mathbf{I}$$, we can have the expectation
 
 $$
 \mathbb{E}[f(W_t)] = f(0) + \frac{1}{2}\mathbb{E}[\text{tr}(\nabla^2 f(x))]
 $$
 
-The importance of this theorem in the following result is that as we shall see next that the parameters going through optimization trajectory will follow a stochastic process (diffusion process, to be exact), we are interested in understanding the output of this process through a function $$f$$ in order to compare to optimum value.
+We shall see next that the parameters going through optimization trajectory will follow a stochastic process (diffusion process, to be exact), we are interested in understanding the output of this process through a function $$f$$ in order to compare to optimum value.
 
 ### Tackle local optima
 
@@ -84,7 +86,7 @@ And now, we can recognize something familiar to the Black-Scholes models. The eq
 
 ### Key result
 
-Now, let's go over the main result presented in this paper <d-cite key="key_result"></d-cite>. 
+Now, let's go over the main result presented in this paper<d-cite key="key_result"> </d-cite>. 
 
 **Theorem** With a "reasonable assumption" (smoothness, dissiparity) that 
 
@@ -104,10 +106,12 @@ where,
 + (ii) $$D(\cdot \lVert \cdot)$$ is the Kullback-Leibler distribution
 + (iii) $$c_{\text{LS}}$$ is the log-Sobolev constant of $$\pi$$
 
-*How to intepret this theorem?* Well, recall that the minimum value is $$\inf_x F(x)$$. We need to compare the optimum value with the expectation of $$F(X_t)$$ at time $$t$$. The expectation is necessary since we are working with stochastic process $$X_t$$. 
+*How to intepret this theorem?* 
+Well, recall that the minimum value is $$\inf_x F(x)$$. We need to compare the optimum value with the expectation of $$F(X_t)$$ at time $$t$$. The expectation is necessary since we are working with stochastic process $$X_t$$. 
 So the above result is saying that the different between the value of the function evaluated over the process $$X_t$$ and the minimum is *bounded*. 
 
-*What can we say about the bound here?* Looking at the right-hand side, we can see that the bound decreases *exponentially* as the time $$t$$ goes. This is quite good, proving that optimization converges very fast. Also, the second term of the right-hand side, $$\frac{d}{\beta}\log \frac{\beta + 1}{d}$$, suggests that we may select $$\beta$$  not too large as well as not too small.
+*What can we say about the bound here?* 
+Looking at the right-hand side, we can see that the bound decreases *exponentially* as the time $$t$$ goes. This is quite good, proving that optimization converges very fast. Also, the second term of the right-hand side, $$\frac{d}{\beta}\log \frac{\beta + 1}{d}$$, suggests that we may select $$\beta$$  not too large as well as not too small.
 
 
 
