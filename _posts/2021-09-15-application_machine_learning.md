@@ -10,7 +10,7 @@ Now, let's talk about what cases we can apply techniques of stochastic calculus 
 
 This section will  focus on presenting the connection between stochastic optimization and stochastic calculus. The content of this section follows closely <a href="http://maxim.ece.illinois.edu/pubs/columbia.pdf">the slides</a> by Maxim Raginsky. 
 
-Stochastic optimization is one of the most well-known methods in machine. The method tries to miminizing a function by updating the function parameters in the inverse direction of its gradient. It does not have access to the full gradient but a noisy gradient which is usually computed from a small bactch of data. So because of this noisy gradient, stochastic calculus probably is a right tool.
+Stochastic optimization is one of the most well-known methods in machine learning. The method tries to miminizing a function by updating the function parameters in the inverse direction of its gradient. It does not have access to the full gradient but a noisy gradient which is usually computed from a small bactch of data. So because of this noisy gradient, stochastic calculus probably is a right tool.
 
 <!-- TODO: the slides seems focusing on gradient descent -->
 
