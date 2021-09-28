@@ -75,7 +75,7 @@ $$
 
 The goal is to find a feature map $\phi(\cdot)$ such that $K(x, y) = \mathbb{E}_\omega [\phi(x)^\top \phi(y)]$. Simply by rearranging the last term in Bochner's theorem, we can have something similar to dot-product and the integral is approximated and Monte Carlo integration. The random Fourier feature maps are in the form of sine and/or cosine transformation of linear transformation of inputs. The linear weights are sampled from spectral density.
 
-In Gaussian Process research, Spectral Mixture kernel is originated from the same idea where we need to design the spectral distribution to obtain new types of kernels <d-cite key="spectral-mixture"> </d-cite>. 
+In Gaussian Process research, Spectral Mixture kernel is originated from the same idea where we need to design the spectral distribution to obtain new types of kernels <d-cite key="spectral_mixture"> </d-cite>. 
 
 **What is the approximate feature map for attention?**
 The Performer paper<d-cite key="performer"> </d-cite> proposed the feature map which leads to the approximation of attention matrix is
