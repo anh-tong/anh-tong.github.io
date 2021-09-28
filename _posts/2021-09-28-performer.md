@@ -1,8 +1,8 @@
 ---
 layout: distill
 title: Transfomers and Perfomers
-description: Review the attention mechanism and the paper "Rethink Attention with Perfomers"
 date: 2021-09-28
+description: Review the attention mechanism and performers
 bibliography: 2021-09-28-performer.bib
 ---
 
