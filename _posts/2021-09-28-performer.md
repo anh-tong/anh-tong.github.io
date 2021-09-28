@@ -27,7 +27,7 @@ Indeed the term "attention" is come from the computed weight. The more weight is
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1 center" src="{{ site.baseurl }}/assets/img/attention.png">
+        <img class="center" src="{{ site.baseurl }}/assets/img/attention.png">
     </div>
 </div>
 <div class="caption">
