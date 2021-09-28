@@ -1,12 +1,12 @@
 ---
 layout: distill
 title: Transfomers and Perfomers
-date: 2021-09-27
 description: Review the attention mechanism and performers
-bibliography: 2021-09-28-performer.bib
+date: 2021-09-27
+bibliography: performer.bib
 ---
 
-Recently, there has been a new surge in machine learning community studying attention mechanism in transformers in both theory and practice. The concept attention here is proposed by authors from Google <d-cite key="attention"></d-cite>, becoming widely adopted in natural language processing (NLP) fields and gaining some popularity in computer vision as well. 
+Recently, there has been a new surge in machine learning community studying attention mechanism in transformers in both theory and practice. The concept attention here is proposed by authors from Google <d-cite key="attention"> </d-cite>, becoming widely adopted in natural language processing (NLP) fields and gaining some popularity in computer vision as well. 
 
 
 ## Attention
@@ -31,7 +31,7 @@ Indeed the term "attention" is come from the computed weight. The more weight is
     </div>
 </div>
 <div class="caption">
-    Illustrate the formula of Attention (Source: the original paper "Attention is All You Need" <d-cite key="attention"></d-cite>).
+    Illustrate the formula of Attention (Source: the original paper "Attention is All You Need" <d-cite key="attention"> </d-cite>).
 </div>
 
 This is the basic building block of surprisingly successful models such as GPT-2, GPT-3 which are composed of concatenations of attentions as well as multilayers of attentions. This post will not discuss further the architures of these models, but move on to an extension of attentions in which we can further reduce computational cost of this type of operators.
@@ -40,7 +40,7 @@ This is the basic building block of surprisingly successful models such as GPT-2
 
 The main focus of Perfomer is to address the issue of the attention mechanism which scales quadratically w.r.t. the number of tokens. Note that the input of transformers usually a sequence of tokens. Such a computation cost may not be allowed when data contains long sequences. 
 
-The Performer paper <d-cite key="performer"></d-cite> rewrites the attention formula as
+The Performer paper <d-cite key="performer"> </d-cite> rewrites the attention formula as
 
 $$
 Attention(Q,K,V) = D^{-1}AV, \quad A = \exp\left(\frac{QK^\top}{\sqrt{d}}\right), \quad D = diag(A \mathbf{1}).
@@ -67,7 +67,7 @@ A = Q' K'^\top, \quad Q', K' \in \mathbb{R}^{L\times r}
 $$
 
 
-**A bit of literature review** Kernel approximation has a quite history. One of the notable work is random Fourier feature (RFF) <d-cite key="rff"></d-cite>. The main idea of this work is to obtain low-rank approximation of a kernel Gram matrix from data. Thanks to Bohner's theorem that a stationary (shift-invariant) kernel can be represented as an inverse Fourier transform from a spectral density :
+**A bit of literature review** Kernel approximation has a quite history. One of the notable work is random Fourier feature (RFF) <d-cite key="rff"> </d-cite>. The main idea of this work is to obtain low-rank approximation of a kernel Gram matrix from data. Thanks to Bohner's theorem that a stationary (shift-invariant) kernel can be represented as an inverse Fourier transform from a spectral density :
 
 $$
 K(x, y) = K(x-y) = \int_\omega \exp(-i \langle x - y, \omega \rangle) d\mu(\omega)
@@ -75,10 +75,10 @@ $$
 
 The goal is to find a feature map $\phi(\cdot)$ such that $K(x, y) = \mathbb{E}_\omega [\phi(x)^\top \phi(y)]$. Simply by rearranging the last term in Bochner's theorem, we can have something similar to dot-product and the integral is approximated and Monte Carlo integration. The random Fourier feature maps are in the form of sine and/or cosine transformation of linear transformation of inputs. The linear weights are sampled from spectral density.
 
-In Gaussian Process research, Spectral Mixture kernel is originated from the same idea where we need to design the spectral distribution to obtain new types of kernels <d-cite key="spectral-mixture"></d-cite>. 
+In Gaussian Process research, Spectral Mixture kernel is originated from the same idea where we need to design the spectral distribution to obtain new types of kernels <d-cite key="spectral-mixture"> </d-cite>. 
 
 **What is the approximate feature map for attention?**
-The Performer paper<d-cite key="performer"></d-cite> proposed the feature map which leads to the approximation of attention matrix is
+The Performer paper<d-cite key="performer"> </d-cite> proposed the feature map which leads to the approximation of attention matrix is
 
 $$
 \phi(x) = \frac{h(x)}{m} (f_1(\omega_1^\top x), \dots, f_1(\omega_m^\top x), \dots, f_l(\omega_1^\top),\dots, f_l(\omega_m^\top x))
