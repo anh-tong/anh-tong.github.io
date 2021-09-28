@@ -1,7 +1,7 @@
 ---
 layout: distill
 title: Transfomers and Perfomers
-date: 2021-09-28
+date: 2021-09-27
 description: Review the attention mechanism and performers
 bibliography: 2021-09-28-performer.bib
 ---
@@ -21,17 +21,17 @@ $$
 Attention(Q, K, V) = softmax\left(\frac{QK^\top}{\sqrt{d_k}}\right)V
 $$
 
-This formula can be intuitively understood as we want an output which is a *weighted sum* of values. The weight here is decided by how *compatible* between the query and the key.
+This formula can be intuitively understood as we want an output which is a *weighted sum* of values. The weight here is decided by how *compatible* between the query and the key it is.
 
 Indeed the term "attention" is come from the computed weight. The more weight is assigned, the more attention is put on a feature dimension of value $V$. There is no outside knowledge involved except the input $X$ so that we sometimes call it "self-attention".
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/img/attention.png">
+        <img class="img-fluid rounded z-depth-1 center" src="{{ site.baseurl }}/assets/img/attention.png">
     </div>
 </div>
 <div class="caption">
-    Illustrate the formula of Attention.
+    Illustrate the formula of Attention (Source: the original paper "Attention is All You Need" <d-cite key="attention"></d-cite>).
 </div>
 
 This is the basic building block of surprisingly successful models such as GPT-2, GPT-3 which are composed of concatenations of attentions as well as multilayers of attentions. This post will not discuss further the architures of these models, but move on to an extension of attentions in which we can further reduce computational cost of this type of operators.
