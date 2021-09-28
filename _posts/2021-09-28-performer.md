@@ -1,9 +1,9 @@
 ---
 layout: distill
 title: Transfomers and Perfomers
-date: 2021-09-28
 description: Review the attention mechanism and the paper "Rethink Attention with Perfomers"
-bibilography: 2021-09-28-performer.bib
+date: 2021-09-28
+bibliography: 2021-09-28-performer.bib
 ---
 
 Recently, there has been a new surge in machine learning community studying attention mechanism in transformers in both theory and practice. The concept attention here is proposed by authors from Google <d-cite key="attention"></d-cite>, becoming widely adopted in natural language processing (NLP) fields and gaining some popularity in computer vision as well. 
