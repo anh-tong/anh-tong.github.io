@@ -60,7 +60,7 @@ $$
 K(x,y) = \mathbb{E}[\phi(x)^\top \phi(y)]
 $$
 
-Now the main question is how to makes this resprentation is cheaper to compute. Assume we already have such approximation, the approximated attention matrix now is
+Now the main question is how to makes this resprentation is cheaper to compute. Assume we already have such approximation, the approximated attention matrix now is (no longer has $\exp(\cdot)$ outside)
 
 $$
 A = Q' K'^\top, \quad Q', K' \in \mathbb{R}^{L\times r}
@@ -105,3 +105,13 @@ However, the paper discusses a numerical problem that computing the renomalized 
 + Case 2: $h(x)=\frac{1}{\sqrt{2}}\exp(-\lVert x \rVert^2/2 ), l=2, f_1(u) = \exp(u),f_2(u) = \exp(-u),  \mathcal{D} = \mathcal{N}(0, I)$
 
 The paper further provided the convergence analysis for such approximations including showing unbiased estimation and variance reduction.
+
+## Computation benefit
+
+The main difference between the computational cost of the original attension and those of the performer is that we use $Q'K'^\top$ instead of $QK^\top$. However, to realize the real computational cost, we may need to rearrange the parenthesis
+
+$$
+Attention(Q, K, V) \approx \hat{D}^{-1} (Q'K'^\top) V = 
+$$
+
+ Let's say $Q, K \in \mathbb{R}^{L\times d}$ and $Q', K' \in \mathbb{R}^{L\times m}, m < d $. So the computational cost is $\mathcal{O}(Lm + Ld + md)$ which is better than quadratic w.r.t $L$.
