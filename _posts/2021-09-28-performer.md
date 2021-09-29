@@ -106,12 +106,12 @@ However, the paper discusses a numerical problem that computing the renomalized 
 
 The paper further provided the convergence analysis for such approximations including showing unbiased estimation and variance reduction.
 
-## Computation benefit
+**Computational benefit**
 
-The main difference between the computational cost of the original attension and those of the performer is that we use $Q'K'^\top$ instead of $QK^\top$. However, to realize the real computational cost, we may need to rearrange the parenthesis
+The main difference between the computational cost of the original attension and those of the performer is that we use $Q^{'}K^{'}^\top$ instead of $\exp(QK^\top)$. However, to realize the real computational cost, we may need to rearrange the parenthesis
 
 $$
-Attention(Q, K, V) \approx \hat{D}^{-1} (Q'K'^\top) V = 
+Attention(Q, K, V) \approx \hat{D}^{-1} (Q'K'^\top) V = \hat{D}^{-1} (Q'(K'^\top V)).
 $$
 
- Let's say $Q, K \in \mathbb{R}^{L\times d}$ and $Q', K' \in \mathbb{R}^{L\times m}, m < d $. So the computational cost is $\mathcal{O}(Lm + Ld + md)$ which is better than quadratic w.r.t $L$.
+ Let's say $Q, K \in \mathbb{R}^{L\times d}$ and $Q^{'}, K^{'} \in \mathbb{R}^{L\times m}, m < d$. So the computational cost is $\mathcal{O}(Lm + Ld + md)$ which is better than quadratic w.r.t $L$.
