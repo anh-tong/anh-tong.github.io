@@ -108,7 +108,7 @@ The paper further provided the convergence analysis for such approximations incl
 
 **Computational benefit**
 
-The main difference between the computational cost of the original attension and those of the performer is that we use $Q^{\prime}K\prime^\top$ instead of $\exp(QK^\top)$. However, to realize the real computational cost, we may need to rearrange the parenthesis
+The main difference between the computational cost of the original attension and those of the performer is that we use $Q^{\prime}{K^{\prime}}\top$ instead of $\exp(QK^\top)$. However, to realize the real computational cost, we may need to rearrange the parenthesis
 
 $$
 Attention(Q, K, V) \approx \hat{D}^{-1} (Q'K'^\top) V = \hat{D}^{-1} (Q'(K'^\top V)).
