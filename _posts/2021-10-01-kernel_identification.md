@@ -8,7 +8,7 @@ bibliography: kernel_identification.bib
 
 In this post, I will review a recent paper <d-cite key="kernel_identification"><d-cite> about Gaussian process kernel from <a href="https://www.secondmind.ai/">Secondmind</a> and Cambridge University.
 
-Kernel structure discovery has been one of my main research topics <d-cite key="ICML2016,ICML2019, AAAI2021"> </d-cite> and I'm so excited to see the refreshing idea in the paper "Kernel Identification through Transformer" <d-cite key="kernel_identification"><d-cite>. 
+Kernel structure discovery has been one of my main research topics <d-cite key="ICML2016,ICML2019, AAAI2021"> </d-cite> and it is exciting to see the refreshing idea in the paper "Kernel Identification through Transformer" <d-cite key="kernel_identification"><d-cite>. 
 
 In learning Gaussian process, selecting kernels (kernel types or kernel structure) is important because the kernel types may encode inductive bias, i.e., periodicity, trends in data. Previous work often requires extensive search procedure to select an appropriate kernel. The proposed approach in this paper <d-cite key="kernel_identification"><d-cite> eliminates such cumbersome search via a pretrained deep neural network to generate the probable kernel structures. 
 
@@ -32,7 +32,7 @@ The compositional kernels are obtained by using addition or multiplication over 
 
 The more complex kernel structures is, the more expressive the corresponding Gaussian process model cound become. 
 
-Note that each base kernels encodes their own intrinsic characteristics which can be translated into nouns. Therefore, compositional kernels can be noun phrases. 
+Note that each base kernel encodes their own intrinsic characteristics which can be translated into nouns. Therefore, compositional kernels can be noun phrases. 
 
 ## Prepare data
 Starting off with building a set of kernel functions which is "reasonable" large enough, we sample priors to produce data $X, y$. This pair is concatenated side by side, and visually looks like an image. 
@@ -71,11 +71,12 @@ $$
 This uses the set transformer approach from<d-cite key="set_transformers"></d-cite> which introduces attention-based method to perform.
  I want to keep this concise so the notation here is little different from the original paper, removing some details i.e., feed-forward layers (usually be a part of attention block as embedding). 
 
- 2. **Dimension Encoder** 
+ 2. **Dimension Encoder** is responsible for the permutation invariance over dimension indices
 
  $$
  g(X) = FeedForwardNN(Attention(X))
  $$
+
 Formally, encoder is constructed as
  $$Encoder(X) = g(f(X))$$
 
@@ -83,7 +84,7 @@ Formally, encoder is constructed as
 Decoder has the responsibility to reproduce kernel structures as sentences out of the predefined set of "kernel" vocabularies. The model architecture of decoders is similar to "Attention is All You Need" paper <d-cite key="attention"> </d-cite> with no positional encodings.
 
 <div>
-    <img class="center" src="{{ site.baseurl }}/assets/img/kernel_transformer.png">
+    <img class="center" src="{{ site.baseurl }}/assets/img/kernel_transformer.jpg">
 </div>
 
 <div class="caption">
@@ -93,7 +94,10 @@ Overview of model architecture. Red means the permutation invariance over the in
 
 ## Conclusion
 
+If the proposed method really works well in practice, we no longer have to waitings hours to search over kernel structure space, but just train a neural network helping us to obtain most probable candidates quickly (in seconds).
+
 Despite of being able to generate kernel structure on the fly, it's hard to conclude that the obtained kernel structures agree with the tradition principles in model selection prefering simple models over complex ones like Bayesian Information Criteria, or Occam's razor. 
 
 Athough experiment section contains extensive results. I feel that the demonstration for the most simple case where we only consider time series should be presented. Probably, to work on 1D data set, the architectures of transformers do not have to satisfy double permutation invarance.
 
+Although the permutation invariance over dimensions is nice, the concatenation of $X$ and $y$ may ignore the dependency between $X$ and $y$. For example, the model may not know the causual relationship between $X$ and $y$. 

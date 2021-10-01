@@ -1,6 +1,6 @@
 ---
 layout: distill
-title: Transfomers and Perfomers
+title: Transformers and Perfomers
 description: Review the attention mechanism and performers
 date: 2021-09-27
 bibliography: performer.bib
