@@ -23,7 +23,7 @@ $$
 
 This formula can be intuitively understood as we want an output which is a *weighted sum* of values. The weight here is decided by how *compatible* between the query and the key it is.
 
-Indeed the term "attention" is come from the computed weight. The more weight is assigned, the more attention is put on a feature dimension of value $V$. There is no outside knowledge involved except the input $X$ so that we sometimes call it "self-attention".
+Indeed the term "attention" is come from the computed weight. The more weight is assigned, the more attention is put on a feature dimension of value $V$. There is no outside knowledge involved except the input $X$.
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
