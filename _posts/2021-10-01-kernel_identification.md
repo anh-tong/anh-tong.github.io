@@ -2,7 +2,7 @@
 layout: distill
 title: Transformers identifying kernel structures
 description: A review paper on find kernel structure using deep neural network
-date: 2021-10-01
+date: 2021-09-30
 bibliography: kernel_identification.bib
 ---
 
@@ -51,7 +51,7 @@ $$
 f(X) = \rho\left(\sum_i \phi(x_i) \right)
 $$
 
-The sum running over index $i$ enables the invarance when we permute $x_i$. This is closely related to <a href="https://en.wikipedia.org/wiki/De_Finetti%27s_theorem">de Finetti's theorem</a> on exchangeability of random variables. Here $\rho, \phi$ are parameterized with neural networks.
+The sum running over index $i$ enables the invarance when we permute $x_i$. In practice, we often encounter problems that the orders of elements in sets does not matter. If a model considers ordering dependency, it's bound to subjectively fail. This concept is closely related to <a href="https://en.wikipedia.org/wiki/De_Finetti%27s_theorem">de Finetti's theorem</a> on exchangeability of random variables. Here $\rho, \phi$ are parameterized with neural networks.
 
 **Double permutation invariance (over data index and dimension index)** The paper aims to have invariance over  not only data (sequence) indices but also dimension indices.
 
@@ -68,7 +68,7 @@ $$
  f(X) = MeanPooling(Attention(X))
  $$
 
-This follows the set transformer paper <d-cite key="set_transformers"></d-cite>.
+This uses the set transformer approach from<d-cite key="set_transformers"></d-cite> which introduces attention-based method to perform.
  I want to keep this concise so the notation here is little different from the original paper, removing some details i.e., feed-forward layers (usually be a part of attention block as embedding). 
 
  2. **Dimension Encoder** 
@@ -96,6 +96,4 @@ Overview of model architecture. Red means the permutation invariance over the in
 Despite of being able to generate kernel structure on the fly, it's hard to conclude that the obtained kernel structures agree with the tradition principles in model selection prefering simple models over complex ones like Bayesian Information Criteria, or Occam's razor. 
 
 Athough experiment section contains extensive results. I feel that the demonstration for the most simple case where we only consider time series should be presented. Probably, to work on 1D data set, the architectures of transformers do not have to satisfy double permutation invarance.
-
-
 
