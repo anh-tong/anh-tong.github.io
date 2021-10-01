@@ -1,8 +1,8 @@
 ---
 layout: distill
-title: Transformers identifying kernel structure
+title: Transformers identifying kernel structures
+description: A review paper on find kernel structure using deep neural network
 date: 2021-10-01
-description: A review paper on kernel structure 
 bibliography: kernel_identification.bib
 ---
 
@@ -24,11 +24,11 @@ Base (primitive) kernels are showed in this kernel
 
 | Kernel name | Kernel function |
 |-------------|-----------------|
-|       Squared exponential      |       $\sigma^2 \exp(-(x-x')^2/2\ell^2)$          |
-|        Linear     |     $\sigma^2 (x - \ell) (x' - \ell)$            |
-|         Periodic    |       $\sigma^2 \exp (\sin^2((x-x')/p)/\ell^2)$          |
+|       Squared exponential      |       $$\sigma^2 \exp(-(x-x')^2/2\ell^2)$$         |
+|        Linear     |     $$\sigma^2 (x - \ell) (x' - \ell)$$            |
+|         Periodic    |       $$\sigma^2 \exp (\sin^2((x-x')/p)/\ell^2)$$          |
 
-The compositional kernels are obtained by using addition or multiplication over base kernels. The space of such kernel functions is open-ended. 
+The compositional kernels are obtained by using addition or multiplication over base kernels because the closure property of kernel methods. The space of such kernel functions is open-ended. 
 
 The more complex kernel structures is, the more expressive the corresponding Gaussian process model cound become. 
 
@@ -53,7 +53,8 @@ $$
 
 The sum running over index $i$ enables the invarance when we permute $x_i$. This is closely related to <a href="https://en.wikipedia.org/wiki/De_Finetti%27s_theorem">de Finetti's theorem</a> on exchangeability of random variables. Here $\rho, \phi$ are parameterized with neural networks.
 
-**Double permutation invariance (over data index and dimension index)**
+**Double permutation invariance (over data index and dimension index)** The paper aims to have invariance over  not only data (sequence) indices but also dimension indices.
+
 $$
 f(\mathbf{X}) = \rho\left( \sum_i \rho' \left(\sum_j \phi'(X_{ij})\right) \right)
 $$
@@ -81,8 +82,8 @@ Formally, encoder is constructed as
 ### Decoder
 Decoder has the responsibility to reproduce kernel structures as sentences out of the predefined set of "kernel" vocabularies. The model architecture of decoders is similar to "Attention is All You Need" paper <d-cite key="attention"> </d-cite> with no positional encodings.
 
-<div class="img">
-    <img class="center" src="{{ site.baseurl }}/assets/img/kernel_transformer.png"> </img>
+<div>
+    <img class="center" src="{{ site.baseurl }}/assets/img/kernel_transformer.png">
 </div>
 
 <div class="caption">
