@@ -6,11 +6,11 @@ date: 2021-09-30
 bibliography: kernel_identification.bib
 ---
 
-In this post, I will review a recent paper <d-cite key="kernel_identification"><d-cite> about Gaussian process kernel from <a href="https://www.secondmind.ai/">Secondmind</a> and Cambridge University.
+In this post, I will review a recent paper <d-cite key="kernel_identification"></d-cite> about Gaussian process kernel from <a href="https://www.secondmind.ai/">Secondmind</a> and Cambridge University.
 
-Kernel structure discovery has been one of my main research topics <d-cite key="ICML2016,ICML2019, AAAI2021"> </d-cite> and it is exciting to see the refreshing idea in the paper "Kernel Identification through Transformer" <d-cite key="kernel_identification"><d-cite>. 
+Kernel structure discovery has been one of my main research topics <d-cite key="ICML2016,ICML2019, AAAI2021"> </d-cite> and it is exciting to see the refreshing idea in the paper "Kernel Identification through Transformer" <d-cite key="kernel_identification"></d-cite>. 
 
-In learning Gaussian process, selecting kernels (kernel types or kernel structure) is important because the kernel types may encode inductive bias, i.e., periodicity, trends in data. Previous work often requires extensive search procedure to select an appropriate kernel. The proposed approach in this paper <d-cite key="kernel_identification"><d-cite> eliminates such cumbersome search via a pretrained deep neural network to generate the probable kernel structures. 
+In learning Gaussian process, selecting kernels (kernel types or kernel structure) is important because the kernel types may encode inductive bias, i.e., periodicity, trends in data. Previous work often requires extensive search procedure to select an appropriate kernel. The proposed approach in this paper <d-cite key="kernel_identification"></d-cite> eliminates such cumbersome search via a pretrained deep neural network to generate the probable kernel structures. 
 
 
 
@@ -62,23 +62,23 @@ $$
 ### Encoder
 *Encoder* consists of sequence encoder and dimension encoder. These two serve the above double permutation invariance
 
- 1. **Sequence Encoder** is built upon attention mechanism (like <a href="https://anh-tong.github.io/blog/2021/performer/"> previous post </a>) and a mean pooling. 
+ + **Sequence Encoder** is built upon attention mechanism (like <a href="https://anh-tong.github.io/blog/2021/performer/"> previous post </a>) and a mean pooling. 
 
  $$
  f(X) = MeanPooling(Attention(X))
  $$
 
-This uses the set transformer approach from<d-cite key="set_transformers"></d-cite> which introduces attention-based method to perform.
- I want to keep this concise so the notation here is little different from the original paper, removing some details i.e., feed-forward layers (usually be a part of attention block as embedding). 
+This uses the set transformer approach from<d-cite key="set_transformers"></d-cite> which introduces attention-based method to perform. To keep this concise, the notation here is little different from the original paper, removing some details i.e., feed-forward layers (usually be a part of attention block as embedding). 
 
- 2. **Dimension Encoder** is responsible for the permutation invariance over dimension indices
+ + **Dimension Encoder** is responsible for the permutation invariance over dimension indices
 
  $$
  g(X) = FeedForwardNN(Attention(X))
  $$
 
 Formally, encoder is constructed as
- $$Encoder(X) = g(f(X))$$
+
+ $$Encoder(X) = g(f(X)).$$
 
 ### Decoder
 Decoder has the responsibility to reproduce kernel structures as sentences out of the predefined set of "kernel" vocabularies. The model architecture of decoders is similar to "Attention is All You Need" paper <d-cite key="attention"> </d-cite> with no positional encodings.
