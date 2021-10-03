@@ -35,7 +35,7 @@ The more complex kernel structures is, the more expressive the corresponding Gau
 Note that each base kernel encodes their own intrinsic characteristics which can be translated into nouns. Therefore, compositional kernels can be noun phrases. 
 
 ## Prepare data
-Starting off with building a set of kernel functions which is "reasonable" large enough, we sample priors to produce data $X, y$. This pair is concatenated side by side, and visually looks like an image. 
+Starting off with building a set of kernel functions which is "reasonably large" enough, we sample priors to produce data $X, y$. This pair is concatenated side by side, and visually looks like an image. 
 
 $$
 \text{Image} \to \text{Caption}   \qquad \Rightarrow  \qquad \text{Sample} \to \text{Kernel Structure}

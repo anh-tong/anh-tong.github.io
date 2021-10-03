@@ -3,10 +3,11 @@ layout: distill
 title: White Noise Theory
 date: 2021-09-06
 description: An introduction of white noise theory
+bibliography: white-noise.bib
 ---
 
 ### Introduction
-Recently, I have picked up some background of white noise theory after ready this paper <d-cite>multifractional</d-cite>. White noise theory developed by Hida generalizes the white noise in functional views. 
+Recently, I have picked up some background of white noise theory after ready this paper <d-cite key="multifractional"></d-cite>. White noise theory developed by Hida generalizes the white noise in functional views. 
 
 Starting from a classical results for a Browian montion, $$B_t$$, the following holds
 
@@ -38,15 +39,15 @@ Obviously, this case is equivalent to Gaussian white noise with finite sample. H
 
 **Definition (White noise probability measure)** 
 
-+ Let $$\mathcal{S}(\mathbb{R})$$ denote the Schwartz space of rapidly decrease smooth function on $$\mathbb{R}$$ and 
-+ let $$\Omega = \mathcal{S}'(\mathbb{R})$$ be its dual (or *space of tempered distributions*). 
-+ Let $$\mu$$ be the probability measureon the Borel sets $$\mathcal{B}(\mathcal{S}'(\mathbb{R}))$$. If 
++ Let $\mathcal{S}(\mathbb{R})$ denote the Schwartz space of rapidly decrease smooth function on $\mathbb{R}$ and 
++ Let $\Omega = \mathcal{S}'(\mathbb{R})$ be its dual (or *space of tempered distributions*). 
++ Let $\mu$ be the probability measureon the Borel sets $\mathcal{B}(\mathcal{S}'(\mathbb{R})).$ If 
 
 $$
     \int_{\mathcal{S}'(\mathbb{R})} \exp(i \langle \omega, f \rangle) \mu d\omega = \exp \left(-\frac{1}{2}\lVert f \rVert^2_{L^2(\mathbb{R})}\right),
 $$
 
-then the measure $$\mu$$ is called the white noise probability measure. 
+then the measure $\mu$ is called the white noise probability measure. 
 
 
 The Lévy process also is defined based on its characteristic function in <a href="https://en.wikipedia.org/wiki/L%C3%A9vy_process">Lévy-Khintchine formula</a>.
@@ -83,6 +84,14 @@ $$
 $$
 
 This is the charateristic of a multivariate Gaussian distribution.
+
+## Fractional Brownian Motion (fBm)
+
+The ovariance function of fBm is
+
+$$
+k(s, t) = |t|^{2H} + |s|^{2H} - |t-s|^{2H}
+$$
 
 ### Conclusion
 Although the mathematical formulation presented aboved is elegant, having applications in finance <d-cite>multifractional</d-cite>, it is not clear if there is any implication yet. One potential direction is to use in generative model for time series where Brownian motion is the main source of random noise. 
