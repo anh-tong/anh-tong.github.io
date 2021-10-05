@@ -68,7 +68,7 @@ $$
  f(X) = MeanPooling(Attention(X))
  $$
 
-This uses the set transformer approach from<d-cite key="set_transformers"></d-cite> which introduces attention-based method to perform. To keep this concise, the notation here is little different from the original paper, removing some details i.e., feed-forward layers (usually be a part of attention block as embedding). 
+This uses the set transformer approach from<d-cite key="set_transformer"></d-cite> which introduces attention-based method to perform. To keep this concise, the notation here is little different from the original paper, removing some details i.e., feed-forward layers (usually be a part of attention block as embedding). 
 
  + **Dimension Encoder** is responsible for the permutation invariance over dimension indices
 
