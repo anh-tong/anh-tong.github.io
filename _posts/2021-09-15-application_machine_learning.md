@@ -1,6 +1,6 @@
 ---
 layout: distill
-title: Applications of Stochastic Calculus in Machine Learning
+title: Stochastic Calculus in Machine Learning
 description: Exploring some aspect of stochastic calculus in optimization. The blog is based on the slides of Prof. Maxim Raginsky at UIUC. 
 date: 2021-09-15
 bibliography: 2021-09-15-application-machine-learning.bib

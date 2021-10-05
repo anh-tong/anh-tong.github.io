@@ -1,6 +1,6 @@
 ---
 layout: distill
-title: Applications of Stochastic Calculus in Engineering and Physics 
+title: Stochastic Calculus in Engineering and Physics 
 date: 2021-09-17
 description: Summarize some applications of stochastic calculus in engineering and physics. 
 ---
