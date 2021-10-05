@@ -86,11 +86,38 @@ $$
 This is the charateristic of a multivariate Gaussian distribution.
 
 ## Fractional Brownian Motion (fBm)
-
-The ovariance function of fBm is
+The covariance function of fBm is
 
 $$
 k(s, t) = |t|^{2H} + |s|^{2H} - |t-s|^{2H}
+$$
+
+To derive the similar form like Brownian motion, we need an operator $M$
+
+$$
+Mf(y) = |y|^{1/2 - H}\hat{f}(y), \quad y \in \mathbb{R}
+$$
+
+$$
+Mf(x) = C_H\int_\mathbb{R}\frac{f(x-t) - f(x)}{|t|^{3/2 - H}}dt
+$$
+
+We define 
+$$M\chi_{[0, t]}(x) = M[0, t](x)$$
+
+The fractional Brownian motion is 
+
+$$
+\tilde{B}^{(H)}(t) = \langle \omega, M[0,t](\cdot)\rangle
+$$
+
+We also can reobtain the covariance kernel for
+
+$$
+\begin{aligned}
+\mathbb{E}[\tilde{B}^{(H)}(s)\tilde{B}^{(H)}(t)] & = \int_{\mathbb{R}} M[0,s](x) M[0, t](x) dx \\
+& = 
+\end{aligned}
 $$
 
 ### Conclusion

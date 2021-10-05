@@ -8,7 +8,7 @@ bibliography: kernel_identification.bib
 
 In this post, I will review a recent paper <d-cite key="kernel_identification"></d-cite> about Gaussian process kernel from <a href="https://www.secondmind.ai/">Secondmind</a> and Cambridge University.
 
-Kernel structure discovery has been one of my main research topics <d-cite key="ICML2016,ICML2019, AAAI2021"> </d-cite> and it is exciting to see the refreshing idea in the paper "Kernel Identification through Transformer" <d-cite key="kernel_identification"></d-cite>. 
+Kernel structure discovery has been one of my main research topics <d-cite key="ICML2016,ICML2019, AAAI2021"> </d-cite> and it is exciting to see a refreshing idea in the paper "Kernel Identification through Transformer" <d-cite key="kernel_identification"></d-cite>. 
 
 In learning Gaussian process, selecting kernels (kernel types or kernel structure) is important because the kernel types may encode inductive bias, i.e., periodicity, trends in data. Previous work often requires extensive search procedure to select an appropriate kernel. The proposed approach in this paper <d-cite key="kernel_identification"></d-cite> eliminates such cumbersome search via a pretrained deep neural network to generate the probable kernel structures. 
 
@@ -96,7 +96,7 @@ Overview of model architecture. Red means the permutation invariance over the in
 
 If the proposed method really works well in practice, we no longer have to waitings hours to search over kernel structure space, but just train a neural network helping us to obtain most probable candidates quickly (in seconds).
 
-Despite of being able to generate kernel structure on the fly, it's hard to conclude that the obtained kernel structures agree with the tradition principles in model selection prefering simple models over complex ones like Bayesian Information Criteria, or Occam's razor. 
+Despite of being able to generate kernel structure on the fly, it's hard to conclude that the obtained kernel structures agrees with the tradition principles in model selection prefering simple models over complex ones like Bayesian Information Criteria, or Occam's razor. 
 
 Athough experiment section contains extensive results. I feel that the demonstration for the most simple case where we only consider time series should be presented. Probably, to work on 1D data set, the architectures of transformers do not have to satisfy double permutation invarance.
 
