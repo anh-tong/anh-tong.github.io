@@ -15,4 +15,4 @@ The report discusses the importance of some mathematical tools such as Fokker-Pl
 
 What strikes me is that most of the work was well-established decades ago but is recognized long afterward.
 
-Of course, many things discussed above are out of my expertise. But it's enlightening to have some read over this topic and to see the connection with the fundamental tool like stochastic calculus, Brownian motion. Long ago, I also realize that the same stochasticity tool is a part of the key results in Black-Scholes models, another Nobel prize work in Economics.
+Of course, many things discussed above are out of my expertise. But it's enlightening to have some read over this topic and to see the connection with the fundamental tool like stochastic calculus, Brownian motion. It is known that the same stochasticity tool is a part of the long-standing results in Black-Scholes models, another Nobel prize work in Economics.
