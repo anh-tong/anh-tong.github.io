@@ -37,7 +37,7 @@ $$
 
 Of course, $X(t)$ and $f(x, t)$ have to satisfy a "reasonable" condition which will not be written in detail here. 
 
-The above equation totally make sense when we use Ito's lemma and $M_f(t) = \int_0^t \frac{\partial f(B(s), s)}{\partial x} dB(s)$ for the case $X(t) = B(t)$ (Brownian motion). 
+The above equation makes sense when we use Ito's lemma and $M_f(t) = \int_0^t \frac{\partial f(B(s), s)}{\partial x} dB(s)$ for the case $X(t) = B(t)$ (Brownian motion). 
 
 Given a function $f(x,t)$ which solves a PDE
 
