@@ -29,7 +29,7 @@ $$
 df(X(t),t) = \left(L_tf(X(t),t) + \frac{\partial f}{\partial t}(X(t),t)\right) dt + \frac{\partial f}{\partial x}(X(t), t)\sigma(X(t),t) dB(t)
 $$
 
-The first result is presented here is that the following process is a martingale
+The first result presented here is that the following process is a martingale
 
 $$
 M_f(t) = f(X(t), t) - \int_0^t \left( L_u + \frac{\partial f}{ \partial t}\right)(X(u), u) du
@@ -57,7 +57,7 @@ This is also true if $t$ is replaced by a bounded stopping time $\tau$.
 
 ## Calculation of Expectations and PDEs
 
-This section provide a connection between computing the expectation of diffusion process on the boundary and the corresponding PDEs.
+This section provides a connection between computing the expectation of a diffusion process on the boundary and the corresponding PDE.
 
 Again, the SDE is written bellow but with a boundary
 
@@ -83,7 +83,7 @@ $$
 f(x,t) = \mathbb{E}[g(X(T)) \mid X(t)=x]
 $$
 
-This result is quite simple to figure out by using the martingale property of $f(x, t)$ as in the previous section. Here is the outline of the proof
+This result is quite simple to figure out by using the martingale property of $f(X(t), t)$ as in the previous section. Here is the outline of the proof
 
 $$
 \begin{aligned}
@@ -127,9 +127,10 @@ df(X(t), t) &= \textcolor{blue}{\left(L_t f(X(t), t) + \frac{\partial f}{\partia
 df(X(t), t) & = \textcolor{blue}{r(X(t), t) f(X(t), t)} + \textcolor{red}{dM(t)}
 \end{aligned}
 $$
+
 Here we used the PDE and defined $M(t)$ in the red term.
 
-This is a linear SDE of Langevin type and its solution is
+This is a linear SDE of Langevin type (see <a href="https://en.wikipedia.org/wiki/Stochastic_differential_equation">this</a>) and its solution is
 
 $$
 \begin{aligned}
@@ -138,6 +139,7 @@ f(X(T), T) = & f(X(t), t) \exp\left(\int_t^T r(X(u), u) du\right) \\
 g(X(T)) &= \dots
 \end{aligned}
 $$
+
 The term associated with $M(t)$ has zero mean is a martingale with zero mean.
 
 
@@ -155,6 +157,7 @@ $$ -->
 
 The note here does not relate to any part of machine learning research but just is a fundamental background. 
 
-The main takeaway message here is that this problem setting, if we look for expectation, we may need to solve a PDE corresponding to the diffusion process.
+The main takeaway message here is that in this problem setting, if we look for expectation, we may need to solve a PDE corresponding to the diffusion process. 
+Martingale plays a very important role in the above derivation.
 
 
