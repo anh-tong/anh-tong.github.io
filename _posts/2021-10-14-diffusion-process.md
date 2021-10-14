@@ -5,7 +5,7 @@ description: Note on diffusion processes
 date: 2021-10-14
 ---
 
-This note focuses on studying diffusion processeses. The setting here is that we are solving stochastic differential equations (SDEs). The name "diffusions" is refered as the solutions to SDEs.
+This note focuses on studying diffusion processes. The setting here is that we are solving stochastic differential equations (SDEs). The name "diffusions" is refered as the solutions to SDEs.
 
 There is a recent direction in generative model (i.e., <a href="https://arxiv.org/abs/2011.13456"> scored-based generative modeling</a>) where the backbone is a diffusion process. Also, <a href="https://anh-tong.github.io/blog/2021/application_machine_learning/">the previous post</a> has discussed the importance of SDEs in Langevin optimization. So let's dive in the main content.
 
