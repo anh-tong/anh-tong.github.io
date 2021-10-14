@@ -124,7 +124,7 @@ From Ito's lemma
 $$
 \begin{aligned}
 df(X(t), t) &= \textcolor{blue}{\left(L_t f(X(t), t) + \frac{\partial f}{\partial t}(X(t), t)\right)}dt + \textcolor{red}{\frac{\partial f}{\partial x}(X(t), t)\sigma(X(t), t) dB(t)} \\
-df(X(t), t) & = \textcolor{blue}{r(X(t), t) f(X(t), t)} + \textcolor{red}{dM(t)}
+df(X(t), t) & = \textcolor{blue}{r(X(t), t) f(X(t), t)}dt + \textcolor{red}{dM(t)}
 \end{aligned}
 $$
 
