@@ -145,12 +145,43 @@ The term associated with $M(t)$ has zero mean is a martingale with zero mean.
 
 
 
-<!-- ## Time Homogeneous Diffusions
+## Time Homogeneous Diffusions
 Now, consider a case of time-independent coefficients SDEs
 
 $$
 dX(t) = \mu(X(t))dt + \sigma(X(t))dB(t)
-$$ -->
+$$
+
+If there is a unique solution for this, the the transition probability is *shift-invariant* or $P(y, t, x, s) = P(y, t-s, x, 0)$. In other words, this transition probability depends on the time difference $t-s$ regardless of the start time.
+
+**Quick note** The transition probability is defined as $P(y, t, x, s) = P(X(t) \leq y \mid X(s) = x)$, the condition distribution of $X(t)$ given $X(s)=x$. The transition direction here is $(x, s) \to (y,t)$.
+
+**Backward and forward equation** We will see a lot that there is a correspondence between SDE and PDE. To indicate the direction, we have *forward* PDEs modeling the state-time $(y, t)$ given $(x, s)$, while the solution of *backward* PDEs is a function of $(x, s)$ given $(y, t)$. 
+
+Based on the shift-invariance, the transition probability now is defined given only three variables $(t, x, y)$ as $P(t, x, y) = P(y, t + s, x, s) = P(y, t, x, 0)$. The backward equation for the time homogeneous diffusion is
+
+$$
+\frac{\partial p}{\partial t} = \frac{1}{2} \sigma^2(x)\frac{\partial^2 p}{\partial x^2} + \mu(x)\frac{\partial p}{\partial x} 
+$$
+
+**Example** Black-Scholes PDE
+
+$$
+dX(t) = \mu X(t) dt + \sigma X(t) dB(t)
+$$
+
+Use backward equation, the transtion probability density satisfies
+
+$$
+\frac{\partial p}{\partial t} = \frac{1}{2} \sigma^2 x^2\frac{\partial^2 p}{\partial x^2} + \mu x\frac{\partial p}{\partial x} 
+$$
+
+The known result that the transition probability for this case is $P(y, t, x, s) = \Phi\left(\frac{\ln(y/x) - (\mu - \sigma^2/2)(t-s)}{\sigma \sqrt{t-s}}\right)$. Then the density is simply obtained by taking derivative and is the fundamental solution for the above PDE
+
+$$
+p(t, x, y) = \frac{\partial }{\partial y} \Phi\left(\frac{\ln(y/x) - (\mu - \sigma^2/2)(t-s)}{\sigma \sqrt{t-s}}\right).
+$$
+
 
 
 ## Remark
