@@ -45,7 +45,7 @@ The kernel structures here are the name of additive kernels composed from a set 
 
 ## Model architecture
 
-**Permutation Invarance** <d-cite key="deep_sets"> </d-cite> shows that a function sastifying permutation invarance should in the following form
+**Permutation Invarance** <d-cite key="deep_sets"> </d-cite> shows that a function sastifying permutation invarance should be in the following form
 
 $$
 f(X) = \rho\left(\sum_i \phi(x_i) \right)
@@ -94,7 +94,7 @@ Overview of model architecture. Red means the permutation invariance over the in
 
 ## Conclusion
 
-If the proposed method really works well in practice, we no longer have to waitings hours to search over kernel structure space, but just train a neural network helping us to obtain most probable candidates quickly (in seconds).
+If the proposed method really works well in practice, we no longer have to wait hours to search over kernel structure space, but just train a neural network helping us to obtain most probable candidates quickly (in seconds).
 
 Despite of being able to generate kernel structure on the fly, it's hard to conclude that the obtained kernel structures agrees with the tradition principles in model selection prefering simple models over complex ones like Bayesian Information Criteria, or Occam's razor. 
 
