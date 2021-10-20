@@ -2,7 +2,7 @@
 layout: distill
 title: Semimartingales
 description: Note on semimartingales
-date: 
+date: 2021-10-20
 ---
 Simply, the definition is
 <p style="text-align: center;">Semimartingale = local martingale + finite variation</p>
@@ -79,4 +79,41 @@ $$
 
 - Associativity: $K \cdot (H \cdot X) = (KH) \cdot X$
 
+## Ito's Formula for Continuous Semimartingale
 
+With $X(t)$ is a continuous semimartingale and $f$ is twice continuously differentiable, $Y(t) = f(X(t))$ is a semimartingale and 
+
+$$
+f(X(t)) - f(X(0)) = \int_0^t f'(X(s))dX(s) + \frac{1}{2} \int_0^t f''(X(s))d[X, X](s)
+$$
+
+In differential form, it is
+
+$$
+df(X(t)) = f'(X(t))dX(t) + \frac{1}{2}f''(X(t))d[X, X](t)
+$$
+
+If the quadratic variation $[X,X](t)$ equals $0$, then it ends up just like ordinary calculus. If $X(t)$ is a Brownian motion, $[X, X](t) = t$
+
+## Ito's Formula for Semimartingales
+
+With $X(t)$ is a semimartingale, $f \in C^2$
+
+$$
+\begin{aligned}
+f(X(t)) - f(X(0)) = & \int_0^t f'(X(s-))dX(s) + \frac{1}{2}\int_0^t f''(X(s-))d[X,X] (s) + \\
+& \sum_{s\leq t} \left(\Delta f(X(s)) - f'(X(s-))\Delta X(s) -\frac{1}{2}f''(X(s-))(\Delta X(s))^2\right)
+\end{aligned}
+$$
+
+where $\Delta f(X(s)) = f(X(s)) - f(X(s-))$. So why does this look a little complicate? Well, there are possible jumps in the semimartingales. And the quadratic variation of the jump part has jumps $\Delta[X, X](s) = (\Delta X(s))^2$. The above formula can be reduced to
+
+$$
+\begin{aligned}
+f(X(t)) - f(X(0)) = & \int_0^t f'(X(s-))dX(s) + \frac{1}{2}\int_0^t f''(X(s-))d[X,X]^c (s) + \\
+& \sum_{s\leq t} \left(\Delta f(X(s)) - f'(X(s-))\Delta X(s)\right)
+\end{aligned}
+$$
+
+## Final remark
+This is a simple note on how stochastic calculus is done with semimartingales. Most of the work on stochastic differential equations stops at the randomness assumption being semimartingale. Still, there are more advanced theories, for example, <a href="https://almostsuremath.com/2016/10/21/the-projection-theorems/"> the projection theorem </a> or <a href="https://en.wikipedia.org/wiki/Rough_path"> rough path </a> to deal with subjects beyond semimartingales.
