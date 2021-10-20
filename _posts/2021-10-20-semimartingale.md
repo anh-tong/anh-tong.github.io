@@ -106,7 +106,7 @@ f(X(t)) - f(X(0)) = & \int_0^t f'(X(s-))dX(s) + \frac{1}{2}\int_0^t f''(X(s-))d[
 \end{aligned}
 $$
 
-where $\Delta f(X(s)) = f(X(s)) - f(X(s-))$. So why does this look a little complicate? Well, there are possible jumps in the semimartingales. And the quadratic variation of the jump part has jumps $\Delta[X, X](s) = (\Delta X(s))^2$. The above formula can be reduced to
+where $\Delta f(X(s)) = f(X(s)) - f(X(s-))$. So why does this look a little complicate? Well, there are possible jumps in the semimartingales. And the quadratic variation of the jump part has jumps $\Delta [X,X] (s) = (\Delta X(s))^2$. The above formula can be reduced to
 
 $$
 \begin{aligned}
