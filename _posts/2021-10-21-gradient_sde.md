@@ -57,7 +57,7 @@ So, this is the main technical background of Neural ODE.
 </div>
 
 <div class="caption">
-Reverse-mode of Neural ODEs. Adjoint information is propagated backward-in-time.
+Reverse-mode of Neural ODEs. Adjoint information is propagated backward-in-time (Source: <d-cite key="neural_ode"></d-cite>).
 </div>
 
 ### Neural SDEs
