@@ -14,3 +14,111 @@
   url = 	 {https://proceedings.mlr.press/v108/li20i.html},
   abstract = 	 {The adjoint sensitivity method scalably computes gradients of solutions to ordinary differential equations. We generalize this method to stochastic differential equations, allowing time-efficient and constant-memory computation of gradients with high-order adaptive solvers. Specifically, we derive a stochastic differentialequation whose solution is the gradient, a memory-efficient algorithm for cachingnoise, and conditions under which numerical solutions converge. In addition, we combine our method with gradient-based stochastic variational inference for latent stochastic differential equations. We use our method to fit stochastic dynamics defined by neural networks, achieving competitive performance ona 50-dimensional motion capture dataset.}
 }
+
+@inproceedings{neural_ode,
+  author    = {Tian Qi Chen and
+               Yulia Rubanova and
+               Jesse Bettencourt and
+               David Duvenaud},
+  editor    = {Samy Bengio and
+               Hanna M. Wallach and
+               Hugo Larochelle and
+               Kristen Grauman and
+               Nicol{\`{o}} Cesa{-}Bianchi and
+               Roman Garnett},
+  title     = {Neural Ordinary Differential Equations},
+  booktitle = {Advances in Neural Information Processing Systems 31: Annual Conference
+               on Neural Information Processing Systems 2018, NeurIPS 2018, December
+               3-8, 2018, Montr{\'{e}}al, Canada},
+  pages     = {6572--6583},
+  year      = {2018},
+  url       = {https://proceedings.neurips.cc/paper/2018/hash/69386f6bb1dfed68692a24c8686939b9-Abstract.html},
+  timestamp = {Thu, 21 Jan 2021 15:15:20 +0100},
+  biburl    = {https://dblp.org/rec/conf/nips/ChenRBD18.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{efficient_gradient_sde,
+  author    = {Patrick Kidger and
+               James Foster and
+               Xuechen Li and
+               Terry J. Lyons},
+  title     = {Efficient and Accurate Gradients for Neural SDEs},
+  journal   = {CoRR},
+  volume    = {abs/2105.13493},
+  year      = {2021},
+  url       = {https://arxiv.org/abs/2105.13493},
+  eprinttype = {arXiv},
+  eprint    = {2105.13493},
+  timestamp = {Tue, 01 Jun 2021 18:07:59 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-2105-13493.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+
+@article{deep_limit_1,
+  author    = {Belinda Tzen and
+               Maxim Raginsky},
+  title     = {Neural Stochastic Differential Equations: Deep Latent Gaussian Models
+               in the Diffusion Limit},
+  journal   = {CoRR},
+  volume    = {abs/1905.09883},
+  year      = {2019},
+  url       = {http://arxiv.org/abs/1905.09883},
+  eprinttype = {arXiv},
+  eprint    = {1905.09883},
+  timestamp = {Wed, 29 May 2019 11:27:50 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-1905-09883.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+
+@InProceedings{deep_limit_2,
+  title = 	 {Theoretical guarantees for sampling and inference in generative models with latent diffusions},
+  author =       {Tzen, Belinda and Raginsky, Maxim},
+  booktitle = 	 {Proceedings of the Thirty-Second Conference on Learning Theory},
+  pages = 	 {3084--3114},
+  year = 	 {2019},
+  editor = 	 {Beygelzimer, Alina and Hsu, Daniel},
+  volume = 	 {99},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {25--28 Jun},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v99/tzen19a/tzen19a.pdf},
+  url = 	 {https://proceedings.mlr.press/v99/tzen19a.html},
+  abstract = 	 {We introduce and study a class of probabilistic generative models, where the latent object is a finite-dimensional diffusion process on a finite time interval and the observed variable is drawn conditionally on the terminal point of the diffusion. We make the following contributions: We provide a unified viewpoint on both sampling and variational inference in such generative models through the lens of stochastic control. We quantify the expressiveness of diffusion-based generative models. Specifically, we show that one can efficiently sample from a wide class of terminal target distributions by choosing the drift of the latent diffusion from the class of multilayer feedforward neural nets, with the accuracy of sampling measured by the Kullback–Leibler divergence to the target distribution. Finally, we present and analyze a scheme for unbiased simulation of generative models with latent diffusions and provide bounds on the variance of the resulting estimators. This scheme can be implemented as a deep generative model with a random number of layers. }
+}
+
+@article{neural_sde_gan,
+  author    = {Patrick Kidger and
+               James Foster and
+               Xuechen Li and
+               Harald Oberhauser and
+               Terry J. Lyons},
+  title     = {Neural SDEs as Infinite-Dimensional GANs},
+  journal   = {CoRR},
+  volume    = {abs/2102.03657},
+  year      = {2021},
+  url       = {https://arxiv.org/abs/2102.03657},
+  eprinttype = {arXiv},
+  eprint    = {2102.03657},
+  timestamp = {Wed, 10 Feb 2021 15:24:31 +0100},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-2102-03657.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@misc{neural_ode_finance,
+      title={Robust pricing and hedging via neural SDEs}, 
+      author={Patryk Gierjatowicz and Marc Sabate-Vidales and David Šiška and Lukasz Szpruch and Žan Žurič},
+      year={2020},
+      eprint={2007.04154},
+      archivePrefix={arXiv},
+      primaryClass={q-fin.MF}
+}
+
+@inproceedings{kong2020sde,
+  title={SDE-Net: Equipping Deep Neural Networks with Uncertainty Estimates},
+  author={Kong, Lingkai and Sun, Jimeng and Zhang, Chao},
+  booktitle={International Conference on Machine Learning},
+  year={2020}
+}
