@@ -93,7 +93,7 @@ $$
 df(X(t)) = f'(X(t))dX(t) + \frac{1}{2}f''(X(t))d[X, X](t)
 $$
 
-If the quadratic variation $[X,X](t)$ equals $0$, then it ends up just like ordinary calculus. If $X(t)$ is a Brownian motion, $[X, X](t) = t$
+If the quadratic variation $ [X,X] (t)$ equals $0$, then it ends up just like ordinary calculus. If $X(t)$ is a Brownian motion, $ [X, X] (t) = t$
 
 ## Ito's Formula for Semimartingales
 
