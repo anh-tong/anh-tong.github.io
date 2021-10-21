@@ -53,7 +53,7 @@ $$
 So, this is the main technical background of Neural ODE. 
 
 <div>
-    <img class="center" src="{{ site.baseurl }}/assets/img/neural_ode_reverse_model.png">
+    <img class="center" src="{{ site.baseurl }}/assets/img/neural_ode_reverse_mode.png">
 </div>
 
 <div class="caption">
