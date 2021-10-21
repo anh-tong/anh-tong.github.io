@@ -6,9 +6,9 @@ date: 2021-10-21
 bibliography: gradient_sde.bib
 ---
 
-In the series of, there has been a development among machine learning community adopting stochastic differential equation in neural networks. It starts with Neural Ordinary Equations <d-cite key="neural_ode"></d-cite> which opens a new research direction considering layer indices in neural networks as continuous values. Then, to model uncertainty, Neural Stochastic Differential Equation is proposed, potentially having many applications like generative time series modeling, financial modeling, etc.
+When writing this series of stochastic calculus, there has been a much development among machine learning community adopting stochastic differential equation in neural networks. It starts with Neural Ordinary Equations <d-cite key="neural_ode"></d-cite> which opens a new research direction considering layer indices in neural networks as continuous values. Then, to model uncertainty, Neural Stochastic Differential Equation is proposed, potentially having many applications like generative time series modeling, financial modeling, etc.
 
-The key techniques include adjoint sentitivity method in performing backpropagragtion through time (not layers), and solving backward SDEs . This post focuses more on the former, and just briefly mention the latter.
+The key techniques include adjoint sentitivity method in performing backpropagragtion through time (not layers), and quering sample paths from forward-pass when solving backward SDEs. This post focuses more on the former, and just briefly mention the latter.
 
 ### Neural ODEs
 
@@ -32,7 +32,7 @@ $$
 
 where $L(\cdot)$ is a loss function.
 
-The adjoint sensitivity method compute $dL/d\theta$ with an extra helping hand of a new guy called *adjoint* $a(t) = \partial L / \partial z(t)$ which agrees with a ODE (similar to chain rule)
+The adjoint sensitivity method compute $dL/d\theta$ with an extra helping hand of a new guy called *adjoint* $a(t) = \partial L / \partial z(t)$ which agrees with a ODE (red texts use 1-chain rule, 2-Taylor expansion)
 
 $$
 \begin{aligned}
@@ -51,6 +51,14 @@ $$
 $$
 
 So, this is the main technical background of Neural ODE. 
+
+<div>
+    <img class="center" src="{{ site.baseurl }}/assets/img/neural_ode_reverse_model.png">
+</div>
+
+<div class="caption">
+Reverse-mode of Neural ODEs. Adjoint information is propagated backward-in-time.
+</div>
 
 ### Neural SDEs
 
