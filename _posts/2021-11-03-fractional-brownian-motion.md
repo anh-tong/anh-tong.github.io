@@ -9,7 +9,7 @@ I came across this <a href="http://www.columbia.edu/~ad3217/fbm/thesis.pdf">thes
 
 ## Definition of self-similarity
 
-In a general sense, self-similar object look exactly or approximately similar to *a part* of itself (which is also mean a small scaled version the object). 
+In a general sense, self-similar object looks exactly or approximately similar to *a part* of itself (which is also mean a small scaled version the object). 
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Fractal_fern_explained.png/300px-Fractal_fern_explained.png">
 
@@ -17,7 +17,7 @@ This image (source: <a href="https://en.wikipedia.org/wiki/Self-similarity">Wiki
 
 In statistics, roughly speaking, a stochastic process is self-similar if any finite samples from the process has the same ditribution with a *scaled* version of aggregation (mean, first-order statistic) of the finite samples.
 
-Mathematically, consider a discrete stochastic process $X =\{X_k\}_k$. For any $m > 1$, a new stochastic process $X^{(m)}= \{X^{(m)}_k\}_k$ is define as
+Mathematically, consider a discrete stochastic process $X_k$. For any $m > 1$, a new stochastic process $X^{(m)}_k$ is define as
 
 $$X^{(m)}_k = \frac{1}{m} (X_{km} + \dots + X_{(k+1)m - 1})$$
 
@@ -89,6 +89,7 @@ The autocovariance in this case is
 $$\gamma(k) = \frac{1}{2}(\lvert k-1 \rvert^{2H} - 2 \lvert k \rvert^{2H} + \lvert k+1 \rvert^{2H})$$
 
 we can obtain that 
+
 $$\gamma(k) = \mathcal{O}(k^{2H-2})$$
 
 It is because Taylor expansion of $h(x) = (1 - x)^{2H} - 2 + (1 + x)^{2H}$ and $\gamma(k) = \frac{1}{2}k^{2H}h(1/k)$. So $\sum \gamma(k) = \infty$ when $1/2<H< 1.$
