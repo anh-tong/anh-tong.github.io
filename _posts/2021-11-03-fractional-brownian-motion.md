@@ -17,7 +17,7 @@ This image (source: <a href="https://en.wikipedia.org/wiki/Self-similarity">Wiki
 
 In statistics, roughly speaking, a stochastic process is self-similar if any finite samples from the process has the same ditribution with a *scaled* version of aggregation (mean, first-order statistic) of the finite samples.
 
-Mathematically, consider a discrete stochastic process $X_k$. For any $m > 1$, a new stochastic process $X^{(m)}_k$ is define as
+Mathematically, consider a discrete stochastic process $X_k$. For any $m > 1$, a new stochastic process $X^{(m)}_k$ is defined as
 
 $$X^{(m)}_k = \frac{1}{m} (X_{km} + \dots + X_{(k+1)m - 1})$$
 
