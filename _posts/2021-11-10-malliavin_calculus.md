@@ -3,10 +3,15 @@ layout: distill
 title: Mallivian Calculus
 date: 2021-11-10
 description: Some background of Mallivian Calculus
-output:
+output: 
   distill::distill_article:
     toc: true
-    toc_depth: 2
+    number_sections: true
+    toc_depth: 4
+    code_folding: true
+  toc_float: 
+    collapsed: false
+    smooth_scroll: true
 ---
 
 # Introduction
@@ -35,7 +40,7 @@ Now, let's talk about spaces we will work on
 - $H = L^2(\mathbb{R}_+, \mathbb{R}^m)$: $L^2$ Hilbert space
 - $L^2(\Omega, \mathbb{P})$: for some probability space $(\Omega, \mathbb{P})$
 
-White noise is linear isometry^[linear map preserving distance] $W: H \to L^2(\Omega, \mathbb{P})$ such that the ouput $W(h)$ is a real-valued Gaussian variable or
+White noise is linear isometry<dt-fn>linear map preserving distance</dt-fn>s $W: H \to L^2(\Omega, \mathbb{P})$ such that the ouput $W(h)$ is a real-valued Gaussian variable or
 
 $$\mathbb{E}[W(h)], \qquad \mathbb{E}[W(h)W(g)] = \langle h, g \rangle.$$
 
@@ -123,9 +128,19 @@ $$
 $$
 
 
-A very importaant tool
+A very important tool
 
 $$
 \mathbb{E}[\langle \mathscr{D}X, h\rangle] = \mathbb{E}[XW(h)]
 $$
 
+
+# Applications
+
+## Pricing and hedging financial options
+
+## The Black-Scholes model
+
+## Pricing and hedging options in the Black-Scholes model
+
+## Sensibility with respect to the parameters: the greeks
