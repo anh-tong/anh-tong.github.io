@@ -1,8 +1,13 @@
 ---
 layout: distill
 title: Mallivian Calculus
-date: 2021-11-10
 description: Some background of Mallivian Calculus
+date: 2021-11-10
+authors:
+  - name: Anh Tong
+    url: "https://anh-tong.github.io/"
+    affiliations:
+      name: KAIST
 output: 
   distill::distill_article:
     toc: true
@@ -37,12 +42,12 @@ This section concerns the definition of white noise under functional representat
 
 Now, let's talk about spaces we will work on
 
-- $H = L^2(\mathbb{R}_+, \mathbb{R}^m)$: $L^2$ Hilbert space
+- $H = L^2(\mathbb{R}_+, \mathbb{R}^m)$: a real and separatable Hilbert space
 - $L^2(\Omega, \mathbb{P})$: for some probability space $(\Omega, \mathbb{P})$
 
 White noise is linear isometry<dt-fn>linear map preserving distance</dt-fn>s $W: H \to L^2(\Omega, \mathbb{P})$ such that the ouput $W(h)$ is a real-valued Gaussian variable or
 
-$$\mathbb{E}[W(h)], \qquad \mathbb{E}[W(h)W(g)] = \langle h, g \rangle.$$
+$$\mathbb{E}[W(h)], \qquad \mathbb{E}[W(h)W(g)] = \langle h, g \rangle_H.$$
 
 The above is just the definition. How to establish such map will be shown next.
 
