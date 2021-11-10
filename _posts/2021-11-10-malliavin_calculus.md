@@ -1,9 +1,12 @@
 ---
 layout: distill
 title: Mallivian Calculus
-toc: true
 date: 2021-11-10
-description: Some background 
+description: Some background of Mallivian Calculus
+output:
+  distill::distill_article:
+    toc: true
+    toc_depth: 2
 ---
 
 # Introduction
@@ -32,7 +35,7 @@ Now, let's talk about spaces we will work on
 - $H = L^2(\mathbb{R}_+, \mathbb{R}^m)$: $L^2$ Hilbert space
 - $L^2(\Omega, \mathbb{P})$: for some probability space $(\Omega, \mathbb{P})$
 
-White noise is linear isometry<aside>linear map preserving distance</aside> $W: H \to L^2(\Omega, \mathbb{P})$ such that the ouput $W(h)$ is a real-valued Gaussian variable or
+White noise is linear isometry^[linear map preserving distance] $W: H \to L^2(\Omega, \mathbb{P})$ such that the ouput $W(h)$ is a real-valued Gaussian variable or
 
 $$\mathbb{E}[W(h)], \qquad \mathbb{E}[W(h)W(g)] = \langle h, g \rangle.$$
 
@@ -73,7 +76,7 @@ Note that we may need to clearly differentiate between $W(h)$ and $W_i(s)$.
 
 There are several formulation of Hermite polynomial
 
-- Recursive $H'n(x) = n H_{n-1}(x)$
+- Recursive $H'_n(x) = n H_{n-1}(x)$
 - A different recursive $H_{n + 1}(x) = xH_n(x) - H'_n(x)$, 
 - Explicit representation $H_n(x) = \exp\left(-\frac{D^2}{2}\right) x^n$, where $D$ is the differentiation w.r.t. to $x$, $\exp(\cdot)$ is defined in the Taylor expansion sense. 
 
