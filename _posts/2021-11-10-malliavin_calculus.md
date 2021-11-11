@@ -30,7 +30,7 @@ This is a long post distilling some concepts of Malliavin Calculus and based on 
 **Motivation** Malliavin calculus is a modern tool tackling with differentiating random variable defined on a Gaussian probability space w.r.t. the underlying noise.
 
 At the moment, I feel like White Noise Theory and Malliavian calculus share some similarity. They surely complement each other but I do not comprehend the difference between them, for example, what one can do but other cannot.
-I also plan to get to know more some background of <a href="http://www.hairer.org/notes/RoughPaths.pdf">rough path</a> but this will be in another post. 
+I also plan to get to know more some background of <a href="http://www.hairer.org/notes/RoughPaths.pdf">rough path</a> but this will be in another post. <aside>Some text in an aside, margin notes, etc...</aside>
 
 Stochastic analysis centers around stochastic differential equations, i.e.,
 
