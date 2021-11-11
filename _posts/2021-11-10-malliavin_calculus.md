@@ -1,7 +1,7 @@
 ---
 layout: distill
 title: Mallivian Calculus
-description: Some background of Mallivian Calculus
+description: (in progress) Some background of Mallivian Calculus 
 date: 2021-11-10
 authors:
   - name: Anh Tong
@@ -19,7 +19,7 @@ output:
     smooth_scroll: true
 ---
 
-<d-toc>Table of contents</d-toc>
+<d-contents></d-contents>
 
 
 
@@ -30,7 +30,8 @@ This is a long post distilling some concepts of Malliavin Calculus and based on 
 **Motivation** Malliavin calculus is a modern tool tackling with differentiating random variable defined on a Gaussian probability space w.r.t. the underlying noise.
 
 <p>At the moment, I feel like White Noise Theory and Malliavian calculus share some similarity. They surely complement each other but I do not comprehend the difference between them, for example, what one can do but other cannot.
-I also plan to get to know more some background of <a href="http://www.hairer.org/notes/RoughPaths.pdf">rough path</a> but this will be in another post. </p> <aside>Some text in an aside, margin notes, etc...</aside>
+I also plan to get to know more some background of <a href="http://www.hairer.org/notes/RoughPaths.pdf">rough path</a> but this will be in another post. </p> 
+<!-- <aside>Some text in an aside, margin notes, etc...</aside> -->
 
 Stochastic analysis centers around stochastic differential equations, i.e.,
 
@@ -49,7 +50,7 @@ Now, let's talk about spaces we will work on
 - $H = L^2(\mathbb{R}_+, \mathbb{R}^m)$: a real and separatable Hilbert space
 - $L^2(\Omega, \mathbb{P})$: for some probability space $(\Omega, \mathbb{P})$
 
-White noise is linear isometry<dt-fn>linear map preserving distance</dt-fn>s $W: H \to L^2(\Omega, \mathbb{P})$ such that the ouput $W(h)$ is a real-valued Gaussian variable or
+White noise is linear isometry<d-fn>linear map preserving distance</d-fn>s $W: H \to L^2(\Omega, \mathbb{P})$ such that the ouput $W(h)$ is a real-valued Gaussian variable or
 
 $$\mathbb{E}[W(h)], \qquad \mathbb{E}[W(h)W(g)] = \langle h, g \rangle_H.$$
 
@@ -132,7 +133,7 @@ $$\mathbb{E}[XH_n(W(h))] = 0, \forall n \quad \Rightarrow \quad \mathbb{E}[X\exp
 We need to show that $X=0$. Splitting $X = X^+ - X^-$, and define the following measures
 
 $$
-\nu^{+,-} = \mathbb{E}[X^{+,-} \mathbf{1}_B(W(h_1), \dots, W(h_m))], \quad B \in \mathcal{B}(\R^m)
+\nu^{+,-} = \mathbb{E}[X^{+,-} \mathbf{1}_B(W(h_1), \dots, W(h_m))], \quad B \in \mathcal{B}(\mathbb{R}^m)
 $$
 
 Applying Laplace transform for $\nu$, we deduce
@@ -143,7 +144,7 @@ $$
 
 As the Laplace is zero, then the measure is zero. Thus, $\mathbb{E}[X\mathbb{1}_F] = 0, \forall F \in \mathcal{F}$. Therefore, $X=0$ and we can conclude the proof.
 
- ### Multiple stochastic integrals
+### Multiple stochastic integrals
 
  This section defines multiple Wiener-Ito integral w.r.t. Brownian motion. With this definition we can lead to a similar decomposition like the representation of Hermite polynomials presented above. 
 
@@ -223,10 +224,10 @@ Continuing with defining the Wiener-Ito integral on $L^2{T^n}$ instead of elemet
 
 In Wiener process, we usually encounter that its derivative is a Gaussian noise, $\xi_i(t) = \frac{dW_i}{dt}$
 
-The new operator $\mathscr{D}_t^{(i)}$ takes derivative of a random variable w.r.t to $\xi_i(t)$. We may expect this operator works as
+The new operator $D_t^{(i)}$ takes derivative of a random variable w.r.t to $\xi_i(t)$. We may expect this operator works as
 
 $$
-\mathscr{D}_t^{(i)} W(h) = h_i(t)
+D_t^{(i)} W(h) = h_i(t)
 $$
 
 It is because 
@@ -239,14 +240,13 @@ We also expect the chain rules
 
 
 $$
-\newcommand\sD{\mathscr{D}}
-\sD_t^{(i)} F(X1, \dots, X_n) = \sum_{k=1}^n \partial_k F(X_1, \dots, X_n)\sD_t^{(i)}X_k
+D_t^{(i)} F(X1, \dots, X_n) = \sum_{k=1}^n \partial_k F(X_1, \dots, X_n)D_t^{(i)}X_k
 $$
 
 In fact, the definition of $\mathscr{D}F$ can be interpreted as a directional derivative
 
 $$
-\langle\mathscr{D}F, h \rangle = \lim_{\epsilon \to 0}\frac{1}{\epsilon} (F(W(h_1) + \epsilon \langle h_1, h\rangle, \dots, W(h_n) + \epsilon \langle h_n, h\rangle) - F)
+\langle DF, h \rangle = \lim_{\epsilon \to 0}\frac{1}{\epsilon} (F(W(h_1) + \epsilon \langle h_1, h\rangle, \dots, W(h_n) + \epsilon \langle h_n, h\rangle) - F)
 $$
 
 
@@ -254,16 +254,39 @@ $$
 <br><br>
 <strong> Proposition </strong> (Integration by parts) <i>For every $X$, $h$, one has the identity</i>
 $$
-\mathbb{E}[\langle \mathscr{D}X, h\rangle] = \mathbb{E}[XW(h)]
+\mathbb{E}[\langle {D}X, h\rangle_H] = \mathbb{E}[XW(h)]
 $$
 <br><br>
+**Proof** It is okay to consider only the case $\lvert\lvert h \rvert\rvert_H=1$.Suppose orthonormal basis $\{e_1, \dots, e_n\}$ of $H$ such that $h=e_1, F = f(W(e_1), \dots, W(e_n))$
 
+Given $\phi(x)$ denoting standard normal distribtution, we have
+
+$$\mathbb{E}[\langle DF, h \rangle_H] = \int \partial_1 f(x)\phi(x)dx = \int f(x)\phi(x)x_1 dx = \mathbb{E}[FW(e_1)]= \mathbb{E}[FW(h)]$$
+The second equation used integration by part. 
+
+The following result uses $D(GF) = (DG)F + G(DF)$ (something like chain rule).
+
+<br><br>
+<strong> Lemma </strong> <i>Let $F, G \in \mathcal{S}$ and $h \in H$</i>
+
+$$
+\mathbb{E}[G\langle {D}F, h\rangle_H] = -\mathbb{E}[F\langle DG, h \rangle_H] + \mathbb{E}[FGW(h)]
+$$
+<br><br>
 ### The derivative operator in the white noise case
 Consider the case of one-dimensional Brownian motion $B(t), t \in T = [a, b],  H = L^2(T)$. The functional $W(h) = \int_a^b h(s) dB(s)$
 
+**Proposition** 
+$F = \sum_{n=0}^\infty I_n(f_n(\cdot, t))$
+$$
+D_tF = \sum_{n=1}^\infty n I_{n-1}(f_n(\cdot, t)). 
+$$
 
+**Proof** We also start with elementary process where $f_n \in \mathcal{E}_n$ symmetric. 
+Consider a really simple case $F = I_n(f_n)$
 
 ## Applications
+This part will focus on how to use Malliavin calculus in mathematical finance. Again, the main concern when I read this section is that the benefit of using Malliavin calculus over Ito calculus.
 
 ### Pricing and hedging financial options
 
@@ -272,3 +295,6 @@ Consider the case of one-dimensional Brownian motion $B(t), t \in T = [a, b],  H
 ### Pricing and hedging options in the Black-Scholes model
 
 ### Sensibility with respect to the parameters: the greeks
+
+### Application of the Clark-Ocone formula in hedging
+
