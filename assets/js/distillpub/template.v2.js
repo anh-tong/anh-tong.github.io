@@ -4583,160 +4583,7 @@ d-references {
   // See the License for the specific language governing permissions and
   // limitations under the License.
 
-  class TOCv2 extends HTMLElement {
-
-    static get is() { return 'd-contents'; }
-
-    connectedCallback() {
-      if (!this.getAttribute('prerendered')) {
-        window.onload = () => {
-          const article = document.querySelector('d-article');
-          const headings = article.querySelectorAll('h2, h3');
-          renderTOCv2(this, headings);
-        };
-      }
-    }
-
-  }
-
-  function renderTOCv2(element, headings) {
-
-    let ToC =`
-    <style>      
-    d-article d-contents {
-      align-self: start;
-      grid-column: 1 / 4;
-      grid-row: auto / span 3;
-      width: max(70%, 300px);      
-      margin-right: 0px;
-      margin-top:  0em;
-      display: grid;      
-      grid-template-columns: 
-        minmax(8px, 1fr) [toc] auto 
-        minmax(8px, 1fr) [toc-line] 1px
-        minmax(32px, 2fr );      
-    }
-    d-article d-contents nav {      
-      grid-column: toc;
-    }
-    d-article d-contents .figcaption {
-      line-height: 1.4em;
-    }
-    d-article d-contents .toc-line {
-      border-right: 1px solid rgba(0, 0, 0, 0.1);
-      grid-column: toc-line;
-    } 
-
-    b i {
-      display: inline;
-    }
-
-    d-article d-contents {      
-      align-self: start;
-      grid-column: 1 / 4;
-      grid-row: auto / span 4;
-      justify-self: end;
-      margin-top: 0em;
-      padding-right: 3em;
-      padding-left: 2em;
-      border-right: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
-    d-contents nav h3 {
-      margin-top: 0;
-      margin-bottom: 1em;
-    }
-
-    d-contents nav div {
-      color: rgba(0, 0, 0, 0.8);
-      font-weight: bold;
-    }
-
-    d-contents nav a {
-      color: rgba(0, 0, 0, 0.8);
-      border-bottom: none;
-      text-decoration: none;
-    }
-
-    d-contents ul {
-      padding-left: 1em;
-    }
-
-    d-contents nav ul li {
-      margin-bottom: 0.25em;
-    }
-
-    d-contents nav a:hover {
-      text-decoration: underline solid rgba(0, 0, 0, 0.6);
-    }
-
-    d-contents nav ul {
-      margin-top: 0;
-      margin-bottom: 6px;
-    }
-
-    d-contents nav > div {
-      display: block;
-      outline: none;
-      margin-bottom: 0.8em;
-    }
-
-    d-contents nav > div > a {
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    
-    d-contents nav > ul > li > a:hover {
-      text-decoration: none;
-    }
-
-    
-  @media (max-width: 1300px) {
-    d-article d-contents {      
-      justify-self: start;
-      align-self: start;        
-      grid-column-start: 3;
-      grid-column-end: -3;
-      padding-bottom: 0.5em;
-      margin-bottom: 1em;
-      padding-top: 0.5em;            
-      width: 100%;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-      border-left: 1px solid rgba(0, 0, 0, 0.1);
-      border-top: 1px solid rgba(0, 0, 0, 0.1);
-      border-bottom-width: 1px;
-      border-bottom-style: solid;
-      border-bottom-color: rgba(0, 0, 0, 0.1);          
-    }
-  }
-  </style>
-  <nav role="navigation" class="l-text figcaption">
-  <h3>Contents</h3>`;
-
-    for (const el of headings) {
-      // should element be included in TOC?
-      const isInTitle = el.parentElement.tagName == 'D-TITLE';
-      const isException = el.getAttribute('no-toc');
-      if (isInTitle || isException) continue;
-      // create TOC entry
-      const title = el.textContent;
-      const link = '#' + el.getAttribute('id');
-
-      if (el.tagName == 'H3') {
-        // if headline 3
-        newLine = '<ul> <li>' + '<a href="' + link + '">' + title + '</a>' + '</li></ul>';
-      } else {
-        // if headline 2
-        ToC += '<div>' + '<a href="' + link + '">' + title + '</a>' + '</div>';
-      }
-      
-
-    }
-
-    ToC += '</nav>';
-    element.innerHTML = ToC;
-  }
+  
   class TOC extends HTMLElement {
 
     static get is() { return 'd-toc'; }
@@ -4756,30 +4603,117 @@ d-references {
   function renderTOC(element, headings) {
 
     let ToC =`
-  <style>
+    <style>      
+    d-article d-toc {
+      align-self: start;
+      grid-column: 1 / 4;
+      grid-row: auto / span 3;
+      width: max(70%, 300px);      
+      margin-right: 0px;
+      margin-top:  0em;
+      display: grid;      
+      grid-template-columns: 
+        minmax(8px, 1fr) [toc] auto 
+        minmax(8px, 1fr) [toc-line] 1px
+        minmax(32px, 2fr );      
+    }
+    d-article d-toc nav {      
+      grid-column: toc;
+    }
+    d-article d-toc .figcaption {
+      line-height: 1.4em;
+    }
+    d-article d-toc .toc-line {
+      border-right: 1px solid rgba(0, 0, 0, 0.1);
+      grid-column: toc-line;
+    } 
 
-  d-toc {
-    contain: layout style;
-    display: block;
+    b i {
+      display: inline;
+    }
+
+    d-article d-toc {      
+      align-self: start;
+      grid-column: 1 / 4;
+      grid-row: auto / span 4;
+      justify-self: end;
+      margin-top: 0em;
+      padding-right: 3em;
+      padding-left: 2em;
+      border-right: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    d-toc nav h3 {
+      margin-top: 0;
+      margin-bottom: 1em;
+    }
+
+    d-toc nav div {
+      color: rgba(0, 0, 0, 0.8);
+      font-weight: bold;
+    }
+
+    d-toc nav a {
+      color: rgba(0, 0, 0, 0.8);
+      border-bottom: none;
+      text-decoration: none;
+    }
+
+    d-toc ul {
+      padding-left: 1em;
+    }
+
+    d-toc nav ul li {
+      margin-bottom: 0.25em;
+    }
+
+    d-toc nav a:hover {
+      text-decoration: underline solid rgba(0, 0, 0, 0.6);
+    }
+
+    d-toc nav ul {
+      margin-top: 0;
+      margin-bottom: 6px;
+    }
+
+    d-toc nav > div {
+      display: block;
+      outline: none;
+      margin-bottom: 0.8em;
+    }
+
+    d-toc nav > div > a {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    
+    d-toc nav > ul > li > a:hover {
+      text-decoration: none;
+    }
+
+    
+  @media (max-width: 1300px) {
+    d-article d-toc {      
+      justify-self: start;
+      align-self: start;        
+      grid-column-start: 3;
+      grid-column-end: -3;
+      padding-bottom: 0.5em;
+      margin-bottom: 1em;
+      padding-top: 0.5em;            
+      width: 100%;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      border-bottom-color: rgba(0, 0, 0, 0.1);          
+    }
   }
-
-  d-toc ul {
-    padding-left: 0;
-  }
-
-  d-toc ul > ul {
-    padding-left: 24px;
-  }
-
-  d-toc a {
-    border-bottom: none;
-    text-decoration: none;
-  }
-
   </style>
   <nav role="navigation" class="table-of-contents"></nav>
-  <h2>Table of contents</h2>
-  <ul>`;
+  <h2>Table of contents</h2>`;
 
     for (const el of headings) {
       // should element be included in TOC?
@@ -4790,17 +4724,15 @@ d-references {
       const title = el.textContent;
       const link = '#' + el.getAttribute('id');
 
-      let newLine = '<li>' + '<a href="' + link + '">' + title + '</a>' + '</li>';
       if (el.tagName == 'H3') {
-        newLine = '<ul>' + newLine + '</ul>';
+        ToC += '<ul><li>' + '<a href="' + link + '">' + title + '</a>' + '</li></ul>';
       } else {
-        newLine += '<br>';
+        ToC += '<div>' + '<a href="' + link + '">' + title + '</a>' + '</div>';
       }
-      ToC += newLine;
-
+      
     }
 
-    ToC += '</ul></nav>';
+    ToC += '</nav>';
     element.innerHTML = ToC;
   }
 
