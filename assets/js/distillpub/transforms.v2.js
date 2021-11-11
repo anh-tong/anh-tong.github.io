@@ -12585,8 +12585,8 @@
     }
   }
   </style>
-  <nav role="navigation" class="table-of-contents"></nav>
-  <h2>Table of contents</h2>`;
+  <nav class="l-text figcaption">
+  <h3>Table of contents</h3>`;
 
     for (const el of headings) {
       // should element be included in TOC?

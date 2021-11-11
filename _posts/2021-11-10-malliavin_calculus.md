@@ -19,7 +19,7 @@ output:
     smooth_scroll: true
 ---
 
-<d-toc>Table of contents</d-toc>
+<d-toc></d-toc>
 
 
 
