@@ -290,11 +290,43 @@ This part will focus on how to use Malliavin calculus in mathematical finance. A
 
 ### Pricing and hedging financial options
 
+
+
 ### The Black-Scholes model
+
+$$dS_t = S_t \mu dt + S_t\sigma dB_t$$
+
+Ito calculus allows us to have a close-form solution for this SDE 
+
+$$
+S_t = S_0 \exp(\mu t - \frac{\sigma^2}{2}t + \sigma B_t)
+$$
+
+Therefore,
+
+$$
+\mathbb{E}[S_t] = S_0\exp(\mu t), \quad \mathbb{E}[S_t^2] = S_0^2 \exp((2\mu + \sigma^2)t)
+$$
 
 ### Pricing and hedging options in the Black-Scholes model
 
 ### Sensibility with respect to the parameters: the greeks
+
+Consider the price of an option $V_0$ with strike $K$ and maturity $t$. 
+
+The most crucial parameters are $(x, r, \sigma, T, K)$
+
+- the premimum $x$
+- the interest rate $r$
+- the volatility $\sigma$
+
+People working in finance are interested in obtaining some quanities named by some characters in Greek alphabet:
+
+- **Delta:** $\Delta = \frac{\partial V_0}{\partial x}$
+- **Gamma:** $\Gamma = \frac{\partial^2 V_0}{\partial^2 x}$
+- **Vega:** $\vartheta = \frac{\partial V_0}{\partial \sigma}$
+
+These Greeks will be computed using integration by parts of Mallivian calculus.
 
 ### Application of the Clark-Ocone formula in hedging
 
