@@ -4585,7 +4585,7 @@ d-references {
 
   class TOCv2 extends HTMLElement {
 
-    static get is() { return 'd-content'; }
+    static get is() { return 'd-contents'; }
 
     connectedCallback() {
       if (!this.getAttribute('prerendered')) {
@@ -4724,8 +4724,10 @@ d-references {
       const link = '#' + el.getAttribute('id');
 
       if (el.tagName == 'H3') {
-        newLine = '<ul>' + '<a href="' + link + '">' + title + '</a>' + '</ul>';
+        // if headline 3
+        newLine = '<ul> <li>' + '<a href="' + link + '">' + title + '</a>' + '</li></ul>';
       } else {
+        // if headline 2
         ToC += '<div>' + '<a href="' + link + '">' + title + '</a>' + '</div>';
       }
       
