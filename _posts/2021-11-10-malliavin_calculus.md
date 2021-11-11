@@ -19,6 +19,10 @@ output:
     smooth_scroll: true
 ---
 
+<d-toc>Table of contents</d-toc>
+
+
+
 ## Introduction
 
 This is a long post distilling some concepts of Malliavin Calculus and based on the <a href="http://hairer.org/notes/Malliavin.pdf">lecture note</a> of <a href="https://en.wikipedia.org/wiki/Martin_Hairer"> Martin Hairer</a>. 
@@ -125,7 +129,19 @@ $$
 
 $$\mathbb{E}[XH_n(W(h))] = 0, \forall n \quad \Rightarrow \quad \mathbb{E}[X\exp(W(h))] = 0$$
 
-We need to show that $X=0$. C
+We need to show that $X=0$. Splitting $X = X^+ - X^-$, and define the following measures
+
+$$
+\nu^{+,-} = \mathbb{E}[X^{+,-} \mathbf{1}_B(W(h_1), \dots, W(h_m))], \quad B \in \mathcal{B}(\R^m)
+$$
+
+Applying Laplace transform for $\nu$, we deduce
+
+$$
+\varphi_{\nu^{+,-}}(\lambda) = \int \exp(\lambda \cdot x) \nu^{+,-}(dx) = \mathbb{E}[X^{+,-}\exp(\sum_i \lambda_i W(h_i))] = 0
+$$
+
+As the Laplace is zero, then the measure is zero. Thus, $\mathbb{E}[X\mathbb{1}_F] = 0, \forall F \in \mathcal{F}$. Therefore, $X=0$ and we can conclude the proof.
 
  ### Multiple stochastic integrals
 
@@ -182,7 +198,7 @@ We can say the Wiener-Ito integral of $f$ and $\tilde{f}$ are the same
 <br><br>
 This is quite easy to see if considering the symmetry of $\prod_i (B(t_i^{(2)} - B(t_i^{(1)}))$. The permutation version of this will have the same result.
 
-Next, the following is the orthogonal property
+Next, the following is the orthogonal property.
 
 <br><br> <strong>Lemma</strong> <i>If $f, g \in \mathcal{E}_n$, elementary process, then </i>
 
