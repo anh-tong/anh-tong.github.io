@@ -4711,7 +4711,7 @@ d-references {
     }
   }
   </style>
-  <nav role="navigation" class="l-text figcaption"></nav>
+  <nav role="navigation" class="l-text figcaption">
   <h3>Contents</h3>`;
 
     for (const el of headings) {
