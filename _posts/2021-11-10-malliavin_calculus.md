@@ -45,6 +45,8 @@ where $\circ dW_t$ denotes Straonovich integration. In this equation, Hairer con
 
 This section concerns the definition of white noise under functional representation. Wiener chaos gives the decomposition form of white noise in which we will find somewhat similar to Fourier analysis or <a href="Sobolev space">Sobolev space</a>. 
 
+### Definition of white noise
+
 Now, let's talk about spaces we will work on
 
 - $H = L^2(\mathbb{R}_+, \mathbb{R}^m)$: a real and separatable Hilbert space
@@ -87,7 +89,7 @@ $$
 
 Note that we may need to clearly differentiate between $W(h)$ and $W_i(s)$. 
 
-**Basis with Hermite polynomials**
+### Representation using Hermite polynomials
 
 There are several formulation of Hermite polynomial
 
@@ -144,7 +146,7 @@ $$
 
 As the Laplace is zero, then the measure is zero. Thus, $\mathbb{E}[X\mathbb{1}_F] = 0, \forall F \in \mathcal{F}$. Therefore, $X=0$ and we can conclude the proof.
 
-### Multiple stochastic integrals
+### Representation using multiple stochastic integrals
 
  This section defines multiple Wiener-Ito integral w.r.t. Brownian motion. With this definition we can lead to a similar decomposition like the representation of Hermite polynomials presented above. 
 
@@ -286,7 +288,7 @@ $$
 Consider a really simple case $F = I_n(f_n)$
 
 ## Applications
-This part will focus on how to use Malliavin calculus in mathematical finance. Again, the main concern when I read this section is that the benefit of using Malliavin calculus over Ito calculus.
+This part will focus on how to use Malliavin calculus in mathematical finance. Again, the main concern when I read this section is that the benefit of using Malliavin calculus over Ito calculus. The first three subsections contains some introductory background. The remaining subsections discussed the actual use of Malliavin calculus.
 
 ### Pricing and hedging financial options
 
@@ -309,8 +311,8 @@ To further work with these values, we take into account their neural risk which 
 
 Two main questions that might be interesting are
 
-- pricing option
-- hedging option
+- pricing option: evaluate the price of an option at time $t=0$
+- hedging option: evaluate the value of an option at maturity. 
 
 
 
@@ -335,6 +337,43 @@ $$
 
 ### Pricing and hedging options in the Black-Scholes model
 
+There is an equivalence between the solution of Black-Scholes models and a partial diferential equation (PDE). 
+
+**Theorem** <i> Let $h$ be a continuous function of at most linear growth. Assume that $v(t, y)$ is a regular solution of PDE</i>
+
+$$
+\begin{cases}
+\frac{1}{2}\sigma^2 y^2 \frac{\partial^2 v}{\partial y^2} + ry \frac{\partial v}{\partial y} + \frac{\partial v}{\partial t} - r v = 0
+\\
+v(T, y) = h(y)
+\end{cases}
+$$
+
+<i>There exists a portfolio with value $v(t, S_t)$ at time $t$ replicated flow $h(S_T)$. And the value of this hedging portfoliio is given by $\beta(t, S_t) = \frac{\partial v}{\partial y}(t, S_t)$. </i>
+
+Let's take a moment to think how to interpret this theorem. Looking at the boundary condition, this means that we may expect that at maturity $T$, the solution $v$ should agree with the function $h$. And the solution $v(t, y)$ on $(0, T)$ describes the dynamics of $v$ along the interval. This is the backward solution because we start at $T$ and go back to $0$.
+
+**Proof**
+<p>Using Ito's formula to $v(t, S_t)$ </p><aside>like chain rule in traditional calculus but have additional second derivative. Also, $S_t$ should be semi-martingale</aside>
+
+$$
+dv(t, S_t) = \frac{\partial v}{\partial t}(t, S_t) dt + \frac{\partial v}{\partial y}(t, S_t) dS_t + \frac{1}{2}\sigma^2S_t^2\frac{\partial^2 v}{\partial y^2}(t, S_t) dt
+$$
+
+The above is purely a mathematical derivation. On the hand, managing portfolio requires to 
+
+$$
+dv(s, S_t) = v(t, S_t)rdt + \beta(t, S_t)(dS_t - rS_tdt)
+$$
+
+Picking $\beta(t, S_t) = \frac{\partial v}{\partial y}(t, S_t)$, the part with $dS_t$ vanishes, the remain will be reduced to
+
+$$
+\frac{\partial v}{\partial t}(t, S_t) + \frac{1}{2}\sigma^2S_t^2\frac{\partial^2 v}{\partial y^2}(t, S_t) = v(t, S_t)rdt - rS_t\frac{\partial v}{\partial y}(t, S_t)
+$$
+
+And we obtain the expect PDE.
+
 ### Sensibility with respect to the parameters: the greeks
 
 Consider the price of an option $V_0$ with strike $K$ and maturity $t$. 
@@ -345,7 +384,7 @@ The most crucial parameters are $(x, r, \sigma, T, K)$
 - the interest rate $r$
 - the volatility $\sigma$
 
-People working in finance are interested in obtaining some quanities named by some characters in Greek alphabet:
+People working in finance are interested in obtaining some quanities named after some characters in Greek alphabet:
 
 - **Delta:** $\Delta = \frac{\partial V_0}{\partial x}$
 - **Gamma:** $\Gamma = \frac{\partial^2 V_0}{\partial^2 x}$
