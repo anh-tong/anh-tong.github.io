@@ -290,9 +290,34 @@ This part will focus on how to use Malliavin calculus in mathematical finance. A
 
 ### Pricing and hedging financial options
 
+This will give a brief introduction of options. An option is a contract, or right to buy (put) or sell (call) an amount of assets. Some terminologies related to this concept are
+
+- Strike price or exercise price $K$
+- Maturity or exersize time $T$
+- When performing exchange or executing what is written in contract, there is a fee $x$ for doing so. It is called option premium.
+
+There are two ways of exercising options
+
+- Europian options: exercising at maturity $T$
+- American options: exercising at any time before maturity.
+
+The value of put or call are decided by
+
+$$C_T = \max(S_T - K, 0), \quad P_T = \max(K - S_T, 0)$$
+
+To further work with these values, we take into account their neural risk which involves analyzing their statistical estimation (mostly expectation) w.r.t. market randomness.
+
+Two main questions that might be interesting are
+
+- pricing option
+- hedging option
+
+
 
 
 ### The Black-Scholes model
+
+The Black-Scholes model is very well-known in quantitative finance field, helping us to understand of the market dynamics. The downside, however, is that the model has restricted assumptions, therefore, usually is used for pedagodical purposes.
 
 $$dS_t = S_t \mu dt + S_t\sigma dB_t$$
 
