@@ -25,7 +25,7 @@ output:
 
 ## Introduction
 
-This is a long post distilling some concepts of Malliavin Calculus and based on the <a href="http://hairer.org/notes/Malliavin.pdf">lecture note</a> of <a href="https://en.wikipedia.org/wiki/Martin_Hairer"> Martin Hairer</a>. 
+This is a long post distilling some concepts of Malliavin Calculus based on <a href="https://people.math.wisc.edu/~kurtz/NualartLectureNotes.pdf">this lecture note</a> and also compared to <a href="http://hairer.org/notes/Malliavin.pdf">Martin Hairer's lecture note</a>. 
 
 **Motivation** Malliavin calculus is a modern tool tackling with differentiating random variable defined on a Gaussian probability space w.r.t. the underlying noise.
 
@@ -59,8 +59,8 @@ $$\mathbb{E}[W(h)], \qquad \mathbb{E}[W(h)W(g)] = \langle h, g \rangle_H.$$
 The above is just the definition. How to establish such map will be shown next.
 
 **Orthonormal basis** Here, we define 
-- a sequence of i.i.d. normal random variable $\{\xi_n\}_{n\geq 0}$
-- an orthonormal basis $\{e_n\}_{n \geq 0}$ of $H$. 
+- a sequence of i.i.d. normal random variable $\{\xi_n\}, {n\geq 0}$
+- an orthonormal basis $\{e_n\}, {n \geq 0}$ of $H$. 
 
 When representing $h = \sum_n h_n e_n \in H$, we construct $W(h)=\sum_n h_n \xi_n$. The normal random variable $\xi_n$ is now can rewrite in the functional form form $\xi_n = W(e_n)$.
 
@@ -360,7 +360,7 @@ $$
 dv(t, S_t) = \frac{\partial v}{\partial t}(t, S_t) dt + \frac{\partial v}{\partial y}(t, S_t) dS_t + \frac{1}{2}\sigma^2S_t^2\frac{\partial^2 v}{\partial y^2}(t, S_t) dt
 $$
 
-The above is purely a mathematical derivation. On the hand, managing portfolio requires to 
+The above is purely a mathematical derivation based on Ito calculus. On the hand, managing portfolio requires to 
 
 $$
 dv(s, S_t) = v(t, S_t)rdt + \beta(t, S_t)(dS_t - rS_tdt)
@@ -372,7 +372,7 @@ $$
 \frac{\partial v}{\partial t}(t, S_t) + \frac{1}{2}\sigma^2S_t^2\frac{\partial^2 v}{\partial y^2}(t, S_t) = v(t, S_t)rdt - rS_t\frac{\partial v}{\partial y}(t, S_t)
 $$
 
-And we obtain the expect PDE.
+And we obtain the desired PDE.
 
 ### Sensibility with respect to the parameters: the greeks
 
