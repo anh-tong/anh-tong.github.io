@@ -69,7 +69,7 @@ $$
 Why is there a new term $gg_x(X, t) = g(X,t)\frac{\partial g}{\partial x}(X, t)$? This comes from the fact that $(dW_t)^2 = dt$ and Ito's lemma. 
 
 **Explanation with geometric Brownian motion** 
-Given that $dX_t = \mu X dt + \sigma dW_t$, Ito's lemma for $\ln X_t$ is
+Given that $dX_t = \mu X dt + \sigma X dW_t$, Ito's lemma for $\ln X_t$ is
 
 $$
 d \ln X_t = \left(\mu - \frac{1}{2}\sigma^2\right)dt + \sigma dW_t
@@ -87,6 +87,35 @@ $$
 The last equation is the Talor expansion of $\exp(\cdot)$ where $\Delta t$ goes up to order $1$, $\Delta W_t$ goes up to order $2$. In this case, $f(X, t) = \mu X, g(X,t) = \sigma X$, resulting in $g g_x(X, t) = X\sigma^2$.
 
 Although this is the derivation for a specific case of geometric Brownian motion, the general explanation is possible.
+
+**Explanation for the general case** Now, going back considering the case
+
+$$
+dX_t = f(X_t, t) dt + g(X_t, t) dW_t
+$$
+
+Assume we work on a small interval $[0, h]$. And on this particular interval, $f(X_t, t) = f(X_0, 0), g(X_t,t) = g(X_0, 0)$. This leads to
+
+$$
+X_t \approx X_0 + f(X_0, 0)t + g(X_0, 0) dW_t = X_0 + g(X_0, 0) W_t + \mathcal{O}(h)
+$$
+
+On the other hand,
+
+$$
+\begin{aligned}
+g(X_t, t) = & g(X_0, 0) + g_x(X_0, 0)(X_t - X_)) + \mathcal{O}(h) \\
+= & g(X_0, 0) + g_x(X_0, 0)g(X_0, 0)W_t + \mathcal{O}(h)
+\end{aligned}
+$$
+
+We can then obtain 
+
+$$
+S_h = S_0 + f(X_0, 0)h + g(X_0, 0)W_h + gg_x(X_0,0)\int_0^hW_tdW_t + \mathcal{O}(h^{3/2})
+$$
+
+Now, Ito calulus is used to derive $\int_0^h W_t dW_t = \frac{1}{2}W_h^2 - \frac{1}{2}h$. To this end, we can obtain the Milstein formular.
 
 Both strong and weak convergence is of order $1$ which is better than the Euler-Maruyama method. See <a href="https://hautahi.com/sde_simulation">this</a> for a simulation comparison between the two methods
 
