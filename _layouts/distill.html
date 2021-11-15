@@ -81,12 +81,7 @@
 
     {% include footer.html %}
 
-  </body>
-
-  <d-bibliography src="{{ page.bibliography | prepend: '/assets/bibliography/' | relative_url }}">
-  </d-bibliography>
-
-  {% if site.disqus_shortname and page.comments %}
+    {% if site.disqus_shortname and page.comments %}
     <div id="disqus_thread"></div>
     <script type="text/javascript">
       var disqus_shortname  = '{{ site.disqus_shortname }}';
@@ -100,5 +95,12 @@
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   {% endif %}
+
+  </body>
+
+  <d-bibliography src="{{ page.bibliography | prepend: '/assets/bibliography/' | relative_url }}">
+  </d-bibliography>
+
+  
 
 </html>
