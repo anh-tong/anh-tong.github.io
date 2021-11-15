@@ -43,7 +43,7 @@ Now, let's talk about spaces we will work on
 - $H = L^2(\mathbb{R}_+, \mathbb{R}^m)$: a real and separatable Hilbert space
 - $L^2(\Omega, \mathbb{P})$: for some probability space $(\Omega, \mathbb{P})$
 
-White noise is linear isometry<d-footnote>linear map preserving distance</d-footnote>s $W: H \to L^2(\Omega, \mathbb{P})$ such that the ouput $W(h)$ is a real-valued Gaussian variable or
+White noise is linear isometry<d-footnote>linear map preserving distance</d-footnote> $W: H \to L^2(\Omega, \mathbb{P})$ such that the ouput $W(h)$ is a real-valued Gaussian variable or
 
 $$\mathbb{E}[W(h)], \qquad \mathbb{E}[W(h)W(g)] = \langle h, g \rangle_H.$$
 
@@ -284,7 +284,65 @@ This section provide the foundation of the integration by parts in Malliavin cal
 
 ### The integration by parts formula
 
-**Proposition**  
+**Proposition** <i>Let $F, G$ be two random variables such that $F \in \mathbb{D}^{1,2}$ <d-footnote>domain of first-order derivative operator $D$ in $L^2$</d-footnote>. Let $u$ be an $H$-valued random variable such that $\langle DF, u \rangle_H$ a.s. and $Gu(\langle DF, u\rangle_H)^{-1} \in \text{Dom } \delta$. Then for any function $f\in \mathcal{C}^1$ with bounded derivatives, we have that</i>
+
+$$
+\mathbb{E}[f'(F)G] = \mathbb{E}[f(F) H(F, G)],
+$$
+
+<i>where $H(F, G) = \delta(Gu(\langle DF, u\rangle_H)^{-1})$ </i>.
+
+### Existence and smoothness of densities
+
+### Hormander's therem
+
+The main focus of this theorem is to show there is a unique solutions for SDEs under some conditions. 
+
+Consider the following setup:
+
+- Brownian motion has $d$ dimensions: $B(t) = (B^1(t), \dots, B^d(t)), t\in [0, T]$
+- Linear growth assumption
+
+Let $X(t)$ be the solution of $d$-dimensional systems of SDEs
+
+$$
+dX_i(t) = \sum_{j=1}^d \sigma_{ij}(X(t))dB^j(t) + b_i(X(t))dt, \quad X_i(0) = x_0^i, \quad i = 1,\dots, d
+$$
+
+**Theorem** <i>There exists a unique continuous soltion and the following expectation is bounded</i>
+
+$$\mathbb{E}\left[\sup_{0\leq t \leq T} \lvert X(t)\rvert^p\right] \leq C$$
+
+<i>for any $p \geq 2$, where $C = C(p, T, K)> 0$</i>
+
+**Theorem** The derivative $D^j_rX_i(s))$
+
+$$
+D^j_rX_i(t)) = \sigma_{ij}(X(r)) + \sum_{k,l=1}^d \int_r^t \partial_k \sigma_{il}(X(s))D^j_s(X_k(s))dB^l(s) + \sum_{k=1}^d\int_r^t \partial_k b_i(X(s))ds
+$$
+
+Some notations:
+
+- Vector fields: $\sigma_j = \sum_{i=1}^d\sigma_{ij}(x)\frac{\partial}{\partial x_i}$, $b = \sum_{i=1}^d b_i(x)\frac{\partial}{\partial x_i}$
+- Covariant derivative: $\sigma_j \nabla\sigma_k = \sum_{i,l=1}^d \sigma_{lj} \partial_l \sigma_{ik}\frac{\partial }{\partial x_i}$
+- Lie bracket: $[\sigma_j,\sigma_k] = \sigma_j \nabla \sigma_k - \sigma_k \nabla \sigma_j$
+- Define $\sigma_0 = b - \frac{1}{2}$
+
+With these notation, the above SDE can be defined with a Stratonovich integral
+
+$$
+X(t) = X_0 + \sum_{j = 1}^d \int_0^t \sigma(X(s)) \circ dB^j(s) + \int_0^t \sigma_0(X(s))ds
+$$
+
+**Holder condition** This is a vector space spanned by the vector filed
+
+$$
+\mathbf{(H)} = \text{span} \{\sigma_1, \dots, \sigma_d, [\sigma_i, \sigma_j], [\sigma_i, [\sigma_j, \sigma_k]]\}
+$$
+
+**Theorem** <i>Assume that Hormander's condition $\mathbf{(H)}$ holds and the coefficients of SDE are finitely differentiable. Then for any $t > 0$, $X(t)$ has an infintely differentiable density.</i>
+
+The proof is based on the quadratic varation is large, then the semimartingale is small with an exponentially small probability.
 
 ## Applications
 This part will focus on how to use Malliavin calculus in mathematical finance. Again, the main concern when I read this section is that the benefit of using Malliavin calculus over Ito calculus. The first three subsections contains some introductory background. The remaining subsections discussed the actual use of Malliavin calculus.
