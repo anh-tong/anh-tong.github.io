@@ -3,6 +3,7 @@ layout: distill
 title: Mallivian Calculus
 description: (in progress) Some background of Mallivian Calculus 
 date: 2021-11-10
+comments: true
 authors:
   - name: Anh Tong
     url: "https://anh-tong.github.io/"
@@ -326,7 +327,7 @@ Some notations:
 - Vector fields: $\sigma_j = \sum_{i=1}^d\sigma_{ij}(x)\frac{\partial}{\partial x_i}$, $b = \sum_{i=1}^d b_i(x)\frac{\partial}{\partial x_i}$
 - Covariant derivative: $\sigma_j \nabla\sigma_k = \sum_{i,l=1}^d \sigma_{lj} \partial_l \sigma_{ik}\frac{\partial }{\partial x_i}$
 - Lie bracket: $[\sigma_j,\sigma_k] = \sigma_j \nabla \sigma_k - \sigma_k \nabla \sigma_j$
-- Define $\sigma_0 = b - \frac{1}{2}$
+- Define $\sigma_0 = b - \frac{1}{2}\sum_{i=1}^d\sigma_i \nabla \sigma_i$
 
 With these notation, the above SDE can be defined with a Stratonovich integral
 
