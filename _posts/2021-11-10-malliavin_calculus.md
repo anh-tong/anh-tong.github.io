@@ -256,7 +256,7 @@ $$
 Given $\phi(x)$ denoting standard normal distribtution, we have
 
 $$\mathbb{E}[\langle DF, h \rangle_H] = \int \partial_1 f(x)\phi(x)dx = \int f(x)\phi(x)x_1 dx = \mathbb{E}[FW(e_1)]= \mathbb{E}[FW(h)]$$
-<p>The second equation used integration by part.</p><aside>Because $f(x)$ grows linearly so $0 = \exp(-x^2/2)f(x)\rvert_{-\infty}^{\infty} = \int \partial f(x) \exp(x^2/2) dx + \int f(x)\partial \exp(x^2/2) dx $<aside> 
+<p>The second equation used integration by part.</p><aside>Because $f(x)$ grows linearly so $0 = \exp(-x^2/2)f(x)\rvert_{-\infty}^{\infty} = \int \partial f(x) \exp(x^2/2) dx + \int f(x)\partial \exp(x^2/2) dx $</aside> 
 
 The following result uses $D(GF) = (DG)F + G(DF)$ (something like chain rule).
 
