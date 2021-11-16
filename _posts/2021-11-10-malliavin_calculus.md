@@ -1,6 +1,6 @@
 ---
 layout: distill
-title: Mallivian Calculus
+title: Malliavin Calculus
 description: (in progress) Some background of Mallivian Calculus 
 date: 2021-11-10
 comments: true
@@ -210,7 +210,7 @@ The second expectation needs to be treated more carefully. By the definition, th
 Continuing with defining the Wiener-Ito integral on $L^2{T^n}$ instead of elemetary process space, the general steps are based on a sequence of $\{f_k\} \in \mathcal{E}_n$ converging to $f \in L^2{T^n}$. This leads to the convergence in probability of expecation of $I_n(f)$. 
 
 
-## The Malliavin derivative and its adjoint
+## The Malliavin derivative
 
 ### Definition and properties
 
@@ -256,7 +256,7 @@ $$
 Given $\phi(x)$ denoting standard normal distribtution, we have
 
 $$\mathbb{E}[\langle DF, h \rangle_H] = \int \partial_1 f(x)\phi(x)dx = \int f(x)\phi(x)x_1 dx = \mathbb{E}[FW(e_1)]= \mathbb{E}[FW(h)]$$
-<p>The second equation used integration by part.</p><aside>Because $f(x)$ grows linearly so $0 = \exp(-x^2/2)f(x)\rvert_{-\infty}^{\infty} = \int \partial f(x) \exp(x^2/2) dx + \int f(x)\partial \exp(x^2/2) dx $</aside> 
+<p>The second equation used integration by part.</p><aside>Because $f(x)$ grows linearly so $0 = \exp(-x^2/2)f(x)\rvert_{-\infty}^{\infty} = \int \partial f(x) \exp(-x^2/2) dx + \int f(x)\partial \exp(-x^2/2) dx $</aside> 
 
 The following result uses $D(GF) = (DG)F + G(DF)$ (something like chain rule).
 
@@ -267,6 +267,15 @@ $$
 \mathbb{E}[G\langle {D}F, h\rangle_H] = -\mathbb{E}[F\langle DG, h \rangle_H] + \mathbb{E}[FGW(h)]
 $$
 <br><br>
+
+**Proposition** [Chain rule] <i> Let $g: \mathbb{R}^d \to \mathbb{R}$ be a function in $\mathcal{C}^1$ with bounded partial deriviatives. Let $p\geq 1$ and $F = (F^1, \dots, F^d), F^i \in \mathbb{D}^{1,d}$. Then $g(F) \in \mathbb{D}^{1, p}$ and
+</i>
+
+$$
+D(g(F)) = \sum_{i=1}^d \partial_i g(F)DF^i
+$$
+
+
 ### The derivative operator in the white noise case
 Consider the case of one-dimensional Brownian motion $B(t), t \in T = [a, b],  H = L^2(T)$. The functional $W(h) = \int_a^b h(s) dB(s)$
 
@@ -278,6 +287,69 @@ $$
 
 **Proof** We also start with elementary process where $f_n \in \mathcal{E}_n$ symmetric. 
 Consider a really simple case $F = I_n(f_n)$
+
+
+**Proposition** <i>Let $g: \mathbb{R}^d \to R$ be a Lipschitz function ($\lvert g(x) - g(y)\rvert  \leq K \lvert\lvert x- y\rvert\rvert$). Suppose $F = (F^1, \dots, F^d)$ is a random vector such that $F^i \in \mathbb{D}^{1,2}$. Then $g(F) \in \mathbb{D}^{1,2}$ and there exists a random vector $G=(G_1, \dots, G_d)$ such that</i>
+
+$$
+D(g(F)) = \sum_{i=1}^d G_i DF^i.
+$$
+
+## Divergence operator
+
+In short, divergence operator is defined as the dual (adjoint) of the derivative operator defined in the previous section.
+
+### Definition of divergence operator
+
+The divergence operator is denoted as $\delta$ which is unbounded, $\delta: L^2(\Omega; H) \to L^2(\Omega)$, satisfying
+
+- The domain of $\delta$, $\text{Dom} \delta$, contains $u \in L^2(\Omega; H)$ such that $\lvert \mathbb{E}[\langle DF , u \rangle_H] \rvert \leq c_u \lvert \lvert F \rvert\rvert_{L^2(\Omega)}$
+
+- **Duality relation**: $\mathbb{E}[F\delta(u)] = \mathbb{E}[\langle DF, u \rangle_H]$
+
+**Proposition**[Properties of divergence] <i>
+- If $u \in \text{Dom}(\delta)$, then $\mathbb{E}[\delta(u)] = 0$
+- Divergence operator is linear and closed under $\text{Dom} \delta$
+- $\delta(u) = \sum_{j=1}^n F_j W(h_j) - \sum_{j=1}^n \langle DF_j, h_j \rangle_H$
+- $\langle D(\delta(u)), h\rangle_H = \langle u, h \rangle_H + \delta\left( \sum_j \langle DF_j, h\rangle_H h_j \right)$
+</i><aside>To prove the third point, we may use the integral by parts of the derivative operator</aside>
+
+### The Skorohod integral
+
+This part will consider the restricted case which is Brownian motion. This makes the divergence $\delta(u)$ now is the Skorohod integral.
+
+Consider the Wiener chaos expansion
+
+$$
+u(t) = \sum_n I_n(f_n(\cdot, t))
+$$
+
+The Skorohod integral will be represented as
+
+$$
+\delta(u) = \sum_{n=0}^\infty I_{n+1}(\tilde{f}_n)
+$$
+
+converging in $L^2(\Omega)$ where
+
+<p>$$
+\tilde{f}_n(t_1, \dots, t_n, t) = \frac{1}{n+1} (f_n(t_1, \dots, t_n, t) + \sum_{i=1}^n f_n(t_1, \dots, t_{i-1}, t, t_{i+1}, \dots, t_n, t_i))
+$$
+</p><aside> The last term simply just is the exchange between $t$ and $t_i$</aside>
+
+**Proposition**[Skorohod integral is Ito integral]
+
+$$
+\delta(u) = \int_{a}^b u(s)dB(s)
+$$
+
+### The Clark-Ocone formula
+
+Given $F$, exist $u$ such that
+$$
+F = \mathbb{E}[F] + \int_0^\infty u(t)dB(t)
+$$
+
 
 ## Integration by parts and regularity 
 
