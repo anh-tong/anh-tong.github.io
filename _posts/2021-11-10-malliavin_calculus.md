@@ -46,7 +46,7 @@ Now, let's talk about spaces we will work on
 
 White noise is linear isometry<d-footnote>linear map preserving distance</d-footnote> $W: H \to L^2(\Omega, \mathbb{P})$ such that the ouput $W(h)$ is a real-valued Gaussian variable or
 
-$$\mathbb{E}[W(h)], \qquad \mathbb{E}[W(h)W(g)] = \langle h, g \rangle_H.$$
+$$\mathbb{E}[W(h)] = 0, \qquad \mathbb{E}[W(h)W(g)] = \langle h, g \rangle_H.$$
 
 The above is just the definition. How to establish such map will be shown next.
 
@@ -256,7 +256,7 @@ $$
 Given $\phi(x)$ denoting standard normal distribtution, we have
 
 $$\mathbb{E}[\langle DF, h \rangle_H] = \int \partial_1 f(x)\phi(x)dx = \int f(x)\phi(x)x_1 dx = \mathbb{E}[FW(e_1)]= \mathbb{E}[FW(h)]$$
-The second equation used integration by part. 
+<p>The second equation used integration by part.</p><aside>Because $f(x)$ grows linearly so $0 = \exp(-x^2/2)f(x)\rvert_{-\infty}^{\infty} = \int \partial f(x) \exp(x^2/2) dx + \int f(x)\partial \exp(x^2/2) dx $<aside> 
 
 The following result uses $D(GF) = (DG)F + G(DF)$ (something like chain rule).
 
