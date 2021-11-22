@@ -337,10 +337,22 @@ converging in $L^2(\Omega)$ where
 $$
 </p><aside> The last term simply just is the exchange between $t$ and $t_i$</aside>
 
-**Proposition**[Skorohod integral is Ito integral]
+**Proposition**[Skorohod integral is Ito integral] $\delta(u)$ coincides with the Ito integral w.r.t. Brownian mtion, that is
 
 $$
 \delta(u) = \int_{a}^b u(s)dB(s)
+$$
+
+**Proof** Consider an elementary adapted process 
+
+$$
+u_t = \sum_j F_j \mathbf{1}_{(t_j, t_{j+1})}(t)
+$$
+
+Now looking at each of component in the sum
+
+$$
+\delta(F_j \mathbf{1}_{(t_j, t_{j+1})}(\cdot)) = F_j \delta(\mathbf{1}_{(t_j, t_{j+1})}(\cdot)) - \int_t D_t F_j \mathbf{1}_{(t_j, t_{j+1})}(t) dt = F_j(B(t_{j+1}) - B(t_j))
 $$
 
 ### The Clark-Ocone formula
@@ -349,6 +361,26 @@ Given $F$, exist $u$ such that
 $$
 F = \mathbb{E}[F] + \int_0^\infty u(t)dB(t)
 $$
+
+This result says that a stochastic process can be represented by its mean which is a deterministic part and a randomness part.
+
+**Proof** First, consider *zero-mean* integrable random variable $G$ that is orthogonal to all stochastic integrals $\int_{\mathbb{R}_+} u(t) dB(t)$.
+
+Let $M_u(t) = \exp(\int_0^t u(s) dB(s) - \frac{1}{2}\int_0^t u^2(s)ds)$. By Ito's formula
+
+$$
+M_u(t) = M_u(0) + \int_0^t M_u(s) u(s) dB(s)
+$$
+
+Hence, such random variable $G$ is orthogonal to 
+
+$$
+\mathcal{E}(h) = \exp\left(\int_0^\infty h(s) dB(s) - \frac{1}{2} \int_0^\infty h^2(s) ds\right)
+$$
+
+And $\{ e^{W(h)}, h \in L^2(\mathbb{R}_+) \}$ form a *total subset* of $L^2(\Omega)$, this leads to the desired conclusion.
+
+
 
 
 ## Integration by parts and regularity 
