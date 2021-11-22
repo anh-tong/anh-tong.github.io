@@ -6,7 +6,7 @@ date: 2021-11-19
 ---
 
 ## Introduction
-In this note, I will a short review for a part of <a href="https://arxiv.org/abs/1903.01608">this paper</a>. I will try to bring (learn) some necessary background of stochastic optimal control. 
+In this note, I will take a short review for a part of <a href="https://arxiv.org/abs/1903.01608">this paper</a>. I will try to bring (learn) some necessary background of stochastic optimal control. 
 
 The main object discussed shortly in the following is represented as a SDE
 
@@ -102,7 +102,7 @@ $$
 \frac{\partial J}{\partial t} + \mathcal{L}_tJ = \frac{1}{2}\lvert\lvert \frac{\partial J}{\partial x} \rvert\rvert^2
 $$
 
-Let $h(x, t) = \mathbb{E}[D(X_1)|X_t = x]$ is the value function of uncontrolled SDE, then
+Let $h(x, t) = \mathbb{E}[D(X_1) \mid X_t = x]$ is the value function of uncontrolled SDE, then
 
 $$
 \frac{\partial h}{\partial t} + \mathcal{L_t}h = 0
