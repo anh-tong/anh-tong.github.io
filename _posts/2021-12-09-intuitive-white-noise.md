@@ -4,7 +4,7 @@ title: White noise - A more intuitive look
 date: 2021-12-09
 description: A further note of white noise in functional view
 ---
-White noise is the concept being seen in various fields of science and technology. Although its definition is simply to describe chaotic randomness, it can be generalized mathematically in functional analysis, therfore, leading to consistent theory and applications like stochastic analysis.
+White noise is the concept being seen in various fields of science and engineering. Although its definition is simply to describe chaotic randomness, it can be generalized mathematically in functional analysis, therfore, leading to consistent theory and applications like stochastic analysis.
 
 Let's jump to the most traditional definition, $\xi$ is defined as a white noise if 
 
@@ -50,7 +50,7 @@ $$
 \mathbb{E}[\xi(f)] = 0 \quad, \quad \mathbb{E}[\xi(f)\xi(g)] = \langle f, g \rangle
 $$
 
-**Connection to Wiener process** We previous see 
+**Connection to Wiener process** We previously see 
 
 $$\xi(f) = \int_0^\infty f(t) \xi_t dt$$
 
