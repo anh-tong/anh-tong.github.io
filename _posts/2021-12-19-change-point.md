@@ -1,4 +1,4 @@
----
+<!-- ---
 layout: distill
 title: Changepoint detection
 date: 
@@ -24,4 +24,4 @@ The method of the paper focuses on the "run length" quantity which keeps track o
     The data contains 3 partitions. The below figure explains the run length keep increasing when we stay in the same partition
 </div>
 
-**Notation**
+**Notation** -->
