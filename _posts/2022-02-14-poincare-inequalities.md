@@ -175,6 +175,6 @@ $$
 The remaining proof for other implication is derived similarly.
 
 ### Conclusion
-This post studies the inequality involves the variance of dynamically systems. As the beginning of the post, the variance will be bounded by gradient but in fact, we find the bound in Dirichlet form. However, this form will be coresponding to gradient information. For example, in the particular case of $P_tf(x) = \mathbb{E}[f(e^{-t}x + \sqrt{1 - e^{-2t}}\xi)], \xi\sim \mathcal{N}(0,1)$, the $\mathcal{E}(f, g) = \langle f', g'\rangle_\mu$.
+This post studies the inequality involves the variance of dynamically systems. As the beginning of the post, the variance will be bounded by gradient but in fact, we find the bound in Dirichlet form. However, this form will be coresponding to gradient information. For example, in the particular case (Ornistein-Uhlenbeck process) of $P_tf(x) = \mathbb{E}[f(e^{-t}x + \sqrt{1 - e^{-2t}}\xi)], \xi\sim \mathcal{N}(0,1)$, the $\mathcal{E}(f, g) = \langle f', g'\rangle_\mu$.
 
 I anticipate that such inequalities can be useful for understanding any quantities, e.g. $f$ as a likelihood function, related to  Neural SDE, or score-based generative models. The variance identities somehow resembles to the continous normalizing flow models where the log-density funcion is also governed by a differential equation.
