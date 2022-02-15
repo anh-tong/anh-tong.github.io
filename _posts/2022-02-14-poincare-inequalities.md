@@ -17,7 +17,7 @@ The results will be established within Markov processes which are consider as **
 
 $$\mathbb{E}[f(X_{t+s}| \{X_r\}_{r\leq t})] = P_sf(X_t)$$
 
-The term **memoryless** is coined because the whole history $\{X_{r}\}_{t}$ is disregared and the expectation only is expressed by the most recent one $X_t$. 
+The term **memoryless** is coined because the whole history $\left\{ X_{r} \right\}_{r<t}$ is disregared and the expectation only is expressed by the most recent one $X_t$. 
 
 The stationarity is defined when given a probability measure $\mu$
 
@@ -48,17 +48,18 @@ $$\frac{d}{dt} P_t f = \lim_{\delta \to 0} \frac{P_{t + \delta}f - P_tf}{\delta}
 This provides the commutative property between $P_t$ and $\mathcal{L}$. 
 
 
-**Reversibility** This is a rebranding term of self-adjoint where $\langle f, P_t g \rangle = \langle P_t, g\rangle$. However, the implication here is that there is a backward process having the same law:
+**Reversibility** This is a rebranding term of self-adjoint where $\langle f, P_t g \rangle = \langle P_tf, g\rangle$. However, the implication here is that there is a backward process having the same law:
 
 $$
 \langle \textcolor{red}{P_t f}, g \rangle = \langle f, P_t g \rangle = \mathbb{E}[ f(X_0) \mathbb{E}[g(X_t)|X_0]] = \mathbb{E}[f(X_0) g(X_t)] = \mathbb{E}[\textcolor{red}{\mathbb{E}[f(X_0)|X_t]} g(X_t)]
 $$
+
 By the defition, the red terms lead to $P_t f(x) := \mathbb{E}[f(X_t)|X_0=x] = \mathbb{E}[f(X_0)|X_t=x]$. This is why we call it *reversibility*.
 
 
 **Note** We can see many case studies, i.e., solution of stochastic differential equations (SDEs) satisfy the above definitions and properties. So it can be useful to analyze recent models in machine learning, e.g.,  Neural SDEs or score-based models, that attract a lot attention.
 
-**Egordicity** This notion usually is encountered when studying dynamical systems which converge to stationary state no matter what initial values are. That is, $P_tf \to \mu f$ in $L^2(\mu)$ as $t\to 0$.
+**Egordicity** This notion usually is encountered when studying dynamical systems which converge to a stationary state no matter what initial values are. That is, $P_tf \to \mu f$ in $L^2(\mu)$ as $t\to 0$.
 
 Before going to the main result, it is necessary to define one more concept which is Dirichlet form $\mathcal{E}(f, g)$
 
@@ -177,4 +178,4 @@ The remaining proof for other implication is derived similarly.
 ### Conclusion
 This post studies the inequality involves the variance of dynamically systems. As the beginning of the post, the variance will be bounded by gradient but in fact, we find the bound in Dirichlet form. However, this form will be coresponding to gradient information. For example, in the particular case (Ornistein-Uhlenbeck process) of $P_tf(x) = \mathbb{E}[f(e^{-t}x + \sqrt{1 - e^{-2t}}\xi)], \xi\sim \mathcal{N}(0,1)$, the Dirichlet form is $\mathcal{E}(f, g) = \langle f^\prime, g^\prime\rangle_\mu.$
 
-I anticipate that such inequalities can be useful for understanding any quantities, e.g. $f$ as a likelihood function, related to  Neural SDE, or score-based generative models. The variance identities somehow resembles to the continous normalizing flow models where the log-density funcion is also governed by a differential equation.
+I anticipate that such inequalities can be useful for understanding any quantities, e.g. $f$ as a likelihood function, related to  Neural SDE, or score-based generative models. The variance identities somehow resembles the continous normalizing flow models where the log-density funcion is also governed by a differential equation.
