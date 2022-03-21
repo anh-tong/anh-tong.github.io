@@ -1,8 +1,8 @@
 ---
 layout: distill
 title: Hawkes processes and Applications in Finance
-description: Summarize a line of work in quantitative finance
-date:
+description: Summarize a line of work in quantitative finance including scale limits of Hawkes processes and quadratic Hawkes processes
+date: 2022-03-21
 ---
 
 Last month, as an attempt to expand my knowledge in a broader area, specifically, mathematical finance for this time, I attended <a href="https://www.centre-cournot.org/conferences_en.html#conference27">this conference</a> focusing on microstructures and macrostructures in markets, how mathematical tools can makes sense of micro-behaviors to obtains macro-properties. The take-away message here is that, at micro levels, financial activities like buying/selling events are better to be modeled by jump processes, especially Hawkes processes which possess some characteristics like self-exciting (i.e., buying leads to more buying). And when talking limit in a mathematical sense, models will converge to some standard models associated to Brownian motions that is well-known in understanding financial models at macro levels.
@@ -76,5 +76,14 @@ with
 
 #### Auto-correlation
 
+Consider two types of correlation functions: two-points correlation and three-points correlations
 
+$$\mathcal{C}(\tau) = \mathbb{E}\left[\frac{dN_t}{dt}\frac{dN_{t-\tau}}{dt}\right] -\bar{\lambda}^2= \mathbb{E}\left[\lambda_t\frac{dN_{t-\tau}}{dt}\right] -\bar{\lambda}^2$$
+
+$$\mathcal{D}(\tau_1, \tau_2) = \frac{1}{\psi^2}\mathbb{E}\left[\frac{dN_t}{dt}\frac{dP_{t-\tau_1}}{dt}\frac{dP_{t-\tau_2}}{dt}\right]$$
+
+In fact, we can write these two functions in terms of the kernel $K(t,s)$ but they are difficult to solve in general. We may be interested in the asymptotic behaviors of the auto-correlation functions. Note that here the analysis involves only power law decays, how the power coefficients of kernels affect the power coefficients of $\mathcal{C, D}$.
+
+#### Volatility model of ZHawkes
+(to be continued)
 
