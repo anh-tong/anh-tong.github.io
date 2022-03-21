@@ -58,14 +58,10 @@ $$Z_t := \frac{1}{\psi}\int_{-\infty}^t k(t-s) dP_s$$
 #### Time stationary
 
 This notion is equivalent when $\mathbb{E}[\lambda_t]$ is constant, positive and finite. To analyze this properties, the intensity function of QHawkes is written into diagonal terms and off-diagional term:
-
 $$\lambda_t = \lambda_\infty + \mathcal{L}_t + H_t + 2M_t$$
-
 Note that the expectation of $\mathcal{L}_t$ and $H_t$ is zero since we may assume $P_t$ to be a martingale. 
-The remain is the off-diagonal term where $M_t = \frac{1}{\psi^2} \int_{-\infty}^t \int_{-\infty}^{u^-} K(t-u, t-r) dP_r dP_u.$ Finally, the expectation of intensity is
-
+The remain is the off-diagonal term where $M_t = \frac{1}{\psi^2} \int_{-\infty}^t \int_{-\infty}^{u-} K(t-u, t-r) dP_r dP_u.$ Finally, the expectation of intensity is
 $$\mathbb{E}[\lambda_t] = \lambda_\infty + \int_{-\infty}^t K(t-s, t-s) \mathbb{E}[\lambda_s] ds.$$
-
 The necessary condition of time stationary (time index does not matter for the expectation of intensity) is obtained as
 
 $$\bar{\lambda} = \frac{\lambda_\infty}{1 - Tr(K)}$$
