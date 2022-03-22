@@ -37,7 +37,8 @@ A QHawkes process is specified by an intensity function as
 
 $$\lambda_t = \lambda_\infty + \frac{1}{\psi} \int_{-\infty}^t L(t-s) dP_s + \frac{1}{\psi^2}K(t-s, t-u) dP_sdP_u$$
 
-Here, $P_t$ is the price at time $t$. $L$ is a leverage kernel. $K$ is a quadratic feedback kernel. In many cases, $L$ is considered to be $0$ and only quadratic kernel is left. When the kernel is diagonal, $K(t,s) = \phi(t)\delta_{t-s}$, the model falls back to Hawkes processes. 
+Here, $P_t$ is the price at time $t$. $L$ is a leverage kernel. $K$ is a quadratic feedback kernel. In many cases, $L$ is considered to be $0$ and only quadratic kernel is left. When the kernel is diagonal, 
+$K(t,s) = \phi(t)\delta_{t-s}$, the model falls back to Hawkes processes. 
 
 For general quadratic kernels, it may not be convienent to have a nice analysis. Instead, by imposing a certain structure and this case is to have "low-rank" form where
 
@@ -62,10 +63,7 @@ This notion is equivalent when $\mathbb{E}[\lambda_t]$ is constant, positive and
 $$\lambda_t = \lambda_\infty + \mathcal{L}_t + H_t + 2M_t$$
 
 Note that the expectation of $\mathcal{L}_t$ and $H_t$ is zero since we may assume $P_t$ to be a martingale. 
-The remain is the off-diagonal term where $M_t = \frac{1}{\psi^2} \Theta_{t,u}  dP_{u}$ 
-
-
-with  $\Theta_{t, u} = \int_{-\infty}^{u-} K(t-u, t-r) dP_{r}$.
+The remain is the off-diagonal term where $$M_t = \frac{1}{\psi^2} \int_{-\infty}^t\Theta_{t,u}  dP_{u}$$ with  $\Theta_{t, u} = \int_{-\infty}^{u-} K(t-u, t-r) dP_{r}$.
 
 Finally, the expectation of intensity is
 
@@ -90,5 +88,12 @@ $$\mathcal{D}(\tau_1, \tau_2) = \frac{1}{\psi^2}\mathbb{E}\left[\frac{dN_t}{dt}\
 In fact, we can write these two functions in terms of the kernel $K(t,s)$ but they are difficult to solve in general. We may be interested in the asymptotic behaviors of the auto-correlation functions. Note that here the analysis involves only power law decays, how the power coefficients of kernels affect the power coefficients of $\mathcal{C, D}$.
 
 #### Volatility model of ZHawkes
-(to be continued)
 
+Choosing $k(t) = \sqrt{2n_Z \omega}\exp(-\omega t)$ and $\phi(t)=n_H\beta\exp(-\beta t)$, a ZHawkes process is decomposed into two terms represented as stochastic differential equations:
+
+$$
+\begin{aligned}
+dH_t &= \beta [-H_t dt + n_H dN_t]\\
+dN_t & = -\omega Z_t dt + k_0 dP_t
+\end{aligned}
+$$
