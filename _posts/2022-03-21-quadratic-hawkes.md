@@ -142,5 +142,5 @@ d\bar{N}_t^\infty & = -\omega_T \bar{Z}_t^\infty Tdt + \bar{\gamma}\sqrt{\lambda
 \end{aligned}
 $$
 
-From this SDE, it will be complicated to get fat-tail as it follows some existing work. The key procedure next is to solve the above continuous (not jump) SDE (mostly the first equation) and point out the volatitliy, and it distribution. 
+From this SDE, it will be complicated to get fat-tail as it follows some existing work. The key procedure next is to solve the above continuous (not jump) SDE (mostly the first equation) and point out the volatitliy, and its distribution. 
 
