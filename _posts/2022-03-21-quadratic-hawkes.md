@@ -63,6 +63,7 @@ This notion is equivalent when $\mathbb{E}[\lambda_t]$ is constant, positive and
 $$\lambda_t = \lambda_\infty + \mathcal{L}_t + H_t + 2M_t$$
 
 Note that the expectation of $\mathcal{L}_t$ and $H_t$ is zero since we may assume $P_t$ to be a martingale. 
+
 The remain is the off-diagonal term where $$M_t = \frac{1}{\psi^2} \int_{-\infty}^t\Theta_{t,u}  dP_{u}$$ with  $\Theta_{t, u} = \int_{-\infty}^{u-} K(t-u, t-r) dP_{r}$.
 
 Finally, the expectation of intensity is
@@ -97,3 +98,49 @@ dH_t &= \beta [-H_t dt + n_H dN_t]\\
 dN_t & = -\omega Z_t dt + k_0 dP_t
 \end{aligned}
 $$
+
+Next, the paper moves to study low-frequency asymptotics to demonstrate the fat-tail behaviors which does not hold in previous work. The technique here again is the *scale limit* like the previous section. 
+
+Let $\bar{H}_t^T = H_{tT}, \bar{Z}_t^T = Z_{tT}, \bar{N}_t^T = N_{tT}$ and $\bar{P}_t^T = P_{tT}$. With the change of variable, the above SDE system becomes
+
+$$
+\begin{aligned}
+d\bar{H}_t^T &= \beta_T [-\bar{H}_t^T Tdt + n_H d\bar{N}_t]\\
+d\bar{N}_t^T & = -\omega_T \bar{Z}_t^T Tdt + \sqrt{2\omega_T n_Z} d\bar{P}_t^T
+\end{aligned}
+$$
+
+Here $\bar{N}^T$ and $\bar{P}^T$ have the same scaled intensity, $T[\lambda_\infty + \bar{H}_t^T + (\bar{Z}_t^T)^2]$, the 
+
+The infinitesimal generator (see <a href="https://en.wikipedia.org/wiki/Infinitesimal_generator_(stochastic_processes)">wiki</a>) of this ($\gamma_T^2 = 2\omega_T n_Z$)
+
+$$
+\begin{aligned}
+\mathcal{A}^T f(h,z) = &- \beta_T h T \partial_h f(h,z) - \omega_T z \partial_z f(h,z) \\
+&+ T[\lambda_\infty + h + z^2]\left\{\frac{1}{2}f(h + n_H\beta_T, z + \gamma_T) + \frac{1}{2}f(h + n_H\beta_T, z - \gamma_T) - f(h,z) \right\}
+\end{aligned}
+$$
+
+Rescaling $\beta_T = \bar{\beta}/T, \omega_T=\bar{\omega}/T$, and sending $T$ to infinity yields
+
+$$
+\frac{1}{2}f(h + n_H\beta_T, z + \gamma_T) + \frac{1}{2}f(h + n_H\beta_T, z - \gamma_T) - f(h,z) = \frac{n_H \bar{\beta}}{T}\partial_h f(h, z) + \frac{\bar{\gamma}^2}{2T}\partial^2_{zz}f(h,z) + o(\frac{1}{T})
+$$
+
+Therefore, the infinitesimal generator and SDE at the limit are
+
+$$
+\mathcal{A}^\infty f(h, z) = -\bar{\beta}[(1 - n_H)h - n_H(\lambda_\infty + z^2)]\partial_h f(h, z) - \bar{\omega} z \partial_z f(h,z) + n_Z\bar{\omega}[\lambda_\infty + h + z^2]\partial^2_{zz} f(h, z)
+$$
+
+and
+
+$$
+\begin{aligned}
+d\bar{H}_t^\infty &= \bar{\beta}[-(1 - n_N)\bar{H}_t^\infty + n_H(\lambda_\infty + (\bar{Z}_t^\infty)^2)]dt\\
+d\bar{N}_t^\infty & = -\omega_T \bar{Z}_t^\infty Tdt + \bar{\gamma}\sqrt{\lambda_\infty + \bar{H}_t^\infty + (\bar{Z}_t^\infty)^2}dW_t
+\end{aligned}
+$$
+
+From this SDE, it will be complicated to get fat-tail as it follows some existing work. The key procedure next is to solve the above continuous (not jump) SDE (mostly the first equation) and point out the volatitliy, and it distribution. 
+
