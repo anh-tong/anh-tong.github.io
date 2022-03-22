@@ -62,7 +62,7 @@ This notion is equivalent when $\mathbb{E}[\lambda_t]$ is constant, positive and
 $$\lambda_t = \lambda_\infty + \mathcal{L}_t + H_t + 2M_t$$
 
 Note that the expectation of $\mathcal{L}_t$ and $H_t$ is zero since we may assume $P_t$ to be a martingale. 
-The remain is the off-diagonal term where $M_t = \frac{1}{\psi^2} \int_{-\infty}^t \Theta_{t,u}  dP_{u}$ 
+The remain is the off-diagonal term where $M_t = \frac{1}{\psi^2} \Theta_{t,u}  dP_{u}$ 
 
 
 with  $\Theta_{t, u} = \int_{-\infty}^{u-} K(t-u, t-r) dP_{r}$.
