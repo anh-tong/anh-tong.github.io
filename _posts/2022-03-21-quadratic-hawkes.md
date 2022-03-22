@@ -138,7 +138,7 @@ and
 $$
 \begin{aligned}
 d\bar{H}_t^\infty &= \bar{\beta}[-(1 - n_N)\bar{H}_t^\infty + n_H(\lambda_\infty + (\bar{Z}_t^\infty)^2)]dt\\
-d\bar{N}_t^\infty & = -\omega_T \bar{Z}_t^\infty Tdt + \bar{\gamma}\sqrt{\lambda_\infty + \bar{H}_t^\infty + (\bar{Z}_t^\infty)^2}dW_t
+d\bar{Z}_t^\infty & = -\omega_T \bar{Z}_t^\infty Tdt + \bar{\gamma}\sqrt{\lambda_\infty + \bar{H}_t^\infty + (\bar{Z}_t^\infty)^2}dW_t
 \end{aligned}
 $$
 
