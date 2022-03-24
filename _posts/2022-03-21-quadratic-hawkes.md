@@ -29,7 +29,7 @@ By the central limit theorem, $\frac{1}{\sqrt{T}} \sum_{k=1}^T \texttt{Poisson}(
 
 ### Quadratic Hawkes proceses
 
-Simply, Hawkes process is a point process where we have a specific way of modeling it's intensity function. <a href="https://arxiv.org/abs/1509.07710">This paper </a> proposes quadratic Hawkes processes (QHawkes) - a generalization of Hawkes processes which is able to capture well characteristics in financial time series. The main motivation is that existing work ,i.e., multifractional Brownian motions in stochastic volatility models or FIGARCH, does not provide properties that math with *stylized facts*. Here, the stylized facts are a collective facts observed by empirical analyses. They include, for examples, fat tails of return distributions, slow decay of correlations. More importantly, this paper shows that QHawkes can describe the time reversal asymetry. This is interpreted some think like financial time series are not statistical symmetrical when the past and future are change. This attributes to leverage effect (past returns affects future volatities but not the other way arround).
+Simply, Hawkes process is a point process where we have a specific way of modeling it's intensity function. <a href="https://arxiv.org/abs/1509.07710">This paper </a> proposes quadratic Hawkes processes (QHawkes) - a generalization of Hawkes processes which is able to capture well characteristics in financial time series. The main motivation is that existing work ,i.e., multifractional Brownian motions in stochastic volatility models or FIGARCH, does not provide properties that math with *stylized facts*. Here, the stylized facts are a collective facts observed by empirical analyses. They include, for examples, fat tails of return distributions, slow decay of correlations. More importantly, this paper shows that QHawkes can describe the time reversal asymetry. This is interpreted something like financial time series are not statistical symmetrical between the past and future. This attributes to leverage effect (past returns affects future volatities but not the other way arround).
 
 #### Model description
 
@@ -40,7 +40,7 @@ $$\lambda_t = \lambda_\infty + \frac{1}{\psi} \int_{-\infty}^t L(t-s) dP_s + \fr
 Here, $P_t$ is the price at time $t$. $L$ is a leverage kernel. $K$ is a quadratic feedback kernel. In many cases, $L$ is considered to be $0$ and only quadratic kernel is left. When the kernel is diagonal, 
 $K(t,s) = \phi(t)\delta_{t-s}$, the model falls back to Hawkes processes. 
 
-For general quadratic kernels, it may not be convienent to have a nice analysis. Instead, by imposing a certain structure and this case is to have "low-rank" form where
+For general quadratic kernels, it may not be convienent to have a nice analysis. Instead, by imposing a certain structure and this case is to have a "low-rank" form where
 
 $$K(t,s) = \phi(t)\delta_{t-s} + k(t)k(s)$$
 
@@ -101,7 +101,7 @@ $$
 
 Next, the paper moves to study low-frequency asymptotics to demonstrate the fat-tail behaviors which does not hold in previous work. The technique here again is the *scale limit* like the previous section. 
 
-Let $\bar{H}_t^T = H_{tT}, \bar{Z}_t^T = Z_{tT}, \bar{N}_t^T = N_{tT}$ and $\bar{P}_t^T = P_{tT}$. With the change of variable, the above SDE system becomes
+Let $\bar{H}_t^T = H_{tT}, \bar{Z}_t^T = Z_{tT}, \bar{N}_t^T = N_{tT},\bar{P}_t^T = P_{tT}$. With the change of variable, the above SDE system becomes
 
 $$
 \begin{aligned}
