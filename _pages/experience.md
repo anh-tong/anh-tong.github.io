@@ -21,8 +21,6 @@ nav: true
 + Feb. 2021 - present: Postdoctoral Researcher, Korean Advanced Institute of Science and Technology (KAIST), South Korea.
     
 + Mar. 2020 - May 2020: Research Intern, VinAI Research, VinGroup, Hanoi, Vietnam. 
-    + Host: <a href="https://sites.google.com/site/buihhung/">Hung Bui</a> and <a href="https://scholar.google.com/citations?user=PnwSuNMAAAAJ&hl=en">Toan Tran</a>. 
-    
 
 + Sept. 2014- Jul. 2015: Data Scientist, VinEcom, VinGroup, Hanoi, Vietnam.
 
