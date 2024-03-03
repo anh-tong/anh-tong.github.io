@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-description: Machine Learning Researcher @ KAIST
+description: Assistant Professor @ Korea University
 
 # profile:
 #   align: right
