@@ -17,14 +17,15 @@ nav: true
     + B.E. in Mathematics and Informatics.
 
 ### Work experience
++ Mar. 2024 - present: Assistant Professor, Korea Univeristy, South Korea.
 
-+ Feb. 2021 - present: Postdoctoral Researcher, Korean Advanced Institute of Science and Technology (KAIST), South Korea.
++ Feb. 2021 - Feb. 2024: Postdoctoral Researcher, Korean Advanced Institute of Science and Technology (KAIST), South Korea.
     
 + Mar. 2020 - May 2020: Research Intern, VinAI Research, VinGroup, Hanoi, Vietnam. 
 
-+ Sept. 2014- Jul. 2015: Data Scientist, VinEcom, VinGroup, Hanoi, Vietnam.
++ Sep. 2014- Jul. 2015: Data Scientist, VinEcom, VinGroup, Hanoi, Vietnam.
 
-+ Sept. 2013 - Aug. 2014: Software Engineer, Viettel, Hanoi, Vietnam.
++ Sep. 2013 - Aug. 2014: Software Engineer, Viettel, Hanoi, Vietnam.
 
 ### Awards and Honors
 
