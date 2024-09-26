@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,7 +10,7 @@
   Anh  Tong
 
 
-  | blog
+  | White noise - A more intuitive look
 
 </title>
 <meta name="description" content="Anh Tong personal homepage
@@ -37,7 +36,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22></text></svg>">
 
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="/blog/">
+<link rel="canonical" href="/blog/2021/intuitive-white-noise/">
 
 <!-- JQuery -->
 <!-- jQuery -->
@@ -67,7 +66,36 @@
 <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 
 
+    <script src="/assets/js/distillpub/template.v2.js"></script>
+    <script src="/assets/js/distillpub/transforms.v2.js"></script>
+    <script src="/assets/js/distillpub/overrides.js"></script>
+    
   </head>
+
+  <d-front-matter>
+    <script async type="text/json">{
+      "title": "White noise - A more intuitive look",
+      "description": "A further note of white noise in functional view",
+      "published": "December 9, 2021",
+      "authors": [
+        
+      ],
+      "katex": {
+        "delimiters": [
+          {
+            "left": "$",
+            "right": "$",
+            "display": false
+          },
+          {
+            "left": "$$",
+            "right": "$$",
+            "display": true
+          }
+        ]
+      }
+    }</script>
+  </d-front-matter>
 
   <body class="fixed-top-nav ">
 
@@ -105,14 +133,10 @@
             <a class="nav-link" href="/blog/">
               Blog
               
-              <span class="sr-only">(current)</span>
-              
             </a>
           </li>
           
           <!-- Other pages -->
-          
-          
           
           
           
@@ -171,91 +195,70 @@
 
     <!-- Content -->
 
-    <div class="container mt-5">
-      <div class="post">
+    <div class="post distill">
 
-  <div class="header-bar">
-    <h1>Collection of notes</h1>
-    <h2>Machine Learning, Stats, Programming and Stuff</h2>
-  </div>
-
-
-  <ul class="post-list">
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2022/rough-path/">Signature and Log Signature in rough path theory</a></h3>
-        <p class="post-meta">April 5, 2022</p>
-        <p>Quick review of the central quantities in rough path theory</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2022/quadratic-hawkes/">Hawkes processes and Applications in Finance</a></h3>
-        <p class="post-meta">March 21, 2022</p>
-        <p>Summarize a line of work in quantitative finance including scale limits of Hawkes processes and quadratic Hawkes processes</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2022/poincare-inequalities/">Markov process and Poincare inequality</a></h3>
-        <p class="post-meta">February 14, 2022</p>
-        <p>How to bound the variance of a Markov dynamical system?</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2021/intuitive-white-noise/">White noise - A more intuitive look</a></h3>
-        <p class="post-meta">December 9, 2021</p>
+      <d-title>
+        <h1>White noise - A more intuitive look</h1>
         <p>A further note of white noise in functional view</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2021/deep-limit/">Theoretical aspect of variational infrence for Neural SDEs</a></h3>
-        <p class="post-meta">November 19, 2021</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2021/malliavin_calculus/">Malliavin Calculus</a></h3>
-        <p class="post-meta">November 10, 2021</p>
-        <p>(in progress) Some background of Mallivian Calculus</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2021/fractional-brownian-motion/">Self-similarity and long-range dependence in fractional Brownian motions</a></h3>
-        <p class="post-meta">November 3, 2021</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2021/numerical-sde/">Numerical methods for SDEs</a></h3>
-        <p class="post-meta">November 2, 2021</p>
-        <p>Study some approximation methods in solving SDEs, i.e., Euler-Maruyama method, Milstein's method,...</p>
-      </li>
-    
-  </ul>
+      </d-title>
 
-  
-<nav aria-label="Blog page naviation">
-  <ul class="pagination pagination-lg justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="" tabindex="-1" aria-disabled="">Newer</a>
-    </li>
-    
-      
-        <li class="page-item active"><a class="page-link" href="/blog/index.html" title="blog">1</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/2/index.html" title="blog - page 2">2</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/3/index.html" title="blog - page 3">3</a></li>
-      
-    
-    <li class="page-item ">
-      <a class="page-link" href="/blog/page/2/">Older</a>
-    </li>
-  </ul>
-</nav>
+      <d-byline></d-byline>
+
+      <d-article>
+        <p>White noise is the concept being seen in various fields of science and engineering. Although its definition is simply to describe chaotic randomness, it can be generalized mathematically in functional analysis, therfore, leading to consistent theory and applications like stochastic analysis.</p>
+
+<p>Let’s jump to the most traditional definition, $\xi$ is defined as a white noise if</p>
+
+\[\mathbb{E}[\xi_t] = 0 \quad, \quad \mathbb{E}[\xi_t\xi_s] = \delta(t - s)\]
+
+<p>Here $\delta(\cdot)$ is Dirac’s delta function. Even we call this function, it actually makes sense when we view it as a distribution or <em>generalized function</em>.</p>
+
+\[\int f(s)\delta(s)ds = f(0)\]
+
+<h3 id="functional-view">Functional view</h3>
+
+<p>Let’s forget about $\delta(\cdot)$ is a function taking some real value. From now on, we consider it as a functional by taking a function as input</p>
+
+\[\delta: f \to f(0)\]
+
+<p>Here, $f$ is called <em>test function</em>. The idea is that a generalized function (distribution) takes a test function to measure (test) and get the outcome of the examination. Here, delta function as a distribution measures the value at a location shaply (even though measuring a infinitely sharp location is not physically realistic).</p>
+
+<p>With the above introduction of the functional approach, we may write a white noise as $\xi(f)$ with some test function $f$.</p>
+
+<p>When defining in such a way, the properties of white noise should be preserved including zero mean, $\mathbb{E}[\xi(f)] = 0$, and covariance</p>
+
+\[\begin{aligned}
+\mathbb{E}[\xi(f)\xi(g)] 
+= &amp; \mathbb{E}\left[\int_0^\infty f(s) \xi_s ds \int_0^\infty g(t) \xi_t dt\right] \\ 
+= &amp;\int\int f(s)g(t) \mathbb{E}[\xi_s\xi_t]dtds \\
+= &amp;\int\int f(s)g(t) \delta(t-s)dtds \\
+= &amp;\int f(t)g(t) dt \\
+= &amp;\langle f, g \rangle
+\end{aligned}\]
+
+<p><strong>Functional definition of white noise</strong> At this point, we may define the white noise as a <em>random linear functional</em> such that $\xi(f)$ is Gaussian with</p>
+
+\[\mathbb{E}[\xi(f)] = 0 \quad, \quad \mathbb{E}[\xi(f)\xi(g)] = \langle f, g \rangle\]
+
+<p><strong>Connection to Wiener process</strong> We previously see</p>
+
+\[\xi(f) = \int_0^\infty f(t) \xi_t dt\]
+
+<p>Now consider a stochastic integral with a Wiener process $W_t$</p>
+
+\[\int_0^\infty f(t) dW_t\]
+
+<p>One may accept (not straighforward though as Wiener process is nowhere differentiable) the fact that white noise is a derivative version of a Wiener process, therefore, $\xi_t dt = dW_t$. Now, we can cast the functional $\xi(f)$ as</p>
+
+\[\xi(f) = \int_0^\infty f(t)dW_t\]
 
 
+      </d-article>
 
-</div>
+      <d-appendix>
+        <d-footnote-list></d-footnote-list>
+        <d-citation-list></d-citation-list>
+      </d-appendix>
 
     </div>
 
@@ -274,30 +277,13 @@
 
 
 
+    
+
   </body>
 
-  <!-- Bootsrap & MDB scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+  <d-bibliography src="/assets/bibliography/">
+  </d-bibliography>
 
   
-<!-- Mansory & imagesLoaded -->
-<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
-<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
-
-
-  
-
-
-<!-- Medium Zoom JS -->
-<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
-<script src="/assets/js/zoom.js"></script>
-
-
-<!-- Load Common JS -->
-<script src="/assets/js/common.js"></script>
-
 
 </html>
