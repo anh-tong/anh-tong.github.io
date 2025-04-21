@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>
+
+  Anh  Tong
+
+
+  | Transformers identifying kernel structures
+
+</title>
+<meta name="description" content="Anh Tong personal homepage
+">
+
+<!-- Open Graph -->
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="https://gitcdn.link/repo/jwarby/jekyll-pygments-themes/master/github.css" />
+
+<!-- Styles -->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22></text></svg>">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="/blog/2021/kernel_identification/">
+
+<!-- JQuery -->
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+
+<!-- Theming-->
+
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/dark_mode.js"></script>
+
+
+
+
+
+
+    
+<!-- MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+    <script src="/assets/js/distillpub/template.v2.js"></script>
+    <script src="/assets/js/distillpub/transforms.v2.js"></script>
+    <script src="/assets/js/distillpub/overrides.js"></script>
+    
+  </head>
+
+  <d-front-matter>
+    <script async type="text/json">{
+      "title": "Transformers identifying kernel structures",
+      "description": "A review paper on find kernel structure using deep neural network",
+      "published": "September 30, 2021",
+      "authors": [
+        
+      ],
+      "katex": {
+        "delimiters": [
+          {
+            "left": "$",
+            "right": "$",
+            "display": false
+          },
+          {
+            "left": "$$",
+            "right": "$$",
+            "display": true
+          }
+        ]
+      }
+    }</script>
+  </d-front-matter>
+
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="/">
+       <span class="font-weight-bold">Anh</span>   Tong
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              About
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              Blog
+              
+            </a>
+          </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/experience/">
+                Experience
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/publications/">
+                Publications
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            <div class = "toggle-container">
+              <a id = "light-toggle">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+              </a>
+            </div>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="post distill">
+
+      <d-title>
+        <h1>Transformers identifying kernel structures</h1>
+        <p>A review paper on find kernel structure using deep neural network</p>
+      </d-title>
+
+      <d-byline></d-byline>
+
+      <d-article>
+        <p>In this post, I will review a recent paper <d-cite key="kernel_identification"></d-cite> about Gaussian process kernel from <a href="https://www.secondmind.ai/">Secondmind</a> and Cambridge University.</p>
+
+<p>Kernel structure discovery has been one of my main research topics <d-cite key="ICML2016,ICML2019, AAAI2021"> </d-cite> and it is exciting to see a refreshing idea in the paper “Kernel Identification through Transformer” <d-cite key="kernel_identification"></d-cite>.</p>
+
+<p>In learning Gaussian process, selecting kernels (kernel types or kernel structure) is important because the kernel types may encode inductive bias, i.e., periodicity, trends in data. Previous work often requires extensive search procedure to select an appropriate kernel. The proposed approach in this paper <d-cite key="kernel_identification"></d-cite> eliminates such cumbersome search via a pretrained deep neural network to generate the probable kernel structures.</p>
+
+<p><strong>One-sentence description</strong> DNNs inspired by transformer architecture satisfying permutation invariance are trained over samples generated from kernel priors, minicking image-caption task to predict kernel structure.</p>
+
+<h2 id="kernel-structures-in-gaussian-process">Kernel structures in Gaussian Process</h2>
+
+<p>When talking about kernel structures, we mean what types of kernel function are. Kernel functions are constructed from base kernels into <em>compositional</em> kernels.</p>
+
+<p>Base (primitive) kernels are showed in this kernel</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Kernel name</th>
+      <th>Kernel function</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Squared exponential</td>
+      <td>\(\sigma^2 \exp(-(x-x')^2/2\ell^2)\)</td>
+    </tr>
+    <tr>
+      <td>Linear</td>
+      <td>\(\sigma^2 (x - \ell) (x' - \ell)\)</td>
+    </tr>
+    <tr>
+      <td>Periodic</td>
+      <td>\(\sigma^2 \exp (\sin^2((x-x')/p)/\ell^2)\)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The compositional kernels are obtained by using addition or multiplication over base kernels because the closure property of kernel methods. The space of such kernel functions is open-ended.</p>
+
+<p>The more complex kernel structures is, the more expressive the corresponding Gaussian process model cound become.</p>
+
+<p>Note that each base kernel encodes their own intrinsic characteristics which can be translated into nouns. Therefore, compositional kernels can be noun phrases.</p>
+
+<h2 id="prepare-data">Prepare data</h2>
+<p>Starting off with building a set of kernel functions which is “reasonably large” enough, we sample priors to produce data $X, y$. This pair is concatenated side by side, and visually looks like an image.</p>
+
+\[\text{Image} \to \text{Caption}   \qquad \Rightarrow  \qquad \text{Sample} \to \text{Kernel Structure}\]
+
+<p>The kernel structures here are the name of additive kernels composed from a set of vocabulary of kernel names.</p>
+
+<h2 id="model-architecture">Model architecture</h2>
+
+<p><strong>Permutation Invarance</strong> <d-cite key="deep_sets"> </d-cite> shows that a function sastifying permutation invarance should be in the following form</p>
+
+\[f(X) = \rho\left(\sum_i \phi(x_i) \right)\]
+
+<p>The sum running over index $i$ enables the invarance when we permute $x_i$. In practice, we often encounter problems that the orders of elements in sets does not matter. If a model considers ordering dependency, it’s bound to subjectively fail. This concept is closely related to <a href="https://en.wikipedia.org/wiki/De_Finetti%27s_theorem">de Finetti’s theorem</a> on exchangeability of random variables. Here $\rho, \phi$ are parameterized with neural networks.</p>
+
+<p><strong>Double permutation invariance (over data index and dimension index)</strong> The paper aims to have invariance over  not only data (sequence) indices but also dimension indices.</p>
+
+\[f(\mathbf{X}) = \rho\left( \sum_i \rho' \left(\sum_j \phi'(X_{ij})\right) \right)\]
+
+<h3 id="encoder">Encoder</h3>
+<p><em>Encoder</em> consists of sequence encoder and dimension encoder. These two serve the above double permutation invariance</p>
+
+<ul>
+  <li><strong>Sequence Encoder</strong> is built upon attention mechanism (like <a href="https://anh-tong.github.io/blog/2021/performer/"> previous post </a>) and a mean pooling.</li>
+</ul>
+
+\[f(X) = MeanPooling(Attention(X))\]
+
+<p>This uses the set transformer approach from<d-cite key="set_transformer"></d-cite> which introduces attention-based method to perform. To keep this concise, the notation here is little different from the original paper, removing some details i.e., feed-forward layers (usually be a part of attention block as embedding).</p>
+
+<ul>
+  <li><strong>Dimension Encoder</strong> is responsible for the permutation invariance over dimension indices</li>
+</ul>
+
+\[g(X) = FeedForwardNN(Attention(X))\]
+
+<p>Formally, encoder is constructed as</p>
+
+\[Encoder(X) = g(f(X)).\]
+
+<h3 id="decoder">Decoder</h3>
+<p>Decoder has the responsibility to reproduce kernel structures as sentences out of the predefined set of “kernel” vocabularies. The model architecture of decoders is similar to “Attention is All You Need” paper <d-cite key="attention"> </d-cite> with no positional encodings.</p>
+
+<div>
+    <img class="center" src="/assets/img/kernel_transformer.jpg" />
+</div>
+
+<div class="caption">
+Overview of model architecture. Red means the permutation invariance over the index.
+</div>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>If the proposed method really works well in practice, we no longer have to wait hours to search over kernel structure space, but just train a neural network helping us to obtain most probable candidates quickly (in seconds).</p>
+
+<p>Despite of being able to generate kernel structure on the fly, it’s hard to conclude that the obtained kernel structures agrees with the tradition principles in model selection prefering simple models over complex ones like Bayesian Information Criteria, or Occam’s razor.</p>
+
+<p>Athough experiment section contains extensive results. I feel that the demonstration for the most simple case where we only consider time series should be presented. Probably, to work on 1D data set, the architectures of transformers do not have to satisfy double permutation invarance.</p>
+
+<p>Although the permutation invariance over dimensions is nice, the concatenation of $X$ and $y$ may ignore the dependency between $X$ and $y$. For example, the model may not know the causual relationship between $X$ and $y$.</p>
+
+      </d-article>
+
+      <d-appendix>
+        <d-footnote-list></d-footnote-list>
+        <d-citation-list></d-citation-list>
+      </d-appendix>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="fixed-bottom">
+  <div class="container mt-0">
+    &copy; Copyright 2025 Anh  Tong.
+    Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
+
+    
+    
+  </div>
+</footer>
+
+
+
+    
+
+  </body>
+
+  <d-bibliography src="/assets/bibliography/kernel_identification.bib">
+  </d-bibliography>
+
+  
+
+</html>

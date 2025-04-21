@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>
+
+  Anh  Tong
+
+
+  | Hawkes processes and Applications in Finance
+
+</title>
+<meta name="description" content="Anh Tong personal homepage
+">
+
+<!-- Open Graph -->
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="https://gitcdn.link/repo/jwarby/jekyll-pygments-themes/master/github.css" />
+
+<!-- Styles -->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22></text></svg>">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="/blog/2022/quadratic-hawkes/">
+
+<!-- JQuery -->
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+
+<!-- Theming-->
+
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/dark_mode.js"></script>
+
+
+
+
+
+
+    
+<!-- MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+    <script src="/assets/js/distillpub/template.v2.js"></script>
+    <script src="/assets/js/distillpub/transforms.v2.js"></script>
+    <script src="/assets/js/distillpub/overrides.js"></script>
+    
+  </head>
+
+  <d-front-matter>
+    <script async type="text/json">{
+      "title": "Hawkes processes and Applications in Finance",
+      "description": "Summarize a line of work in quantitative finance including scale limits of Hawkes processes and quadratic Hawkes processes",
+      "published": "March 21, 2022",
+      "authors": [
+        
+      ],
+      "katex": {
+        "delimiters": [
+          {
+            "left": "$",
+            "right": "$",
+            "display": false
+          },
+          {
+            "left": "$$",
+            "right": "$$",
+            "display": true
+          }
+        ]
+      }
+    }</script>
+  </d-front-matter>
+
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="/">
+       <span class="font-weight-bold">Anh</span>   Tong
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              About
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              Blog
+              
+            </a>
+          </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/experience/">
+                Experience
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/publications/">
+                Publications
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            <div class = "toggle-container">
+              <a id = "light-toggle">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+              </a>
+            </div>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="post distill">
+
+      <d-title>
+        <h1>Hawkes processes and Applications in Finance</h1>
+        <p>Summarize a line of work in quantitative finance including scale limits of Hawkes processes and quadratic Hawkes processes</p>
+      </d-title>
+
+      <d-byline></d-byline>
+
+      <d-article>
+        <p>Last month, as an attempt to expand my knowledge in a broader area, specifically, mathematical finance for this time, I attended <a href="https://www.centre-cournot.org/conferences_en.html#conference27">this conference</a> focusing on microstructures and macrostructures in markets, how mathematical tools can make sense of micro-behaviors to obtains macro-properties. The take-away message here is that, at micro levels, financial activities like buying/selling events are better to be modeled by jump processes, especially Hawkes processes which possess some characteristics like self-exciting (i.e., buying leads to more buying). And when talking limit in a mathematical sense, models will converge to some standard models associated to Brownian motions that is well-known in understanding financial models at macro levels.</p>
+
+<p>I try to catch up with literatures and explain the most simple ideas in this post.</p>
+
+<h3 id="scale-limit-of-hawkes-processes-is-brownian-motion">Scale limit of Hawkes processes is Brownian motion</h3>
+
+<p>Consider two point processes, $N_1(t)$ and $N_2(t)$ having the same intensity $\mu$. The different between these processes</p>
+
+\[X(t) = N_1(t) -N_2(t)\]
+
+<p>turns out to have an interesting property that when applying a scale $T$ and letting this scale going to infinity, we get a Brownian motion with a scale factor</p>
+
+\[\lim_{T\to+\infty} \frac{1}{\sqrt{T}}X(tT) = \sqrt{2\mu}B(t), \quad t \in [0,1]\]
+
+<p>I made a little <a href="https://github.com/anh-tong/scale-limit-hawkes/blob/main/main.ipynb">notebook</a> to verify this empirically. But this can be analytically justified by following the definitition of Brownian motion as we observe the increment $X(t_1T) - X(t_2T)= N_1(t_1T) - N_1(t_2T) - (N_2(t_1T) -N_2(t_2T))$. The interval $[t_1T, t_2T]$ is partitioned into $T$ smaller internal and each of them has $t_1-t_2$. In fact, we have</p>
+
+\[N_1(t_1T) - N_1(t_2T) = \sum_{k=1}^T \texttt{Poisson}(\mu (t_1-t_2))\]
+
+<p>By the central limit theorem, $\frac{1}{\sqrt{T}} \sum_{k=1}^T \texttt{Poisson}(\mu (t_1-t_2)) \to \mathcal{N}(\mu (t_1-t_2), \mu (t_1-t_2))$. Now, at the limit, the difference of two independent normal distributions yields a normal ditribution $\mathcal{N}(0, 2\mu (t_1-t_2))$. This conincides with the increment coresponding to $\sqrt{2\mu}B(t)$.</p>
+
+<h3 id="quadratic-hawkes-proceses">Quadratic Hawkes proceses</h3>
+
+<p>Simply, Hawkes process is a point process where we have a specific way of modeling it’s intensity function. <a href="https://arxiv.org/abs/1509.07710">This paper </a> proposes quadratic Hawkes processes (QHawkes) - a generalization of Hawkes processes which is able to capture well characteristics in financial time series. The main motivation is that existing work ,i.e., multifractional Brownian motions in stochastic volatility models or FIGARCH, does not provide properties that math with <em>stylized facts</em>. Here, the stylized facts are a collective facts observed by empirical analyses. They include, for examples, fat tails of return distributions, slow decay of correlations. More importantly, this paper shows that QHawkes can describe the time reversal asymetry. This is interpreted something like financial time series are not statistical symmetrical between the past and future. This attributes to leverage effect (past returns affects future volatities but not the other way arround).</p>
+
+<h4 id="model-description">Model description</h4>
+
+<p>A QHawkes process is specified by an intensity function as</p>
+
+\[\lambda_t = \lambda_\infty + \frac{1}{\psi} \int_{-\infty}^t L(t-s) dP_s + \frac{1}{\psi^2}K(t-s, t-u) dP_sdP_u\]
+
+<p>Here, $P_t$ is the price at time $t$. $L$ is a leverage kernel. $K$ is a quadratic feedback kernel. In many cases, $L$ is considered to be $0$ and only quadratic kernel is left. When the kernel is diagonal, 
+$K(t,s) = \phi(t)\delta_{t-s}$, the model falls back to Hawkes processes.</p>
+
+<p>For general quadratic kernels, it may not be convienent to have a nice analysis. Instead, by imposing a certain structure and this case is to have a “low-rank” form where</p>
+
+\[K(t,s) = \phi(t)\delta_{t-s} + k(t)k(s)\]
+
+<p>is divided into two parts. This leads to a new representation of the intensity function</p>
+
+\[\lambda_t = \lambda_\infty + H_t + Z_t^2\]
+
+<p>with a new interpretations</p>
+
+<ul>
+  <li>Hawkes terms:
+\(H_t := \int_{-\infty}^t \phi(t-s) dN_s, \quad N_t - N_{t^-} = \frac{1}{\psi} (P_t - P_{t^-})^2\)</li>
+  <li>Zumbach term:
+\(Z_t := \frac{1}{\psi}\int_{-\infty}^t k(t-s) dP_s\)</li>
+</ul>
+
+<h4 id="time-stationary">Time stationary</h4>
+
+<p>This notion is equivalent when $\mathbb{E}[\lambda_t]$ is constant, positive and finite. To analyze this properties, the intensity function of QHawkes is written into diagonal terms and off-diagional term:</p>
+
+\[\lambda_t = \lambda_\infty + \mathcal{L}_t + H_t + 2M_t\]
+
+<p>Note that the expectation of $\mathcal{L}_t$ and $H_t$ is zero since we may assume $P_t$ to be a martingale.</p>
+
+<p>The remain is the off-diagonal term where \(M_t = \frac{1}{\psi^2} \int_{-\infty}^t\Theta_{t,u}  dP_{u}\) with  $\Theta_{t, u} = \int_{-\infty}^{u-} K(t-u, t-r) dP_{r}$.</p>
+
+<p>Finally, the expectation of intensity is</p>
+
+<p>\(\mathbb{E}[\lambda_t] = \lambda_\infty + \int_{-\infty}^t K(t-s, t-s) \mathbb{E}[\lambda_s] ds.\)
+The necessary condition of time stationary (time index does not matter for the expectation of intensity) is obtained as</p>
+
+\[\bar{\lambda} = \frac{\lambda_\infty}{1 - Tr(K)}\]
+
+<p>with</p>
+
+<ol>
+  <li>$\lambda_\infty &gt; 0$ and $Tr(K) &lt; 1$</li>
+  <li>$\lambda_\infty = 0$ and $Tr(K) = 1$</li>
+</ol>
+
+<h4 id="auto-correlation">Auto-correlation</h4>
+
+<p>Consider two types of correlation functions: two-points correlation and three-points correlations</p>
+
+\[\mathcal{C}(\tau) = \mathbb{E}\left[\frac{dN_t}{dt}\frac{dN_{t-\tau}}{dt}\right] -\bar{\lambda}^2= \mathbb{E}\left[\lambda_t\frac{dN_{t-\tau}}{dt}\right] -\bar{\lambda}^2\]
+
+\[\mathcal{D}(\tau_1, \tau_2) = \frac{1}{\psi^2}\mathbb{E}\left[\frac{dN_t}{dt}\frac{dP_{t-\tau_1}}{dt}\frac{dP_{t-\tau_2}}{dt}\right]\]
+
+<p>In fact, we can write these two functions in terms of the kernel $K(t,s)$ but they are difficult to solve in general. We may be interested in the asymptotic behaviors of the auto-correlation functions. Note that here the analysis involves only power law decays, how the power coefficients of kernels affect the power coefficients of $\mathcal{C, D}$.</p>
+
+<h4 id="volatility-model-of-zhawkes">Volatility model of ZHawkes</h4>
+
+<p>Choosing $k(t) = \sqrt{2n_Z \omega}\exp(-\omega t)$ and $\phi(t)=n_H\beta\exp(-\beta t)$, a ZHawkes process is decomposed into two terms represented as stochastic differential equations:</p>
+
+\[\begin{aligned}
+dH_t &amp;= \beta [-H_t dt + n_H dN_t]\\
+dN_t &amp; = -\omega Z_t dt + k_0 dP_t
+\end{aligned}\]
+
+<p>Next, the paper moves to study low-frequency asymptotics to demonstrate the fat-tail behaviors which does not hold in previous work. The technique here again is the <em>scale limit</em> like the previous section.</p>
+
+<p>Let $\bar{H}<em>t^T = H</em>{tT}, \bar{Z}<em>t^T = Z</em>{tT}, \bar{N}<em>t^T = N</em>{tT},\bar{P}<em>t^T = P</em>{tT}$. With the change of variable, the above SDE system becomes</p>
+
+\[\begin{aligned}
+d\bar{H}_t^T &amp;= \beta_T [-\bar{H}_t^T Tdt + n_H d\bar{N}_t]\\
+d\bar{N}_t^T &amp; = -\omega_T \bar{Z}_t^T Tdt + \sqrt{2\omega_T n_Z} d\bar{P}_t^T
+\end{aligned}\]
+
+<p>Here $\bar{N}^T$ and $\bar{P}^T$ have the same scaled intensity, $T[\lambda_\infty + \bar{H}_t^T + (\bar{Z}_t^T)^2]$, the</p>
+
+<p>The infinitesimal generator (see <a href="https://en.wikipedia.org/wiki/Infinitesimal_generator_(stochastic_processes)">wiki</a>) of this ($\gamma_T^2 = 2\omega_T n_Z$)</p>
+
+\[\begin{aligned}
+\mathcal{A}^T f(h,z) = &amp;- \beta_T h T \partial_h f(h,z) - \omega_T z \partial_z f(h,z) \\
+&amp;+ T[\lambda_\infty + h + z^2]\left\{\frac{1}{2}f(h + n_H\beta_T, z + \gamma_T) + \frac{1}{2}f(h + n_H\beta_T, z - \gamma_T) - f(h,z) \right\}
+\end{aligned}\]
+
+<p>Rescaling $\beta_T = \bar{\beta}/T, \omega_T=\bar{\omega}/T$, and sending $T$ to infinity yields</p>
+
+\[\frac{1}{2}f(h + n_H\beta_T, z + \gamma_T) + \frac{1}{2}f(h + n_H\beta_T, z - \gamma_T) - f(h,z) = \frac{n_H \bar{\beta}}{T}\partial_h f(h, z) + \frac{\bar{\gamma}^2}{2T}\partial^2_{zz}f(h,z) + o(\frac{1}{T})\]
+
+<p>Therefore, the infinitesimal generator and SDE at the limit are</p>
+
+\[\mathcal{A}^\infty f(h, z) = -\bar{\beta}[(1 - n_H)h - n_H(\lambda_\infty + z^2)]\partial_h f(h, z) - \bar{\omega} z \partial_z f(h,z) + n_Z\bar{\omega}[\lambda_\infty + h + z^2]\partial^2_{zz} f(h, z)\]
+
+<p>and</p>
+
+\[\begin{aligned}
+d\bar{H}_t^\infty &amp;= \bar{\beta}[-(1 - n_N)\bar{H}_t^\infty + n_H(\lambda_\infty + (\bar{Z}_t^\infty)^2)]dt\\
+d\bar{Z}_t^\infty &amp; = -\omega_T \bar{Z}_t^\infty Tdt + \bar{\gamma}\sqrt{\lambda_\infty + \bar{H}_t^\infty + (\bar{Z}_t^\infty)^2}dW_t
+\end{aligned}\]
+
+<p>From this SDE, it will be complicated to get fat-tail as it follows some existing work. The key procedure next is to solve the above continuous (not jump) SDE (mostly the first equation) and point out the volatitliy, and its distribution.</p>
+
+
+      </d-article>
+
+      <d-appendix>
+        <d-footnote-list></d-footnote-list>
+        <d-citation-list></d-citation-list>
+      </d-appendix>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="fixed-bottom">
+  <div class="container mt-0">
+    &copy; Copyright 2025 Anh  Tong.
+    Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
+
+    
+    
+  </div>
+</footer>
+
+
+
+    
+
+  </body>
+
+  <d-bibliography src="/assets/bibliography/">
+  </d-bibliography>
+
+  
+
+</html>

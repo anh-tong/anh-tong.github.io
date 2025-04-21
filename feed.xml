@@ -1,0 +1,1297 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2025-04-21T09:13:27+00:00</updated><id>/feed.xml</id><title type="html">blank</title><subtitle>Anh Tong personal homepage
+</subtitle><entry><title type="html">Signature and Log Signature in rough path theory</title><link href="/blog/2022/rough-path/" rel="alternate" type="text/html" title="Signature and Log Signature in rough path theory" /><published>2022-04-05T00:00:00+00:00</published><updated>2022-04-05T00:00:00+00:00</updated><id>/blog/2022/rough-path</id><content type="html" xml:base="/blog/2022/rough-path/"><![CDATA[<p>I have some time to read some basic concepts in rough path theory <d-cite key="Lyons2014"></d-cite>.</p>
+
+<p>Simple speaking, signature or log signature can capture the characteristic of rough path. This is similar when we think about learning representations of images using convolutional neural networks (CNNs). Both (log) signatures and CNNs do extracts informations but focus on different objects (sequencing data vs image data).</p>
+
+\[y_{J_+} = \left(\sum_{n=0}^\infty A^n \iint_{u_1 \leq \dots \leq u_n} d\gamma_{u_1} \otimes \dots \otimes d\gamma_{u_n}\right)y_0\]
+
+<p>This equation looks intimidating but simply we can understand as solving differential equation iteratively starting from $u_1$ to $u_2$ (solution is $\int Ay_t d\gamma_{u_1} $). The solution on $[u_1, u_2]$ will be the initial conditional to solve differential equation on the next interval $[u_2, u_3]$.</p>
+
+<p>Inspired by the solution of linear controlled differential equations, the signature is defined as the integral part</p>
+
+\[\boxed{
+    S(\gamma) := \sum_{n=0}^\infty \iint_{u_1 \leq \dots \leq u_n} d\gamma_{u_1} \otimes \dots \otimes d\gamma_{u_n} \quad \in  \bigoplus_{n=0}^\infty E^{\otimes n}
+}\]
+
+<h3 id="how-to-compute-signature-in-practice">How to compute signature in practice</h3>
+
+<p>Here, time series data is the main focus as it is one of the promiment use cases of signatures.</p>
+
+<p>As noted in <d-cite key="Lyons2014"></d-cite>, the series of signatures converges very fast ( the power of variation over factorial of $n$). Therefore, truncated series carries enough information of a path.</p>
+
+<p>There are softwares already implemented efficiently how to compute (log) signatures from data <d-cite key="kidger2021signatory"></d-cite>. This post will try to demonstrate a simple example.</p>
+
+<p>Algebra structure defined by $T((\mathbb{R}^d)) = \prod_{k=0}^\infty (\mathbb{R}^d)^{\otimes k}$. (An example for this is $(\mathbb{R}^d)^{\otimes 3}  = \mathbb{R}^d \otimes \mathbb{R}^d \otimes \mathbb{R}^d$ is a tensor shape $(d, d, d)$).</p>
+
+<p>The product between tensors is denoted as $\otimes$ between $(a_1, a_2, \dots, a_m)$ and $(b_1, b_2, \dots, b_m)$ resulted in $(a_1, \dots, a_n, b_1, \dots, b_m)$.</p>
+
+<p>An product (denoted as $\otimes$ and let’s not be confused with the notation) between $A = (A_0, A_1, \dots)$ and $B=(B_0, B_1, \dots)$ is defined as</p>
+
+\[A \otimes B = \left(\sum_{j=0}^k A_j \otimes B_{k-j}\right)_{k\geq 0}\]
+
+<p><strong>Stop and breath</strong> Okay! This is also complicated. Maybe just think this an infinite many tensor $d \times d \times \dots $. The product should satisfy a closure property which its ouput should have size $d \times d \times \dots $</p>
+
+<p><strong>Proposition</strong> (Chen’s identity) Roughly speaking, concatenating two paths will result in signature as</p>
+
+\[\text{Sig}(X * Y) = \text{Sig}(X) \otimes \text{Sig}(Y)\]
+
+<p>Now, we can construct signature for stream data by Chen’s identity. Let $\mathbf{x} = (x_1, x_2, \dots, x_n)$. Probably the main assumption here is that the path is contructed by straight lines sequentially.</p>
+
+\[\text{Sig}(\mathbf{x}) = \exp(x_2 - x_1) \otimes \exp(x_3-x_2) \otimes \dots \otimes \exp(x_n - x_{n-1})\]
+
+<p>here $\exp(\cdot)$ is NOT the exponential function on real set but is defined with operator $\otimes$</p>
+
+\[\exp(x) = \left(1, x, \frac{x \otimes x}{2!}, \frac{x \otimes x \otimes x}{3!}, \dots\right)\]
+
+<p>which is an infinite-dimensional vector where components have increasing power orders.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Quick review of the central quantities in rough path theory]]></summary></entry><entry><title type="html">Hawkes processes and Applications in Finance</title><link href="/blog/2022/quadratic-hawkes/" rel="alternate" type="text/html" title="Hawkes processes and Applications in Finance" /><published>2022-03-21T00:00:00+00:00</published><updated>2022-03-21T00:00:00+00:00</updated><id>/blog/2022/quadratic-hawkes</id><content type="html" xml:base="/blog/2022/quadratic-hawkes/"><![CDATA[<p>Last month, as an attempt to expand my knowledge in a broader area, specifically, mathematical finance for this time, I attended <a href="https://www.centre-cournot.org/conferences_en.html#conference27">this conference</a> focusing on microstructures and macrostructures in markets, how mathematical tools can make sense of micro-behaviors to obtains macro-properties. The take-away message here is that, at micro levels, financial activities like buying/selling events are better to be modeled by jump processes, especially Hawkes processes which possess some characteristics like self-exciting (i.e., buying leads to more buying). And when talking limit in a mathematical sense, models will converge to some standard models associated to Brownian motions that is well-known in understanding financial models at macro levels.</p>
+
+<p>I try to catch up with literatures and explain the most simple ideas in this post.</p>
+
+<h3 id="scale-limit-of-hawkes-processes-is-brownian-motion">Scale limit of Hawkes processes is Brownian motion</h3>
+
+<p>Consider two point processes, $N_1(t)$ and $N_2(t)$ having the same intensity $\mu$. The different between these processes</p>
+
+\[X(t) = N_1(t) -N_2(t)\]
+
+<p>turns out to have an interesting property that when applying a scale $T$ and letting this scale going to infinity, we get a Brownian motion with a scale factor</p>
+
+\[\lim_{T\to+\infty} \frac{1}{\sqrt{T}}X(tT) = \sqrt{2\mu}B(t), \quad t \in [0,1]\]
+
+<p>I made a little <a href="https://github.com/anh-tong/scale-limit-hawkes/blob/main/main.ipynb">notebook</a> to verify this empirically. But this can be analytically justified by following the definitition of Brownian motion as we observe the increment $X(t_1T) - X(t_2T)= N_1(t_1T) - N_1(t_2T) - (N_2(t_1T) -N_2(t_2T))$. The interval $[t_1T, t_2T]$ is partitioned into $T$ smaller internal and each of them has $t_1-t_2$. In fact, we have</p>
+
+\[N_1(t_1T) - N_1(t_2T) = \sum_{k=1}^T \texttt{Poisson}(\mu (t_1-t_2))\]
+
+<p>By the central limit theorem, $\frac{1}{\sqrt{T}} \sum_{k=1}^T \texttt{Poisson}(\mu (t_1-t_2)) \to \mathcal{N}(\mu (t_1-t_2), \mu (t_1-t_2))$. Now, at the limit, the difference of two independent normal distributions yields a normal ditribution $\mathcal{N}(0, 2\mu (t_1-t_2))$. This conincides with the increment coresponding to $\sqrt{2\mu}B(t)$.</p>
+
+<h3 id="quadratic-hawkes-proceses">Quadratic Hawkes proceses</h3>
+
+<p>Simply, Hawkes process is a point process where we have a specific way of modeling it’s intensity function. <a href="https://arxiv.org/abs/1509.07710">This paper </a> proposes quadratic Hawkes processes (QHawkes) - a generalization of Hawkes processes which is able to capture well characteristics in financial time series. The main motivation is that existing work ,i.e., multifractional Brownian motions in stochastic volatility models or FIGARCH, does not provide properties that math with <em>stylized facts</em>. Here, the stylized facts are a collective facts observed by empirical analyses. They include, for examples, fat tails of return distributions, slow decay of correlations. More importantly, this paper shows that QHawkes can describe the time reversal asymetry. This is interpreted something like financial time series are not statistical symmetrical between the past and future. This attributes to leverage effect (past returns affects future volatities but not the other way arround).</p>
+
+<h4 id="model-description">Model description</h4>
+
+<p>A QHawkes process is specified by an intensity function as</p>
+
+\[\lambda_t = \lambda_\infty + \frac{1}{\psi} \int_{-\infty}^t L(t-s) dP_s + \frac{1}{\psi^2}K(t-s, t-u) dP_sdP_u\]
+
+<p>Here, $P_t$ is the price at time $t$. $L$ is a leverage kernel. $K$ is a quadratic feedback kernel. In many cases, $L$ is considered to be $0$ and only quadratic kernel is left. When the kernel is diagonal, 
+$K(t,s) = \phi(t)\delta_{t-s}$, the model falls back to Hawkes processes.</p>
+
+<p>For general quadratic kernels, it may not be convienent to have a nice analysis. Instead, by imposing a certain structure and this case is to have a “low-rank” form where</p>
+
+\[K(t,s) = \phi(t)\delta_{t-s} + k(t)k(s)\]
+
+<p>is divided into two parts. This leads to a new representation of the intensity function</p>
+
+\[\lambda_t = \lambda_\infty + H_t + Z_t^2\]
+
+<p>with a new interpretations</p>
+
+<ul>
+  <li>Hawkes terms:
+\(H_t := \int_{-\infty}^t \phi(t-s) dN_s, \quad N_t - N_{t^-} = \frac{1}{\psi} (P_t - P_{t^-})^2\)</li>
+  <li>Zumbach term:
+\(Z_t := \frac{1}{\psi}\int_{-\infty}^t k(t-s) dP_s\)</li>
+</ul>
+
+<h4 id="time-stationary">Time stationary</h4>
+
+<p>This notion is equivalent when $\mathbb{E}[\lambda_t]$ is constant, positive and finite. To analyze this properties, the intensity function of QHawkes is written into diagonal terms and off-diagional term:</p>
+
+\[\lambda_t = \lambda_\infty + \mathcal{L}_t + H_t + 2M_t\]
+
+<p>Note that the expectation of $\mathcal{L}_t$ and $H_t$ is zero since we may assume $P_t$ to be a martingale.</p>
+
+<p>The remain is the off-diagonal term where \(M_t = \frac{1}{\psi^2} \int_{-\infty}^t\Theta_{t,u}  dP_{u}\) with  $\Theta_{t, u} = \int_{-\infty}^{u-} K(t-u, t-r) dP_{r}$.</p>
+
+<p>Finally, the expectation of intensity is</p>
+
+<p>\(\mathbb{E}[\lambda_t] = \lambda_\infty + \int_{-\infty}^t K(t-s, t-s) \mathbb{E}[\lambda_s] ds.\)
+The necessary condition of time stationary (time index does not matter for the expectation of intensity) is obtained as</p>
+
+\[\bar{\lambda} = \frac{\lambda_\infty}{1 - Tr(K)}\]
+
+<p>with</p>
+
+<ol>
+  <li>$\lambda_\infty &gt; 0$ and $Tr(K) &lt; 1$</li>
+  <li>$\lambda_\infty = 0$ and $Tr(K) = 1$</li>
+</ol>
+
+<h4 id="auto-correlation">Auto-correlation</h4>
+
+<p>Consider two types of correlation functions: two-points correlation and three-points correlations</p>
+
+\[\mathcal{C}(\tau) = \mathbb{E}\left[\frac{dN_t}{dt}\frac{dN_{t-\tau}}{dt}\right] -\bar{\lambda}^2= \mathbb{E}\left[\lambda_t\frac{dN_{t-\tau}}{dt}\right] -\bar{\lambda}^2\]
+
+\[\mathcal{D}(\tau_1, \tau_2) = \frac{1}{\psi^2}\mathbb{E}\left[\frac{dN_t}{dt}\frac{dP_{t-\tau_1}}{dt}\frac{dP_{t-\tau_2}}{dt}\right]\]
+
+<p>In fact, we can write these two functions in terms of the kernel $K(t,s)$ but they are difficult to solve in general. We may be interested in the asymptotic behaviors of the auto-correlation functions. Note that here the analysis involves only power law decays, how the power coefficients of kernels affect the power coefficients of $\mathcal{C, D}$.</p>
+
+<h4 id="volatility-model-of-zhawkes">Volatility model of ZHawkes</h4>
+
+<p>Choosing $k(t) = \sqrt{2n_Z \omega}\exp(-\omega t)$ and $\phi(t)=n_H\beta\exp(-\beta t)$, a ZHawkes process is decomposed into two terms represented as stochastic differential equations:</p>
+
+\[\begin{aligned}
+dH_t &amp;= \beta [-H_t dt + n_H dN_t]\\
+dN_t &amp; = -\omega Z_t dt + k_0 dP_t
+\end{aligned}\]
+
+<p>Next, the paper moves to study low-frequency asymptotics to demonstrate the fat-tail behaviors which does not hold in previous work. The technique here again is the <em>scale limit</em> like the previous section.</p>
+
+<p>Let $\bar{H}<em>t^T = H</em>{tT}, \bar{Z}<em>t^T = Z</em>{tT}, \bar{N}<em>t^T = N</em>{tT},\bar{P}<em>t^T = P</em>{tT}$. With the change of variable, the above SDE system becomes</p>
+
+\[\begin{aligned}
+d\bar{H}_t^T &amp;= \beta_T [-\bar{H}_t^T Tdt + n_H d\bar{N}_t]\\
+d\bar{N}_t^T &amp; = -\omega_T \bar{Z}_t^T Tdt + \sqrt{2\omega_T n_Z} d\bar{P}_t^T
+\end{aligned}\]
+
+<p>Here $\bar{N}^T$ and $\bar{P}^T$ have the same scaled intensity, $T[\lambda_\infty + \bar{H}_t^T + (\bar{Z}_t^T)^2]$, the</p>
+
+<p>The infinitesimal generator (see <a href="https://en.wikipedia.org/wiki/Infinitesimal_generator_(stochastic_processes)">wiki</a>) of this ($\gamma_T^2 = 2\omega_T n_Z$)</p>
+
+\[\begin{aligned}
+\mathcal{A}^T f(h,z) = &amp;- \beta_T h T \partial_h f(h,z) - \omega_T z \partial_z f(h,z) \\
+&amp;+ T[\lambda_\infty + h + z^2]\left\{\frac{1}{2}f(h + n_H\beta_T, z + \gamma_T) + \frac{1}{2}f(h + n_H\beta_T, z - \gamma_T) - f(h,z) \right\}
+\end{aligned}\]
+
+<p>Rescaling $\beta_T = \bar{\beta}/T, \omega_T=\bar{\omega}/T$, and sending $T$ to infinity yields</p>
+
+\[\frac{1}{2}f(h + n_H\beta_T, z + \gamma_T) + \frac{1}{2}f(h + n_H\beta_T, z - \gamma_T) - f(h,z) = \frac{n_H \bar{\beta}}{T}\partial_h f(h, z) + \frac{\bar{\gamma}^2}{2T}\partial^2_{zz}f(h,z) + o(\frac{1}{T})\]
+
+<p>Therefore, the infinitesimal generator and SDE at the limit are</p>
+
+\[\mathcal{A}^\infty f(h, z) = -\bar{\beta}[(1 - n_H)h - n_H(\lambda_\infty + z^2)]\partial_h f(h, z) - \bar{\omega} z \partial_z f(h,z) + n_Z\bar{\omega}[\lambda_\infty + h + z^2]\partial^2_{zz} f(h, z)\]
+
+<p>and</p>
+
+\[\begin{aligned}
+d\bar{H}_t^\infty &amp;= \bar{\beta}[-(1 - n_N)\bar{H}_t^\infty + n_H(\lambda_\infty + (\bar{Z}_t^\infty)^2)]dt\\
+d\bar{Z}_t^\infty &amp; = -\omega_T \bar{Z}_t^\infty Tdt + \bar{\gamma}\sqrt{\lambda_\infty + \bar{H}_t^\infty + (\bar{Z}_t^\infty)^2}dW_t
+\end{aligned}\]
+
+<p>From this SDE, it will be complicated to get fat-tail as it follows some existing work. The key procedure next is to solve the above continuous (not jump) SDE (mostly the first equation) and point out the volatitliy, and its distribution.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Summarize a line of work in quantitative finance including scale limits of Hawkes processes and quadratic Hawkes processes]]></summary></entry><entry><title type="html">Markov process and Poincare inequality</title><link href="/blog/2022/poincare-inequalities/" rel="alternate" type="text/html" title="Markov process and Poincare inequality" /><published>2022-02-14T00:00:00+00:00</published><updated>2022-02-14T00:00:00+00:00</updated><id>/blog/2022/poincare-inequalities</id><content type="html" xml:base="/blog/2022/poincare-inequalities/"><![CDATA[<p>It has been a while since the last post. This post will take a fresh new topic on inequalities of dynamical systems or Markov processes specifically. All the content is based on an excellent (I think) <a href="https://web.math.princeton.edu/~rvan/APC550.pdf"> lecture note</a> from <a href="https://web.math.princeton.edu/~rvan/">Ramon Van Handel</a>.</p>
+
+<p>The main setup here is that we consider a high-dimensional data consisting of $X_1, X_2,…, X_n$ . We want to understand the behaviors of any function $f$ on these data when assuming $X_1,…, X_n$ are random variables. The behaviors here can be the variance of $f$ (how much the function fluctuates) or the suprema charateristics of $f$. This post will focus on the variance. 
+One of classical results is that we can bound the variance of $f(X_1, …, X_n)$ by some form of individual gradients on each dimension $1, …, n$ (kind of hand waving for not explaining this here).</p>
+
+<p>The index sets $1, …, n$ are discrete and finite. In this setting, we consider the infinite case ${X}_{t\in T}$, where $T$ usually is a continous time index. At the end of this post, we see how the variance of $f$ is bounded by gradients as in Poincare inequality.</p>
+
+<h3 id="makov-process">Makov process</h3>
+<p>The results will be established within Markov processes which are consider as <strong>memoryless</strong> stochastic process</p>
+
+\[\mathbb{E}[f(X_{t+s}| \{X_r\}_{r\leq t})] = P_sf(X_t)\]
+
+<p>The term <strong>memoryless</strong> is coined because the whole history $\left{ X_{r} \right}_{r&lt;t}$ is disregared and the expectation only is expressed by the most recent one $X_t$.</p>
+
+<p>The stationarity is defined when given a probability measure $\mu$</p>
+
+\[\mu(P_tf) = \mu(f)\]
+
+<p>This means that no matter what time it is, the measure is invariant. There are some results on stationary measures as follows:</p>
+
+<p><strong>Lemma 1</strong> The following hold given stationary measure $\mu$</p>
+<ol>
+  <li>Contraction (decreasing in norm): $\lvert\lvert P_tf \rvert\rvert_{L^p(\mu)} \leq \lvert \lvert f \rvert\rvert_{L^p(\mu)}$</li>
+  <li>Linearity: $P_t(\alpha f + \beta g) = \alpha P_t f + \beta P_t g$</li>
+  <li>Semigroup: $P_{t+s}f = P_tP_s f$</li>
+  <li>Conservative: $P_t 1 = 1$ a.s.</li>
+</ol>
+
+<p>For the constraction property, we can easily prove by Jensen’s inequality and the tower property $\lvert\lvert P_tf\rvert \rvert_{L^p}^p = \mathbb{E}[\mathbb{E}[(P_tf(X_0))]^p\mid X_0] =\mathbb{E}[\mathbb{E}[(f(X_t))]^p\mid X_0] \leq  \mathbb{E}[\mathbb{E}[(f(X_t))^p]\mid X_0] = \lvert\lvert f\rvert \rvert_{L^p}^p$.</p>
+
+<p>The contraction also leads to the derease of variance as $t$ increases.</p>
+
+<p><strong>Generator</strong> For the case of discrete Markov processes, we often work with transition probability. However, in our case, such notion does not exist. Instead, we need to define an operator as $\mathcal{L}$ as a generator</p>
+
+\[\mathcal{L}f :=\lim_{t \to 0} \frac{P_t f - f}{t}\]
+
+<p>which quantify the rate of change of operator $P_t$. In particular, we have</p>
+
+\[\frac{d}{dt} P_t f = \lim_{\delta \to 0} \frac{P_{t + \delta}f - P_tf}{\delta} = \lim_{\delta \to 0} P_f(\frac{P_\delta f - f}{\delta}) = \lim_{\delta \to 0}\frac{P\delta P_t f - P_tf}{\delta} = P_t\mathcal{L}f = \mathcal{L}P_tf\]
+
+<p>This provides the commutative property between $P_t$ and $\mathcal{L}$.</p>
+
+<p><strong>Reversibility</strong> This is a rebranding term of self-adjoint where $\langle f, P_t g \rangle = \langle P_tf, g\rangle$. However, the implication here is that there is a backward process having the same law:</p>
+
+\[\langle \textcolor{red}{P_t f}, g \rangle = \langle f, P_t g \rangle = \mathbb{E}[ f(X_0) \mathbb{E}[g(X_t)|X_0]] = \mathbb{E}[f(X_0) g(X_t)] = \mathbb{E}[\textcolor{red}{\mathbb{E}[f(X_0)|X_t]} g(X_t)]\]
+
+<table>
+  <tbody>
+    <tr>
+      <td>By the defition, the red terms lead to $P_t f(x) := \mathbb{E}[f(X_t)</td>
+      <td>X_0=x] = \mathbb{E}[f(X_0)</td>
+      <td>X_t=x]$. This is why we call it <em>reversibility</em>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Note</strong> We can see many case studies, i.e., solution of stochastic differential equations (SDEs) satisfy the above definitions and properties. So it can be useful to analyze recent models in machine learning, e.g.,  Neural SDEs or score-based models, that attract a lot attention.</p>
+
+<p><strong>Egordicity</strong> This notion usually is encountered when studying dynamical systems which converge to a stationary state no matter what initial values are. That is, $P_tf \to \mu f$ in $L^2(\mu)$ as $t\to 0$.</p>
+
+<p>Before going to the main result, it is necessary to define one more concept which is Dirichlet form $\mathcal{E}(f, g)$</p>
+
+\[\mathcal{E}(f, g) = - \langle f, \mathcal{L}g\rangle\]
+
+<p><strong>Theorem</strong> Let $P_t$ be a reversible ergodic Markov semigroup with stationary measure $\mu$. The following are equivalent:</p>
+
+<ol>
+  <li>$Var_\mu[f] \leq c\mathcal{E}(f, f)$ for all $f$ (<span style="color:red">Poincare inequality</span>)</li>
+  <li>$\lvert \lvert P_tf -\mu f \rvert \rvert_{L^2(\mu)} \leq e^{-t/c} \lvert \lvert f - \mu f \rvert \rvert_{L^2(\mu)}$</li>
+  <li>$\mathcal{E}(P_tf, P_tf)\leq e^{-2t/c}\mathcal{E}(f, f)$</li>
+  <li>$\lvert \lvert P_tf -\mu f \rvert \rvert_{L^2(\mu)} \leq \kappa(f)e^{-t/c}$</li>
+  <li>$\mathcal{E}(P_tf, P_tf) \leq \kappa(f)e^{-t/c}$</li>
+</ol>
+
+<p><strong>Poincare inequality</strong></p>
+
+<p>It is surprised that we can capture the dynamic of variance by a differential equation. This is the starting point of the proof.</p>
+
+<p><strong>Lemma</strong> We have the identity of 
+\(\frac{d}{dt}Var_{\mu}[P_tf]=-2\mathcal{E}(P_tf, P_tf)\)</p>
+
+<p>Proof:</p>
+
+\[\begin{aligned}
+\frac{d}{dt}Var_\mu[P_tf] = &amp; \frac{d}{dt}\{\mu((P_tf)^2) - (\mu P_tf)^2\} &amp;&amp; \\
+= &amp; \frac{d}{dt} \mu((P_tf)^2) &amp;&amp; ( \mu(P_tf) = \mu(f) \text{does not depend on }t)\\
+= &amp; \mu(2P_tf \frac{d}{dt}P_tf) &amp;&amp;\\
+= &amp; \mu(2P_tf\mathcal{L}P_tf) &amp;&amp; \\
+= &amp; -2 \mathcal{E}(P_tf, P_tf) &amp;&amp; (\text{by definition of Dirichlet form})
+\end{aligned}\]
+
+<p>As the previous observation that $t \mapsto Var_\mu[P_tf]$ is a decrease function, then $\mathcal{E}(f, f) = -\frac{1}{2}\frac{d}{dt}Var_\mu[P_tf]\rvert_{t=0} \geq 0$.</p>
+
+<p>Also by the egordicity $P_tf \to \mu f$ then $Var_\mu[P_tf] \to Var_\mu[\mu f] = 0$. Actually the variance can be written as the integration (solution) of above differential equation.</p>
+
+\[Var_{\mu}[f] = \int_\infty^0 \frac{d}{dt}Var_{\mu}[P_tf]dt=2\int_0^\infty \mathcal{E}(P_tf, P_tf)\]
+
+<p><strong><span style="color:red">(3 $\Rightarrow 1$): Assumming 3 satisfies, proving 1</span></strong> By 3, we have $\mathcal{E}(P_tf, P_tf)\leq e^{-2t/c}\mathcal{E}(f, f)$. Putting this into the integral</p>
+
+\[Var_{\mu}[f] = 2 \mathcal{E}(f, f)\int_0^\infty e^{-2t/c}dt = c\mathcal{E}(f,f)\]
+
+<p><strong><span style="color:red">(1 $\Rightarrow 2$): Assumming 2 satisfies, proving 1</span></strong> By assuming 1, we have $c \mathcal{E}(P_tf, P_tf) \geq Var_\mu[P_tf]$. Putting this into the variance identities</p>
+
+<p>\(\frac{d}{dt}Var_\mu[P_tf]  \leq -\frac{2}{c} Var_\mu[P_tf]\)
+As we all know that the solution of $\frac{d}{dt}x = a x$ is $x_t = x_0 e^{at}$. Then $Var_\mu[P_tf] \leq Var_\mu[P_0f]e^{-2t/c}$ which is further expanded as</p>
+
+\[\lvert\lvert P_tf - \mu f \rvert \rvert_{L^2{\mu}}^2 =Var_\mu[P_tf] \leq Var_\mu[P_0f]e^{-2t/c} =  Var_\mu[f]e^{-2t/c} = e^{-2t/c} \lvert \lvert f-\mu f \rvert\rvert_{L^2(\mu)}^2\]
+
+<p>It is not difficult to show (2 $\Rightarrow$ 1) by using the variance identity.</p>
+
+<p>The rest of equivalence requires to take into account the egordicity that we have another identity.</p>
+
+<p><strong>Lemma</strong> If the Markov semigroup $P_t$ is reversible, then $t \mapsto \log Var_\mu[P_t f]$ and $t \mapsto \log \mathcal{E}(P_tf, P_tf)$ are convex.</p>
+
+<p>The main technique to prove the convexity here is to show the Hessian is nonnegative. Luckly, we can derive such Hessian information. The first-order derivative is</p>
+
+\[\begin{aligned}
+\frac{d}{dt}\mathcal{E}(P_tf, P_tf) &amp; = -\frac{d}{dt} \langle P_tf, \mathcal{L} P_tf\mathcal \rangle_\mu &amp;&amp; (\text{by definition of Dirichlet form}) \\
+&amp; = -\langle \frac{d}{dt} P_tf,  \mathcal{L} P_tf\mathcal \rangle_\mu - \langle  P_tf,  \frac{d}{dt} \mathcal{L} P_tf\mathcal \rangle_\mu&amp;&amp; (\text{derivative of inner product}) \\
+&amp; = -\langle \mathcal{L} P_tf,  \mathcal{L} P_tf\mathcal \rangle_\mu - \langle  P_tf,  \mathcal{L}^2 P_tf\mathcal \rangle_\mu&amp;&amp; (\text{by definition of generator}) \\
+&amp; = -2 \lvert \lvert  \mathcal{L} P_tf \rvert \rvert_{L^2(\mu)}^2 &amp;&amp; (\mathcal{L} \text{ is self-adjoint})
+\end{aligned}\]
+
+<p>This will allow us to obtain</p>
+
+\[\begin{aligned}
+\frac{d^2}{dt^2}\log Var_\mu[P_tf] &amp;= \frac{d}{dt}\left(\frac{1}{Var_\mu[P_tf]}\frac{d}{dt}Var_\mu[P_tf]\right) &amp;&amp; \\
+&amp; = \frac{d}{dt}\left(\frac{1}{Var_\mu[P_tf]} \times (-2) \mathcal{E}(P_tf, P_tf)\right) &amp;&amp; (\text{by the variance identity})\\
+&amp; = \frac{4\lvert \lvert  \mathcal{L} P_tf \rvert \rvert_{L^2(\mu)}^2}{Var_\mu[P_tf]} - \frac{4\mathcal{E}(P_tf, P_tf)}{Var_\mu[P_tf]^2} &amp;&amp; (\text{derivative of product and the above result})\\
+&amp; = \frac{4}{Var_\mu[P_tf]^2}\left\{Var_\mu[P_tf] \lvert \lvert  \mathcal{L} P_tf \rvert \rvert_{L^2(\mu)}^2 - \langle P_tf, \mathcal{L}P_tf \rangle_\mu^2\right\}
+\end{aligned}\]
+
+<p>The nonnegativity of the right hand side is derived from the fact that $\mathcal{L}$ is self-adjoint, $\mathcal{L}1 = 0$ and Cauchy-Schwarz inequality</p>
+
+\[\begin{aligned}
+\langle P_tf, \mathcal{L}P_t f \rangle_\mu^2 =&amp; (\langle P_tf, \mathcal{L}P_t f \rangle_\mu - \underbrace{\langle \mathcal{L} \mu f, P_tf \rangle}_{0})^2 &amp;&amp; \\
+= &amp; (\langle P_tf, \mathcal{L}P_t f \rangle_\mu - {\langle  \mu f, \mathcal{L}P_tf \rangle})^2 &amp;&amp; (\mathcal{L} \text{ is self-adjoint})\\
+= &amp; \langle P_tf - \mu f, \mathcal{L}P_t f \rangle_\mu^2 &amp;&amp; \\
+\leq &amp; \lvert \lvert  P_tf - \mu f \rvert \rvert_{L^2(\mu)}^2\lvert \lvert  \mathcal{L} P_tf \rvert \rvert_{L^2(\mu)}^2 &amp;&amp; (\text{Cauchy-Schwarz inequality})\\
+= &amp; Var_\mu[P_tf] \lvert \lvert  \mathcal{L} P_tf \rvert \rvert_{L^2(\mu)}^2
+\end{aligned}\]
+
+<p>This makes the Hessian nonnegative. Therefore, we can conclude about the convexity of $t \mapsto \log Var_\mu[P_tf] $. For the case $t \mapsto \log \mathcal{E}(P_tf, P_tf)$, we can obtain the same conclusion but with the inequality $\mathcal{E}(f, g)^2 \leq \mathcal{E}(f, f)\mathcal{E}(g, g)$ from the fact that $\mathcal{E}(f + tg, f+tg) \geq 0$.</p>
+
+<p><strong><span style="color:red">(2 $\Rightarrow 3$): Assumming 2 satisfies, proving 1</span></strong> As 2 is true. This means $\lvert \lvert P_tf -\mu f \rvert \rvert_{L^2(\mu)} \leq e^{-t/c} \lvert \lvert f - \mu f \rvert \rvert_{L^2(\mu)}$.</p>
+
+<p>From the convexity of $t \to \log Var_\mu[P_tf]$, the first-order derivative function</p>
+
+\[t \mapsto \frac{d}{dt} \log Var_\mu[P_tf] = {\frac{1}{Var_\mu[P_tf]} \frac{d}{dt}Var_\mu[P_tf] } = \frac{-2 \mathcal{E}(P_tf, P_tf)}{Var_\mu[P_tf]}\]
+
+<p>is an increasing function. Therefore,</p>
+
+\[\frac{-2 \mathcal{E}(P_tf, P_tf)}{Var_\mu[P_tf]} \geq \frac{-2 \mathcal{E}(P_0f, P_0f)}{Var_\mu[P_0f]} = \frac{-2 \mathcal{E}(f, f)}{Var_\mu[f]}\]
+
+<p>This leads to</p>
+
+\[\frac{\mathcal{E}(P_tf, P_tf)}{\mathcal{E}(f, f)} \leq \frac{Var_\mu[P_tf]}{Var_\mu[f]} = \frac{\lvert \lvert P_tf -\mu f \rvert \rvert_{L^2(\mu)}^2}{\lvert \lvert f - \mu f \rvert \rvert_{L^2(\mu)}^2} \leq e^{-2t/c}\]
+
+<p>The remaining proof for other implication is derived similarly.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+<p>This post studies the inequality involves the variance of dynamically systems. As the beginning of the post, the variance will be bounded by gradient but in fact, we find the bound in Dirichlet form. However, this form will be coresponding to gradient information. For example, in the particular case (Ornistein-Uhlenbeck process) of $P_tf(x) = \mathbb{E}[f(e^{-t}x + \sqrt{1 - e^{-2t}}\xi)], \xi\sim \mathcal{N}(0,1)$, the Dirichlet form is $\mathcal{E}(f, g) = \langle f^\prime, g^\prime\rangle_\mu.$</p>
+
+<p>I anticipate that such inequalities can be useful for understanding any quantities, e.g. $f$ as a likelihood function, related to  Neural SDE, or score-based generative models. The variance identities somehow resembles the continous normalizing flow models where the log-density funcion is also governed by a differential equation.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[How to bound the variance of a Markov dynamical system?]]></summary></entry><entry><title type="html">White noise - A more intuitive look</title><link href="/blog/2021/intuitive-white-noise/" rel="alternate" type="text/html" title="White noise - A more intuitive look" /><published>2021-12-09T00:00:00+00:00</published><updated>2021-12-09T00:00:00+00:00</updated><id>/blog/2021/intuitive-white-noise</id><content type="html" xml:base="/blog/2021/intuitive-white-noise/"><![CDATA[<p>White noise is the concept being seen in various fields of science and engineering. Although its definition is simply to describe chaotic randomness, it can be generalized mathematically in functional analysis, therfore, leading to consistent theory and applications like stochastic analysis.</p>
+
+<p>Let’s jump to the most traditional definition, $\xi$ is defined as a white noise if</p>
+
+\[\mathbb{E}[\xi_t] = 0 \quad, \quad \mathbb{E}[\xi_t\xi_s] = \delta(t - s)\]
+
+<p>Here $\delta(\cdot)$ is Dirac’s delta function. Even we call this function, it actually makes sense when we view it as a distribution or <em>generalized function</em>.</p>
+
+\[\int f(s)\delta(s)ds = f(0)\]
+
+<h3 id="functional-view">Functional view</h3>
+
+<p>Let’s forget about $\delta(\cdot)$ is a function taking some real value. From now on, we consider it as a functional by taking a function as input</p>
+
+\[\delta: f \to f(0)\]
+
+<p>Here, $f$ is called <em>test function</em>. The idea is that a generalized function (distribution) takes a test function to measure (test) and get the outcome of the examination. Here, delta function as a distribution measures the value at a location shaply (even though measuring a infinitely sharp location is not physically realistic).</p>
+
+<p>With the above introduction of the functional approach, we may write a white noise as $\xi(f)$ with some test function $f$.</p>
+
+<p>When defining in such a way, the properties of white noise should be preserved including zero mean, $\mathbb{E}[\xi(f)] = 0$, and covariance</p>
+
+\[\begin{aligned}
+\mathbb{E}[\xi(f)\xi(g)] 
+= &amp; \mathbb{E}\left[\int_0^\infty f(s) \xi_s ds \int_0^\infty g(t) \xi_t dt\right] \\ 
+= &amp;\int\int f(s)g(t) \mathbb{E}[\xi_s\xi_t]dtds \\
+= &amp;\int\int f(s)g(t) \delta(t-s)dtds \\
+= &amp;\int f(t)g(t) dt \\
+= &amp;\langle f, g \rangle
+\end{aligned}\]
+
+<p><strong>Functional definition of white noise</strong> At this point, we may define the white noise as a <em>random linear functional</em> such that $\xi(f)$ is Gaussian with</p>
+
+\[\mathbb{E}[\xi(f)] = 0 \quad, \quad \mathbb{E}[\xi(f)\xi(g)] = \langle f, g \rangle\]
+
+<p><strong>Connection to Wiener process</strong> We previously see</p>
+
+\[\xi(f) = \int_0^\infty f(t) \xi_t dt\]
+
+<p>Now consider a stochastic integral with a Wiener process $W_t$</p>
+
+\[\int_0^\infty f(t) dW_t\]
+
+<p>One may accept (not straighforward though as Wiener process is nowhere differentiable) the fact that white noise is a derivative version of a Wiener process, therefore, $\xi_t dt = dW_t$. Now, we can cast the functional $\xi(f)$ as</p>
+
+\[\xi(f) = \int_0^\infty f(t)dW_t\]]]></content><author><name></name></author><summary type="html"><![CDATA[A further note of white noise in functional view]]></summary></entry><entry><title type="html">Theoretical aspect of variational infrence for Neural SDEs</title><link href="/blog/2021/deep-limit/" rel="alternate" type="text/html" title="Theoretical aspect of variational infrence for Neural SDEs" /><published>2021-11-19T00:00:00+00:00</published><updated>2021-11-19T00:00:00+00:00</updated><id>/blog/2021/deep-limit</id><content type="html" xml:base="/blog/2021/deep-limit/"><![CDATA[<h2 id="introduction">Introduction</h2>
+<p>In this note, I will take a short review for a part of <a href="https://arxiv.org/abs/1903.01608">this paper</a>. I will try to bring (learn) some necessary background of stochastic optimal control.</p>
+
+<p>The main object discussed shortly in the following is represented as a SDE</p>
+
+\[dX_t = b(X_t, t)dt + dW_t\]
+
+<h2 id="stochastic-control-problems">Stochastic control problems</h2>
+
+<h3 id="background-of-stochastic-optimal-control">Background of stochastic optimal control</h3>
+
+<p>Let’s consider a determistic control problem first</p>
+
+\[dx_t = F(x_t, u_t)dt\]
+
+<p>where $x_t$ is the state variable, $u_t$ is the control variable. The optimal control problem tries to mimimize a value function</p>
+
+\[V(x_t, t) = \int_t^T C(x_t, u_t) dt + D(x_T)\]
+
+<p>where $C$ is the control cost function and $D$ is the cost at the terminal time $T$. In fact, the value function here can be approximated with a small change of time, $dt$.</p>
+
+\[V(x_t, t) = \min_u \left\{C(x_t, u_t) + V(x_{t + dt}, t + dt)\right\}, \quad V(x, T) = D(x)\]
+
+<p>This result has a long history and is known as the Hamilton-Jacobian-Bellman equation in dynamic programming. The right-hand side is further approximated with Taylor expansion.</p>
+
+\[\frac{\partial V}{\partial t} + \min_u\left\{C(x_t, u_t) + \frac{\partial V}{\partial x} F(x_t, u_t)\right\} = 0\]
+
+<p>This is a ODE. However, it is nontrivial to solve this because it includes a minimization problem which we do not know exactly how to optimize it.</p>
+
+<p>Now, turn our attention with the extension of the above where we consider a stochastic version</p>
+
+\[dX_t = b(X_t, u_t)dt + \sigma(X_t, u_t)dW_t\]
+
+<p>and then value function here is</p>
+
+\[V(X_t, t) = \mathbb{E}\left[\int_t^T C(X_t, u_t) dt + D(X_T)\right]\]
+
+<p>Similarly, as we apply Ito’s rule when approximate $V(X_{t + dt}, t + dt)$ (just remember that second-order derivative involves here), we can derive</p>
+
+\[\frac{\partial V}{\partial t} + \min_u\left\{C(x_t, u_t) + \frac{\partial V}{\partial x} F(x_t, u_t) + \frac{1}{2} \sigma^2(X_t, u_t) \frac{\partial^2 V}{\partial x^2}\right\} = 0, \quad V(x, T) = D(x)\]
+
+<p>Again, this is difficult to solve in general.</p>
+
+<h3 id="the-stochastic-control-problem-in-the-paper">The stochastic control problem in the paper</h3>
+
+<p>The paper restricts the SDE with constant diffusion function</p>
+
+\[dX_t = b(X_t, t) dt + dW_t, \quad t\in [0, 1], X_0 = x_0\]
+
+<p>The corresponding control SDE being studied is</p>
+
+\[dX_t^u = (b(X^u_t, t) + u(X^u_t, t)) dt + dW_t, \quad t\in [0, 1], X_0^u = x_0\]
+
+<p>and the value function here will be denoted as $J$</p>
+
+\[J(x, t) = \mathbb{E}\left[\int_t^1 C(X_s^u, u_s) ds + D(X_1^u) \mid X_t^u=x\right]\]
+
+<p>With the above derivation in the previous section, we obtain</p>
+
+\[\frac{\partial J}{\partial t} + \min_u\left\{C(x, u) + (b + u) \frac{\partial J}{\partial x} + \frac{1}{2}\frac{\partial^2 J}{\partial x^2}\right\} = 0\]
+
+<p>Moving terms around we obtain</p>
+
+\[\frac{\partial J}{\partial t} + \mathcal{L}_tJ = -\min_u \left\{ C(x, u) + u \frac{\partial J}{\partial x}\right\}\]
+
+<p>In the paper, the control cost function is the norm of $u$, therefore, the solution is exact and $u(x, t) = \frac{1}{2}\frac{\partial J}{\partial x}$, resulting</p>
+
+\[\frac{\partial J}{\partial t} + \mathcal{L}_tJ = \frac{1}{2}\lvert\lvert \frac{\partial J}{\partial x} \rvert\rvert^2\]
+
+<p>Let $h(x, t) = \mathbb{E}[D(X_1) \mid X_t = x]$ is the value function of uncontrolled SDE, then</p>
+
+\[\frac{\partial h}{\partial t} + \mathcal{L_t}h = 0\]
+
+<p>If we pick $J(x,t) = -\log h(x, t)$, we can obtain the exact PDE for $J$. The we can say the two value functions are the same</p>
+
+\[\underbrace{-\log \mathbb{E}[D(X_1)|X_t=x]}_{ \text{uncontrolled SDE value function}} = \underbrace{\min_u \mathbb{E} \left[\int_t^1 C(X_s^u, u_s) ds + D(X_1^u) \mid X_t^u=x\right] }_{\text{controlled SDE value function}}\]]]></content><author><name></name></author><summary type="html"><![CDATA[Introduction In this note, I will take a short review for a part of this paper. I will try to bring (learn) some necessary background of stochastic optimal control. The main object discussed shortly in the following is represented as a SDE \[dX_t = b(X_t, t)dt + dW_t\] Stochastic control problems Background of stochastic optimal control Let’s consider a determistic control problem first \[dx_t = F(x_t, u_t)dt\] where $x_t$ is the state variable, $u_t$ is the control variable. The optimal control problem tries to mimimize a value function \[V(x_t, t) = \int_t^T C(x_t, u_t) dt + D(x_T)\] where $C$ is the control cost function and $D$ is the cost at the terminal time $T$. In fact, the value function here can be approximated with a small change of time, $dt$. \[V(x_t, t) = \min_u \left\{C(x_t, u_t) + V(x_{t + dt}, t + dt)\right\}, \quad V(x, T) = D(x)\] This result has a long history and is known as the Hamilton-Jacobian-Bellman equation in dynamic programming. The right-hand side is further approximated with Taylor expansion. \[\frac{\partial V}{\partial t} + \min_u\left\{C(x_t, u_t) + \frac{\partial V}{\partial x} F(x_t, u_t)\right\} = 0\] This is a ODE. However, it is nontrivial to solve this because it includes a minimization problem which we do not know exactly how to optimize it. Now, turn our attention with the extension of the above where we consider a stochastic version \[dX_t = b(X_t, u_t)dt + \sigma(X_t, u_t)dW_t\] and then value function here is \[V(X_t, t) = \mathbb{E}\left[\int_t^T C(X_t, u_t) dt + D(X_T)\right]\] Similarly, as we apply Ito’s rule when approximate $V(X_{t + dt}, t + dt)$ (just remember that second-order derivative involves here), we can derive \[\frac{\partial V}{\partial t} + \min_u\left\{C(x_t, u_t) + \frac{\partial V}{\partial x} F(x_t, u_t) + \frac{1}{2} \sigma^2(X_t, u_t) \frac{\partial^2 V}{\partial x^2}\right\} = 0, \quad V(x, T) = D(x)\] Again, this is difficult to solve in general. The stochastic control problem in the paper The paper restricts the SDE with constant diffusion function \[dX_t = b(X_t, t) dt + dW_t, \quad t\in [0, 1], X_0 = x_0\] The corresponding control SDE being studied is \[dX_t^u = (b(X^u_t, t) + u(X^u_t, t)) dt + dW_t, \quad t\in [0, 1], X_0^u = x_0\] and the value function here will be denoted as $J$ \[J(x, t) = \mathbb{E}\left[\int_t^1 C(X_s^u, u_s) ds + D(X_1^u) \mid X_t^u=x\right]\] With the above derivation in the previous section, we obtain \[\frac{\partial J}{\partial t} + \min_u\left\{C(x, u) + (b + u) \frac{\partial J}{\partial x} + \frac{1}{2}\frac{\partial^2 J}{\partial x^2}\right\} = 0\] Moving terms around we obtain \[\frac{\partial J}{\partial t} + \mathcal{L}_tJ = -\min_u \left\{ C(x, u) + u \frac{\partial J}{\partial x}\right\}\] In the paper, the control cost function is the norm of $u$, therefore, the solution is exact and $u(x, t) = \frac{1}{2}\frac{\partial J}{\partial x}$, resulting \[\frac{\partial J}{\partial t} + \mathcal{L}_tJ = \frac{1}{2}\lvert\lvert \frac{\partial J}{\partial x} \rvert\rvert^2\] Let $h(x, t) = \mathbb{E}[D(X_1) \mid X_t = x]$ is the value function of uncontrolled SDE, then \[\frac{\partial h}{\partial t} + \mathcal{L_t}h = 0\] If we pick $J(x,t) = -\log h(x, t)$, we can obtain the exact PDE for $J$. The we can say the two value functions are the same \[\underbrace{-\log \mathbb{E}[D(X_1)|X_t=x]}_{ \text{uncontrolled SDE value function}} = \underbrace{\min_u \mathbb{E} \left[\int_t^1 C(X_s^u, u_s) ds + D(X_1^u) \mid X_t^u=x\right] }_{\text{controlled SDE value function}}\]]]></summary></entry><entry><title type="html">Malliavin Calculus</title><link href="/blog/2021/malliavin_calculus/" rel="alternate" type="text/html" title="Malliavin Calculus" /><published>2021-11-10T00:00:00+00:00</published><updated>2021-11-10T00:00:00+00:00</updated><id>/blog/2021/malliavin_calculus</id><content type="html" xml:base="/blog/2021/malliavin_calculus/"><![CDATA[<d-toc></d-toc>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>This is a long post distilling some concepts of Malliavin Calculus and based on the <a href="http://hairer.org/notes/Malliavin.pdf">lecture note</a> of <a href="https://en.wikipedia.org/wiki/Martin_Hairer"> Martin Hairer</a>.</p>
+
+<p><strong>Motivation</strong> Malliavin calculus is a modern tool tackling with differentiating random variable defined on a Gaussian probability space w.r.t. the underlying noise.</p>
+
+<p>At the moment, I feel like White Noise Theory and Malliavian calculus share some similarity. They surely complement each other but I do not comprehend the difference between them, for example, what one can do but other cannot.
+I also plan to get to know more some background of <a href="http://www.hairer.org/notes/RoughPaths.pdf">rough path</a> but this will be in another post. </p>
+<!-- <aside>Some text in an aside, margin notes, etc...</aside> -->
+
+<p>Stochastic analysis centers around stochastic differential equations, i.e.,</p>
+
+\[dX_t = V_0(X_t)dt + \sum_{i=1}^m V_i(X_t) \circ dW_i(t)\]
+
+<p>where $\circ dW_t$ denotes Straonovich integration. In this equation, Hairer considers multiple noise parts.</p>
+
+<h2 id="white-noise-and-wiener-chaos">White noise and Wiener chaos</h2>
+
+<p>This section concerns the definition of white noise under functional representation. Wiener chaos gives the decomposition form of white noise in which we will find somewhat similar to Fourier analysis or <a href="Sobolev space">Sobolev space</a>.</p>
+
+<h3 id="definition-of-white-noise">Definition of white noise</h3>
+
+<p>Now, let’s talk about spaces we will work on</p>
+
+<ul>
+  <li>$H = L^2(\mathbb{R}_+, \mathbb{R}^m)$: a real and separatable Hilbert space</li>
+  <li>$L^2(\Omega, \mathbb{P})$: for some probability space $(\Omega, \mathbb{P})$</li>
+</ul>
+
+<p>White noise is linear isometry<d-footnote>linear map preserving distance</d-footnote> $W: H \to L^2(\Omega, \mathbb{P})$ such that the ouput $W(h)$ is a real-valued Gaussian variable or</p>
+
+\[\mathbb{E}[W(h)] = 0, \qquad \mathbb{E}[W(h)W(g)] = \langle h, g \rangle_H.\]
+
+<p>The above is just the definition. How to establish such map will be shown next.</p>
+
+<p><strong>Orthonormal basis</strong> Here, we define</p>
+<ul>
+  <li>a sequence of i.i.d. normal random variable ${\xi_n}_{n\geq 0}$</li>
+  <li>an orthonormal basis ${e_n}_{n \geq 0}$ of $H$.</li>
+</ul>
+
+<p>When representing $h = \sum_n h_n e_n \in H$, we construct $W(h)=\sum_n h_n \xi_n$. The normal random variable $\xi_n$ is now can rewrite in the functional form form $\xi_n = W(e_n)$.</p>
+
+<p>In the lecture, $m$-dimensional Wiener process is defined by using funtion $\mathbf{1}_{[0,t)}^{(i)}$</p>
+
+\[(\mathbf{1}_{[0,t)}^{(i)})_j(s) = \begin{cases}
+   1 &amp;\text{if } s \in [0, t) \text{ and } j=i \\
+   0 &amp;\text{otherwise } 
+\end{cases}\]
+
+<p>Note that 1-dimensional case is easy to show, but for now, still follow the setup in the lecture.</p>
+
+<p>The $i$-th dimension of Wiener process is defined as $W_i(t) = W(\mathbf{1}_{[0,t)}^{(i)})$ where we can check the covariance</p>
+
+\[\mathbb{E}[W_i(t)W_j(s)] = \langle \mathbf{1}_{[0,t)}^{(i)}, \mathbf{1}_{[0,s)}^{(j)} \rangle = \delta_{ij}(t \wedge s).\]
+
+<p>For arbitrary $h$, $W(h)$ can represent as (Wiener-Ito integral)</p>
+
+\[W(h) = \sum_{i=1}^m \int_0^\infty h_i(s) dW_i(s)\]
+
+<p>Note that we may need to clearly differentiate between $W(h)$ and $W_i(s)$.</p>
+
+<h3 id="representation-using-hermite-polynomials">Representation using Hermite polynomials</h3>
+
+<p>There are several formulation of Hermite polynomial</p>
+
+<ul>
+  <li>Recursive $H^\prime_n(x) = n H_{n-1}(x)$</li>
+  <li>A different recursive $H_{n + 1}(x) = xH_n(x) - H^\prime_n(x)$,</li>
+  <li>Explicit representation $H_n(x) = \exp\left(-\frac{D^2}{2}\right) x^n$, where $D$ is the differentiation w.r.t. to $x$, $\exp(\cdot)$ is defined in the Taylor expansion sense.</li>
+</ul>
+
+<p>Some properties of Hermite polynomials:</p>
+
+<ul>
+  <li>$\mathbb{E}[H_n(X)] = 0$: $H_n(X)$ has zero-mean when $X \sim \mathcal{N}(0,1)$</li>
+  <li>Identity</li>
+</ul>
+
+\[\begin{aligned}
+\int H_n(x) H_m(x) e^{-x^2/2} dx  = &amp; 
+\frac{1}{n + 1} \int H'_{n + 1}(x) H_m(x) e^{-x^2/2} dx \\
+ = &amp; \frac{1}{n + 1} \int H_{n + 1}(x) (xH_m(x) - H'm(x)) e^{-x^2/2} dx \\
+ = &amp; \frac{1}{n + 1} \int H_{n + 1}(x) H_{m + 1}(x) e^{-x^2/2} dx
+\end{aligned}\]
+
+<p>This recursive leads to $\mathbb{E}[H_n(X)H_m(X)] = n! \delta_{n.m}$</p>
+
+<p>Let’s define linear subspaces of $L^2(\Omega, \mathbb{P})$ as</p>
+
+\[\mathcal{H} = \{H_n(W(h)), h \in H, \lvert\lvert h \rvert\rvert_H = 1\}\]
+
+<p>We have the following decomposition
+<br /><br /><strong>Theorem</strong> <i> Let $\mathcal{F}$ be the $\sigma$-algebra generated by $W$. Then,</i></p>
+
+\[L^2(\Omega, \mathcal{F}, \mathbb{P}) = \bigoplus_{n=0}^\infty \mathcal{H}_n\]
+
+<p><br /><br /></p>
+
+<p><strong>Proof</strong> Let $X \in L^2(\Omega, \mathcal{F}, \mathbb{P})$ be orthogonal to $\mathcal{H}_n$ <em>for all</em> $n$.</p>
+
+\[\mathbb{E}[XH_n(W(h))] = 0, \forall n \quad \Rightarrow \quad \mathbb{E}[X\exp(W(h))] = 0\]
+
+<p>We need to show that $X=0$. Splitting $X = X^+ - X^-$, and define the following measures</p>
+
+\[\nu^{+,-} = \mathbb{E}[X^{+,-} \mathbf{1}_B(W(h_1), \dots, W(h_m))], \quad B \in \mathcal{B}(\mathbb{R}^m)\]
+
+<p>Applying Laplace transform for $\nu$, we deduce</p>
+
+\[\varphi_{\nu^{+,-}}(\lambda) = \int \exp(\lambda \cdot x) \nu^{+,-}(dx) = \mathbb{E}[X^{+,-}\exp(\sum_i \lambda_i W(h_i))] = 0\]
+
+<p>As the Laplace is zero, then the measure is zero. Thus, $\mathbb{E}[X\mathbb{1}_F] = 0, \forall F \in \mathcal{F}$. Therefore, $X=0$ and we can conclude the proof.</p>
+
+<h3 id="representation-using-multiple-stochastic-integrals">Representation using multiple stochastic integrals</h3>
+
+<p>This section defines multiple Wiener-Ito integral w.r.t. Brownian motion. With this definition we can lead to a similar decomposition like the representation of Hermite polynomials presented above.</p>
+
+<p>Consider</p>
+
+<ul>
+  <li>measure space $(T, \mathcal{B}, \mu)$</li>
+  <li>one-dimensional Brownian motion $B(t), t \in T = [a, b]$</li>
+  <li>Functional space $H=L^2([a, b], \mathbb{R})$</li>
+  <li>Functional representation $W(h) = \int_a^b h(s) dB(s)$</li>
+</ul>
+
+<p>Like traditional stochastic calculus, this tries to set up a corner stone with elementary process</p>
+
+\[\mathcal{E} = \{u(t) = \sum_i F_i \mathbf{1}_{(t_i, t_{i+1}]}(t), t1 &lt; \dots &lt; t_{n+1}, t_i \in T, F_i \in \mathcal{F}_{t_i} \text{square integrable} \}\]
+
+<p>The Ito integral w.r.t. Brownian motion is</p>
+
+\[\int_T u(t) dB(t) = \sum_i F_i(B(t_{i+1}) - B(t_i))\]
+
+<p><strong>Definition of multiple Wiener-Ito integral</strong> This is a multiple dimensional integral</p>
+
+\[\int_{T^n} f(t_1, t_2, \dots, t_n) dB(t_1)dB(t_2)\dots dB(t_n)\]
+
+\[I_n(f) = \sum_{i_1, \dots, i_n} a_{i_1 \dots i_n} \xi_{i_1} \dots \xi_{i_n}\]
+
+<p>Looking at this equation, one may think that order of $i_1,\dots, i_n$ may affect to $a$ but not for the product of $\xi$. So, the symmetrized version is defined (because $I_n$ is linear as well)</p>
+
+\[\tilde{f}(t_1, \dots, t_n) = \frac{1}{n!} \sum_{\sigma \in \mathcal{S}_n} f(t_{\sigma(1)}, \dots, t_{\sigma(n)})\]
+
+<p>with $\mathcal{S}_n$ is the set of all permutations. Because $dt_1…dt_n$ is symmetry, we have</p>
+
+\[\int_{T^n} |f(t_1, \dots, t_n)|^2dt_1...dt_n = \int_{T^n}f(t_{\sigma(1)}, \dots, t_{\sigma(n)}) dt_1...dt_n\]
+
+<p>Using the triangle inequality, we have</p>
+
+\[\lvert\lvert \tilde{f}\rvert\rvert_{L^2(T^n)} \leq \frac{1}{n!} \sum_{\sigma \in \mathcal{S}_n} \lvert\lvert {f}\rvert\rvert_{L^2(T^n)} = \lvert\lvert {f}\rvert\rvert_{L^2(T^n)}\]
+
+<p>We can say the Wiener-Ito integral of $f$ and $\tilde{f}$ are the same</p>
+
+<p><br /><br /> <strong>Lemma</strong> <i>If $f \in \mathcal{E}_n$, elementary process, then </i> $I_n(f) = I_n(\tilde{f})$
+<br /><br />
+This is quite easy to see if considering the symmetry of $\prod_i (B(t_i^{(2)} - B(t_i^{(1)}))$. The permutation version of this will have the same result.</p>
+
+<p>Next, the following is the orthogonal property.</p>
+
+<p><br /><br /> <strong>Lemma</strong> <i>If $f, g \in \mathcal{E}_n$, elementary process, then </i></p>
+
+<p>\(\mathbb{E}[I_n(f)] = 0, \quad \quad \mathbb{E}[I_n(f)I_m(g)] = \begin{cases} 0, \quad&amp; n \neq m \\
+  n! \langle \tilde{f}, \tilde{g} \rangle_{L^2(T^n)}, &amp;n=m \end{cases}\)
+<br /><br /></p>
+
+<p>The first expectation is straightforward because using definition of elementary process and expect of Brownian motion</p>
+
+<p>The second expectation needs to be treated more carefully. By the definition, this product will be the product of two summations, only the case that $\mathbb{E}[\xi^2] = \Delta t$ (basic Brownian motion property) remains, explaining when $n\neq m$, the expectation vanishes.</p>
+
+<p>Continuing with defining the Wiener-Ito integral on $L^2{T^n}$ instead of elemetary process space, the general steps are based on a sequence of ${f_k} \in \mathcal{E}_n$ converging to $f \in L^2{T^n}$. This leads to the convergence in probability of expecation of $I_n(f)$.</p>
+
+<h2 id="the-malliavin-derivative">The Malliavin derivative</h2>
+
+<h3 id="definition-and-properties">Definition and properties</h3>
+
+<p><strong>Goal</strong>: Rigorously define differentation w.r.t. white noise.</p>
+
+<p>In Wiener process, we usually encounter that its derivative is a Gaussian noise, $\xi_i(t) = \frac{dW_i}{dt}$</p>
+
+<p>The new operator $D_t^{(i)}$ takes derivative of a random variable w.r.t to $\xi_i(t)$. We may expect this operator works as</p>
+
+\[D_t^{(i)} W(h) = h_i(t)\]
+
+<p>It is because</p>
+
+\[W(h) = \sum_{i=1}^m \int_0^\infty h_i(t)\xi_i(t) dt.\]
+
+<p>We also expect the chain rules</p>
+
+\[D_t^{(i)} F(X1, \dots, X_n) = \sum_{k=1}^n \partial_k F(X_1, \dots, X_n)D_t^{(i)}X_k\]
+
+<p>In fact, the definition of $\mathscr{D}F$ can be interpreted as a directional derivative</p>
+
+\[\langle DF, h \rangle = \lim_{\epsilon \to 0}\frac{1}{\epsilon} (F(W(h_1) + \epsilon \langle h_1, h\rangle, \dots, W(h_n) + \epsilon \langle h_n, h\rangle) - F)\]
+
+<p><br /><br />
+<strong> Proposition </strong> (Integration by parts) <i>For every $X$, $h$, one has the identity</i>
+\(\mathbb{E}[\langle {D}X, h\rangle_H] = \mathbb{E}[XW(h)]\)
+<br /><br />
+<strong>Proof</strong> It is okay to consider only the case $\lvert\lvert h \rvert\rvert_H=1$.Suppose orthonormal basis ${e_1, \dots, e_n}$ of $H$ such that $h=e_1, F = f(W(e_1), \dots, W(e_n))$</p>
+
+<p>Given $\phi(x)$ denoting standard normal distribtution, we have</p>
+
+<p>\(\mathbb{E}[\langle DF, h \rangle_H] = \int \partial_1 f(x)\phi(x)dx = \int f(x)\phi(x)x_1 dx = \mathbb{E}[FW(e_1)]= \mathbb{E}[FW(h)]\)</p>
+<p>The second equation used integration by part.</p>
+<aside>Because $f(x)$ grows linearly so $0 = \exp(-x^2/2)f(x)\rvert_{-\infty}^{\infty} = \int \partial f(x) \exp(-x^2/2) dx + \int f(x)\partial \exp(-x^2/2) dx $</aside>
+
+<p>The following result uses $D(GF) = (DG)F + G(DF)$ (something like chain rule).</p>
+
+<p><br /><br />
+<strong> Lemma </strong> <i>Let $F, G \in \mathcal{S}$ and $h \in H$</i></p>
+
+<p>\(\mathbb{E}[G\langle {D}F, h\rangle_H] = -\mathbb{E}[F\langle DG, h \rangle_H] + \mathbb{E}[FGW(h)]\)
+<br /><br /></p>
+
+<p><strong>Proposition</strong> [Chain rule] <i> Let $g: \mathbb{R}^d \to \mathbb{R}$ be a function in $\mathcal{C}^1$ with bounded partial deriviatives. Let $p\geq 1$ and $F = (F^1, \dots, F^d), F^i \in \mathbb{D}^{1,d}$. Then $g(F) \in \mathbb{D}^{1, p}$ and
+</i></p>
+
+\[D(g(F)) = \sum_{i=1}^d \partial_i g(F)DF^i\]
+
+<h3 id="the-derivative-operator-in-the-white-noise-case">The derivative operator in the white noise case</h3>
+<p>Consider the case of one-dimensional Brownian motion $B(t), t \in T = [a, b],  H = L^2(T)$. The functional $W(h) = \int_a^b h(s) dB(s)$</p>
+
+<p><strong>Proposition</strong> 
+$F = \sum_{n=0}^\infty I_n(f_n(\cdot, t))$
+\(D_tF = \sum_{n=1}^\infty n I_{n-1}(f_n(\cdot, t)).\)</p>
+
+<p><strong>Proof</strong> We also start with elementary process where $f_n \in \mathcal{E}_n$ symmetric. 
+Consider a really simple case $F = I_n(f_n)$</p>
+
+<p><strong>Proposition</strong> <i>Let $g: \mathbb{R}^d \to R$ be a Lipschitz function ($\lvert g(x) - g(y)\rvert  \leq K \lvert\lvert x- y\rvert\rvert$). Suppose $F = (F^1, \dots, F^d)$ is a random vector such that $F^i \in \mathbb{D}^{1,2}$. Then $g(F) \in \mathbb{D}^{1,2}$ and there exists a random vector $G=(G_1, \dots, G_d)$ such that</i></p>
+
+\[D(g(F)) = \sum_{i=1}^d G_i DF^i.\]
+
+<h2 id="divergence-operator">Divergence operator</h2>
+
+<p>In short, divergence operator is defined as the dual (adjoint) of the derivative operator defined in the previous section.</p>
+
+<h3 id="definition-of-divergence-operator">Definition of divergence operator</h3>
+
+<p>The divergence operator is denoted as $\delta$ which is unbounded, $\delta: L^2(\Omega; H) \to L^2(\Omega)$, satisfying</p>
+
+<ul>
+  <li>
+    <p>The domain of $\delta$, $\text{Dom} \delta$, contains $u \in L^2(\Omega; H)$ such that $\lvert \mathbb{E}[\langle DF , u \rangle_H] \rvert \leq c_u \lvert \lvert F \rvert\rvert_{L^2(\Omega)}$</p>
+  </li>
+  <li>
+    <p><strong>Duality relation</strong>: $\mathbb{E}[F\delta(u)] = \mathbb{E}[\langle DF, u \rangle_H]$</p>
+  </li>
+</ul>
+
+<p><strong>Proposition</strong>[Properties of divergence] <i></i></p>
+<ul>
+  <li>If $u \in \text{Dom}(\delta)$, then $\mathbb{E}[\delta(u)] = 0$</li>
+  <li>Divergence operator is linear and closed under $\text{Dom} \delta$</li>
+  <li>$\delta(u) = \sum_{j=1}^n F_j W(h_j) - \sum_{j=1}^n \langle DF_j, h_j \rangle_H$</li>
+  <li>$\langle D(\delta(u)), h\rangle_H = \langle u, h \rangle_H + \delta\left( \sum_j \langle DF_j, h\rangle_H h_j \right)$
+&lt;/i&gt;&lt;aside&gt;To prove the third point, we may use the integral by parts of the derivative operator&lt;/aside&gt;</li>
+</ul>
+
+<h3 id="the-skorohod-integral">The Skorohod integral</h3>
+
+<p>This part will consider the restricted case which is Brownian motion. This makes the divergence $\delta(u)$ now is the Skorohod integral.</p>
+
+<p>Consider the Wiener chaos expansion</p>
+
+\[u(t) = \sum_n I_n(f_n(\cdot, t))\]
+
+<p>The Skorohod integral will be represented as</p>
+
+\[\delta(u) = \sum_{n=0}^\infty I_{n+1}(\tilde{f}_n)\]
+
+<p>converging in $L^2(\Omega)$ where</p>
+
+<p>$$
+\tilde{f}_n(t_1, \dots, t_n, t) = \frac{1}{n+1} (f_n(t_1, \dots, t_n, t) + \sum_{i=1}^n f_n(t_1, \dots, t_{i-1}, t, t_{i+1}, \dots, t_n, t_i))
+$$
+</p>
+<aside> The last term simply just is the exchange between $t$ and $t_i$</aside>
+
+<p><strong>Proposition</strong>[Skorohod integral is Ito integral] $\delta(u)$ coincides with the Ito integral w.r.t. Brownian mtion, that is</p>
+
+\[\delta(u) = \int_{a}^b u(s)dB(s)\]
+
+<p><strong>Proof</strong> Consider an elementary adapted process</p>
+
+\[u_t = \sum_j F_j \mathbf{1}_{(t_j, t_{j+1})}(t)\]
+
+<p>Now looking at each of component in the sum</p>
+
+\[\delta(F_j \mathbf{1}_{(t_j, t_{j+1})}(\cdot)) = F_j \delta(\mathbf{1}_{(t_j, t_{j+1})}(\cdot)) - \int_t D_t F_j \mathbf{1}_{(t_j, t_{j+1})}(t) dt = F_j(B(t_{j+1}) - B(t_j))\]
+
+<h3 id="the-clark-ocone-formula">The Clark-Ocone formula</h3>
+
+<p>Given $F$, exist $u$ such that
+\(F = \mathbb{E}[F] + \int_0^\infty u(t)dB(t)\)</p>
+
+<p>This result says that a stochastic process can be represented by its mean which is a deterministic part and a randomness part.</p>
+
+<p><strong>Proof</strong> First, consider <em>zero-mean</em> integrable random variable $G$ that is orthogonal to all stochastic integrals $\int_{\mathbb{R}_+} u(t) dB(t)$.</p>
+
+<p>Let $M_u(t) = \exp(\int_0^t u(s) dB(s) - \frac{1}{2}\int_0^t u^2(s)ds)$. By Ito’s formula</p>
+
+\[M_u(t) = M_u(0) + \int_0^t M_u(s) u(s) dB(s)\]
+
+<p>Hence, such random variable $G$ is orthogonal to</p>
+
+\[\mathcal{E}(h) = \exp\left(\int_0^\infty h(s) dB(s) - \frac{1}{2} \int_0^\infty h^2(s) ds\right)\]
+
+<p>And ${ e^{W(h)}, h \in L^2(\mathbb{R}_+) }$ form a <em>total subset</em> of $L^2(\Omega)$, this leads to the desired conclusion.</p>
+
+<h2 id="integration-by-parts-and-regularity">Integration by parts and regularity</h2>
+
+<p>This section provide the foundation of the integration by parts in Malliavin calculus. This will help</p>
+
+<h3 id="the-integration-by-parts-formula">The integration by parts formula</h3>
+
+<p><strong>Proposition</strong> <i>Let $F, G$ be two random variables such that $F \in \mathbb{D}^{1,2}$ <d-footnote>domain of first-order derivative operator $D$ in $L^2$</d-footnote>. Let $u$ be an $H$-valued random variable such that $\langle DF, u \rangle_H$ a.s. and $Gu(\langle DF, u\rangle_H)^{-1} \in \text{Dom } \delta$. Then for any function $f\in \mathcal{C}^1$ with bounded derivatives, we have that</i></p>
+
+\[\mathbb{E}[f'(F)G] = \mathbb{E}[f(F) H(F, G)],\]
+
+<p><i>where $H(F, G) = \delta(Gu(\langle DF, u\rangle_H)^{-1})$ </i>.</p>
+
+<h3 id="existence-and-smoothness-of-densities">Existence and smoothness of densities</h3>
+
+<h3 id="hormanders-therem">Hormander’s therem</h3>
+
+<p>The main focus of this theorem is to show there is a unique solutions for SDEs under some conditions.</p>
+
+<p>Consider the following setup:</p>
+
+<ul>
+  <li>Brownian motion has $d$ dimensions: $B(t) = (B^1(t), \dots, B^d(t)), t\in [0, T]$</li>
+  <li>Linear growth assumption</li>
+</ul>
+
+<p>Let $X(t)$ be the solution of $d$-dimensional systems of SDEs</p>
+
+\[dX_i(t) = \sum_{j=1}^d \sigma_{ij}(X(t))dB^j(t) + b_i(X(t))dt, \quad X_i(0) = x_0^i, \quad i = 1,\dots, d\]
+
+<p><strong>Theorem</strong> <i>There exists a unique continuous soltion and the following expectation is bounded</i></p>
+
+\[\mathbb{E}\left[\sup_{0\leq t \leq T} \lvert X(t)\rvert^p\right] \leq C\]
+
+<p><i>for any $p \geq 2$, where $C = C(p, T, K)&gt; 0$</i></p>
+
+<p><strong>Theorem</strong> The derivative $D^j_rX_i(s))$</p>
+
+\[D^j_rX_i(t)) = \sigma_{ij}(X(r)) + \sum_{k,l=1}^d \int_r^t \partial_k \sigma_{il}(X(s))D^j_s(X_k(s))dB^l(s) + \sum_{k=1}^d\int_r^t \partial_k b_i(X(s))ds\]
+
+<p>Some notations:</p>
+
+<ul>
+  <li>Vector fields: $\sigma_j = \sum_{i=1}^d\sigma_{ij}(x)\frac{\partial}{\partial x_i}$, $b = \sum_{i=1}^d b_i(x)\frac{\partial}{\partial x_i}$</li>
+  <li>Covariant derivative: $\sigma_j \nabla\sigma_k = \sum_{i,l=1}^d \sigma_{lj} \partial_l \sigma_{ik}\frac{\partial }{\partial x_i}$</li>
+  <li>Lie bracket: $[\sigma_j,\sigma_k] = \sigma_j \nabla \sigma_k - \sigma_k \nabla \sigma_j$</li>
+  <li>Define $\sigma_0 = b - \frac{1}{2}\sum_{i=1}^d\sigma_i \nabla \sigma_i$</li>
+</ul>
+
+<p>With these notation, the above SDE can be defined with a Stratonovich integral</p>
+
+\[X(t) = X_0 + \sum_{j = 1}^d \int_0^t \sigma(X(s)) \circ dB^j(s) + \int_0^t \sigma_0(X(s))ds\]
+
+<p><strong>Holder condition</strong> This is a vector space spanned by the vector filed</p>
+
+\[\mathbf{(H)} = \text{span} \{\sigma_1, \dots, \sigma_d, [\sigma_i, \sigma_j], [\sigma_i, [\sigma_j, \sigma_k]]\}\]
+
+<p><strong>Theorem</strong> <i>Assume that Hormander’s condition $\mathbf{(H)}$ holds and the coefficients of SDE are finitely differentiable. Then for any $t &gt; 0$, $X(t)$ has an infintely differentiable density.</i></p>
+
+<p>The proof is based on the quadratic varation is large, then the semimartingale is small with an exponentially small probability.</p>
+
+<h2 id="applications">Applications</h2>
+<p>This part will focus on how to use Malliavin calculus in mathematical finance. Again, the main concern when I read this section is that the benefit of using Malliavin calculus over Ito calculus. The first three subsections contains some introductory background. The remaining subsections discussed the actual use of Malliavin calculus.</p>
+
+<h3 id="pricing-and-hedging-financial-options">Pricing and hedging financial options</h3>
+
+<p>This will give a brief introduction of options. An option is a contract, or right to buy (put) or sell (call) an amount of assets. Some terminologies related to this concept are</p>
+
+<ul>
+  <li>Strike price or exercise price $K$</li>
+  <li>Maturity or exersize time $T$</li>
+  <li>When performing exchange or executing what is written in contract, there is a fee $x$ for doing so. It is called option premium.</li>
+</ul>
+
+<p>There are two ways of exercising options</p>
+
+<ul>
+  <li>Europian options: exercising at maturity $T$</li>
+  <li>American options: exercising at any time before maturity.</li>
+</ul>
+
+<p>The value of put or call are decided by</p>
+
+\[C_T = \max(S_T - K, 0), \quad P_T = \max(K - S_T, 0)\]
+
+<p>To further work with these values, we take into account their neural risk which involves analyzing their statistical estimation (mostly expectation) w.r.t. market randomness.</p>
+
+<p>Two main questions that might be interesting are</p>
+
+<ul>
+  <li>pricing option: evaluate the price of an option at time $t=0$</li>
+  <li>hedging option: evaluate the value of an option at maturity.</li>
+</ul>
+
+<h3 id="the-black-scholes-model">The Black-Scholes model</h3>
+
+<p>The Black-Scholes model is very well-known in quantitative finance field, helping us to understand of the market dynamics. The downside, however, is that the model has restricted assumptions, therefore, usually is used for pedagodical purposes.</p>
+
+\[dS_t = S_t \mu dt + S_t\sigma dB_t\]
+
+<p>Ito calculus allows us to have a close-form solution for this SDE</p>
+
+\[S_t = S_0 \exp(\mu t - \frac{\sigma^2}{2}t + \sigma B_t)\]
+
+<p>Therefore,</p>
+
+\[\mathbb{E}[S_t] = S_0\exp(\mu t), \quad \mathbb{E}[S_t^2] = S_0^2 \exp((2\mu + \sigma^2)t)\]
+
+<h3 id="pricing-and-hedging-options-in-the-black-scholes-model">Pricing and hedging options in the Black-Scholes model</h3>
+
+<p>There is an equivalence between the solution of Black-Scholes models and a partial diferential equation (PDE).</p>
+
+<p><strong>Theorem</strong> <i> Let $h$ be a continuous function of at most linear growth. Assume that $v(t, y)$ is a regular solution of PDE</i></p>
+
+\[\begin{cases}
+\frac{1}{2}\sigma^2 y^2 \frac{\partial^2 v}{\partial y^2} + ry \frac{\partial v}{\partial y} + \frac{\partial v}{\partial t} - r v = 0
+\\
+v(T, y) = h(y)
+\end{cases}\]
+
+<p><i>There exists a portfolio with value $v(t, S_t)$ at time $t$ replicated flow $h(S_T)$. And the value of this hedging portfoliio is given by $\beta(t, S_t) = \frac{\partial v}{\partial y}(t, S_t)$. </i></p>
+
+<p>Let’s take a moment to think how to interpret this theorem. Looking at the boundary condition, this means that we may expect that at maturity $T$, the solution $v$ should agree with the function $h$. And the solution $v(t, y)$ on $(0, T)$ describes the dynamics of $v$ along the interval. This is the backward solution because we start at $T$ and go back to $0$.</p>
+
+<p><strong>Proof</strong></p>
+<p>Using Ito's formula to $v(t, S_t)$ </p>
+<aside>like chain rule in traditional calculus but have additional second derivative. Also, $S_t$ should be semi-martingale</aside>
+
+\[dv(t, S_t) = \frac{\partial v}{\partial t}(t, S_t) dt + \frac{\partial v}{\partial y}(t, S_t) dS_t + \frac{1}{2}\sigma^2S_t^2\frac{\partial^2 v}{\partial y^2}(t, S_t) dt\]
+
+<p>The above is purely a mathematical derivation. On the hand, managing portfolio requires to</p>
+
+\[dv(s, S_t) = v(t, S_t)rdt + \beta(t, S_t)(dS_t - rS_tdt)\]
+
+<p>Picking $\beta(t, S_t) = \frac{\partial v}{\partial y}(t, S_t)$, the part with $dS_t$ vanishes, the remain will be reduced to</p>
+
+\[\frac{\partial v}{\partial t}(t, S_t) + \frac{1}{2}\sigma^2S_t^2\frac{\partial^2 v}{\partial y^2}(t, S_t) = v(t, S_t)rdt - rS_t\frac{\partial v}{\partial y}(t, S_t)\]
+
+<p>And we obtain the expect PDE.</p>
+
+<h3 id="sensibility-with-respect-to-the-parameters-the-greeks">Sensibility with respect to the parameters: the greeks</h3>
+
+<p>Consider the price of an option $V_0$ with strike $K$ and maturity $t$.</p>
+
+<p>The most crucial parameters are $(x, r, \sigma, T, K)$</p>
+
+<ul>
+  <li>the premimum $x$</li>
+  <li>the interest rate $r$</li>
+  <li>the volatility $\sigma$</li>
+</ul>
+
+<p>People working in finance are interested in obtaining some quanities named after some characters in Greek alphabet:</p>
+
+<ul>
+  <li><strong>Delta:</strong> $\Delta = \frac{\partial V_0}{\partial x}$</li>
+  <li><strong>Gamma:</strong> $\Gamma = \frac{\partial^2 V_0}{\partial^2 x}$</li>
+  <li><strong>Vega:</strong> $\vartheta = \frac{\partial V_0}{\partial \sigma}$</li>
+</ul>
+
+<p>These Greeks will be computed using integration by parts of Mallivian calculus.</p>
+
+<h3 id="application-of-the-clark-ocone-formula-in-hedging">Application of the Clark-Ocone formula in hedging</h3>]]></content><author><name>Anh Tong</name></author><summary type="html"><![CDATA[(in progress) Some background of Mallivian Calculus]]></summary></entry><entry><title type="html">Self-similarity and long-range dependence in fractional Brownian motions</title><link href="/blog/2021/fractional-brownian-motion/" rel="alternate" type="text/html" title="Self-similarity and long-range dependence in fractional Brownian motions" /><published>2021-11-03T00:00:00+00:00</published><updated>2021-11-03T00:00:00+00:00</updated><id>/blog/2021/fractional-brownian-motion</id><content type="html" xml:base="/blog/2021/fractional-brownian-motion/"><![CDATA[<p>I came across this <a href="http://www.columbia.edu/~ad3217/fbm/thesis.pdf">thesis</a> and want to take a note on the concepts of self-similarity and long-range dependence which are among notable properties of fractional Brownian motion. Possibly one reason why the term “fractional” is in the name of this stochastic process is that there is a <a href="https://en.wikipedia.org/wiki/Self-similarity">close connection</a> between self-similarity definition and fractals.</p>
+
+<h2 id="definition-of-self-similarity">Definition of self-similarity</h2>
+
+<p>In a general sense, self-similar object looks exactly or approximately similar to <em>a part</em> of itself (which is also mean a small scaled version the object).</p>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Fractal_fern_explained.png/300px-Fractal_fern_explained.png" /></p>
+
+<p>This image (source: <a href="https://en.wikipedia.org/wiki/Self-similarity">Wikipedia</a>) is a beautiful illustration for self-similarity here.</p>
+
+<p>In statistics, roughly speaking, a stochastic process is self-similar if any finite samples from the process has the same ditribution with a <em>scaled</em> version of aggregation (mean, first-order statistic) of the finite samples.</p>
+
+<p>Mathematically, consider a discrete stochastic process $X_k$. For any $m &gt; 1$, a new stochastic process $X^{(m)}_k$ is defined as</p>
+
+\[X^{(m)}_k = \frac{1}{m} (X_{km} + \dots + X_{(k+1)m - 1})\]
+
+<p>If we take a finite sample of $X$ and scaled version of $X^{(m)}$, for example,</p>
+
+\[(X_{k_1}, \dots, X_{k_d}) \quad ,\quad (m^{1-H}X_{k_1}^{(m)}, \dots,m^{1-H}X_{k_d}^{(m)})\]
+
+<p>and these two have the same distribution, we say $X$ is self-similar with Hurst parameter $H$.</p>
+
+<h2 id="definition-of-long-range-dependence">Definition of long-range dependence</h2>
+
+<p>The long-range dependence is decided by autocovariance function $\gamma(k)$. We say a stochastic process has <em>long-range dependence</em>, long memory if the sum of autocovariance is unbounded,</p>
+
+\[\sum_{k=0}^\infty \gamma(k) = \infty\]
+
+<p>Still, $\gamma(k)$ decays.</p>
+
+<p>In most cases, to identify long-range dependence, one may consider the form</p>
+
+\[\gamma(k) = \mathcal{O}(\lvert k \rvert^{-\alpha})\]
+
+<p>Note that under long-range dependence, some statistical tests may be affected as the standard deviation of the mean of $X$ is different from the estimation that does not assume long-range dependence, resulting in incorrect confidence intervals in the tests.</p>
+
+<h2 id="fractional-brownian-motion">Fractional Brownian motion</h2>
+
+<p>Fractional Brownian motion, $B^H$, is an generalization of Browian motion, sharing some properties with Brownian motions such as</p>
+
+<ol>
+  <li>Stationary increments</li>
+  <li>Start at 0 and having zero mean</li>
+</ol>
+
+<p>Fractional Brownian motion is also viewed as a Gaussian process with covariance</p>
+
+\[R^H(t, s) = \frac{1}{2}\{t^{2H} + s^{2H} - (t - s)^{2H}\}\]
+
+<p>The noise corresponding to this is defined as $X$</p>
+
+\[X_k = B^H(k + 1) - B(ks)\]
+
+<p>Fraction Brownian <em>noise</em> appears to exhibit both long-range dependence and self-similarity.</p>
+
+<p><strong>Self-similarity</strong></p>
+
+<p>Let’s compare between $mX^{(m)}$ and $m^HX$. These two have zero mean. The following says that they have the same covariance</p>
+
+\[\begin{aligned}
+&amp; \text{Cov}(X_{km} + \dots, X_{(k+1)m - 1}, X_{lm} + \dots, X_{(l+1)m - 1}) \\
+= &amp; \text{Cov}(B^H((k+1)m) - B^H(km), B^H((l+1)m) - B^H(lm)) \\
+= &amp; \text{Cov}(m^H(B^H(k+1) - B^H(k)), m^H(B^H(l+1) - B^H(l))) \\
+= &amp; \text{Cov}(m^H X_k, m^H X_l)
+\end{aligned}\]
+
+<p>To this point, we can say they have same distribution because they are both Gaussian, having same mean and covariance.</p>
+
+<p><strong>Long-range dependence</strong>
+The autocovariance in this case is</p>
+
+\[\gamma(k) = \frac{1}{2}(\lvert k-1 \rvert^{2H} - 2 \lvert k \rvert^{2H} + \lvert k+1 \rvert^{2H})\]
+
+<p>we can obtain that</p>
+
+\[\gamma(k) = \mathcal{O}(k^{2H-2})\]
+
+<p>It is because Taylor expansion of $h(x) = (1 - x)^{2H} - 2 + (1 + x)^{2H}$ and $\gamma(k) = \frac{1}{2}k^{2H}h(1/k)$. So $\sum \gamma(k) = \infty$ when $1/2&lt;H&lt; 1.$</p>]]></content><author><name></name></author><summary type="html"><![CDATA[I came across this thesis and want to take a note on the concepts of self-similarity and long-range dependence which are among notable properties of fractional Brownian motion. Possibly one reason why the term “fractional” is in the name of this stochastic process is that there is a close connection between self-similarity definition and fractals.]]></summary></entry><entry><title type="html">Numerical methods for SDEs</title><link href="/blog/2021/numerical-sde/" rel="alternate" type="text/html" title="Numerical methods for SDEs" /><published>2021-11-02T00:00:00+00:00</published><updated>2021-11-02T00:00:00+00:00</updated><id>/blog/2021/numerical-sde</id><content type="html" xml:base="/blog/2021/numerical-sde/"><![CDATA[<p>This post summarizes some well-known numerical methods in solving stochastic differential equations (SDEs). Partial differential equations (PDEs) in general, or SDEs specifically selfdom lead to exact solution so we need to seek approximation solutions. Compared to traditional PDEs, solving SDEs requires to handle the randomness associated to the equations. In most of SDEs, we often encounter white noise or derivative of Brownian motion. Different methods will tackle with this randomness differently.</p>
+
+<h2 id="euler-maruyama-method">Euler-Maruyama method</h2>
+
+<p>At the heart of numerical methods for differential equations, the key idea is <em>discretization</em>. The derivative is approximated as</p>
+
+\[\frac{dx}{dt}(t) \approx \frac{x(t + \Delta t) - x(t)}{\Delta t}\]
+
+<p>A simple ordinary differential equation will be converted as</p>
+
+\[\frac{dx}{dt} = f(x, t) \quad \Rightarrow \quad x(t + \Delta t) = x(t) + f(x, t) \Delta\]
+
+<p>Assume that we start at $x(0)$, we have to go through many step $\Delta t$ to reach $x(T)$ at time $T$. In this case, the discretization task is simple by partitioning the time interval. For 2-dimensional or 3-dimensional PDEs, there are discretization methods, for example, finite element methods, designed specifically to create meshes over domain spaces.</p>
+
+<p>Now, consider a SDE</p>
+
+\[dX_t = f(X_t, t) dt + g(X_t, t) dW_t\]
+
+<p>The Euler-Maruyama method gives us the approximation as</p>
+
+\[X(t + \Delta t) = X(t) + f(X, t) \Delta t + g(X, t) \Delta W_t\]
+
+<p>Since $W_t$ is a Wiener process or a Brownian motion, the difference between to time steps is distributed as</p>
+
+\[\Delta W_t = W_{t + \Delta t} - W(t) \sim \mathcal{N}(0, \Delta t)\]
+
+<p>So $\Delta W_t$ will be sampled during solving the SDE and computed by $\eta \sqrt{\Delta t}$ as we sample $\eta$ from a standard normal distribution $\mathcal{N}(0, 1)$.</p>
+
+<p>The final form of sampling process for $X$ is</p>
+
+\[X(t + \Delta t) = X(t) + f(X, t) \Delta t +  \eta g(X, t)  \sqrt{\Delta t}, \quad \eta \sim \mathcal{N}(0, 1).\]
+
+<p><strong>Approximation Error Analysis</strong></p>
+
+<p>Because of the way of discretizing, the Euler method approximates the real solution with accuracy $\mathcal{O}(\Delta t)$.</p>
+
+<p>To assess the performance of an approximate method, one considers two types of convergence</p>
+
+<ul>
+  <li>Strong Convergence: $\mathbb{E}[\lvert x - X \rvert] \leq C \Delta t^\gamma$, using the factor $\gamma$ to judge the approximation accuracy.</li>
+  <li>Weak Convergence: difference of first-order estimate $\lvert\mathbb{E}[x] - \mathbb{E}[X]\rvert \leq C \Delta t^\beta$.</li>
+</ul>
+
+<p>The Euler-Maruyama has a strong convergence order of $1/2$ and a weak convergence of order $1$ which is an extremely slow convergence.</p>
+
+<h2 id="milsteins-method">Milstein’s method</h2>
+
+<p>The Milstein’s method is to improve the Euler-Maruyama by taking into account Ito’s lemma.</p>
+
+\[X(t + \Delta t) = X(t) + \left(f(X,t) - \frac{1}{2} gg_x (X, t)\right) \Delta t + \sqrt{\Delta t} g(X, t)\eta + \frac{\Delta t}{2} gg_x(X, t)\eta^2\]
+
+<p>Why is there a new term $gg_x(X, t) = g(X,t)\frac{\partial g}{\partial x}(X, t)$? This comes from the fact that $(dW_t)^2 = dt$ and Ito’s lemma.</p>
+
+<p><strong>Explanation with geometric Brownian motion</strong> 
+Given that $dX_t = \mu X dt + \sigma X dW_t$, Ito’s lemma for $\ln X_t$ is</p>
+
+\[d \ln X_t = \left(\mu - \frac{1}{2}\sigma^2\right)dt + \sigma dW_t\]
+
+<p>For an interval $[t, t + \Delta t]$, the approximated solution is derived as</p>
+
+\[\begin{aligned}
+X_{t + \Delta t} = &amp; X_t \exp \left \{\int_t^{t + \Delta t}\left(\mu - \frac{1}{2}\sigma^2\right)du + \int_t^{t + \Delta t}\sigma dW_u \right\} \\
+\approx &amp; X_t \left( 1 + \left(\mu - \frac{1}{2}\sigma^2\right)\Delta t + \sigma \Delta W_t + \frac{1}{2} \sigma^2 (\Delta W_t)^2 + \mathcal{O}(t^2)\right)
+\end{aligned}\]
+
+<p>The last equation is the Talor expansion of $\exp(\cdot)$ where $\Delta t$ goes up to order $1$, $\Delta W_t$ goes up to order $2$. In this case, $f(X, t) = \mu X, g(X,t) = \sigma X$, resulting in $g g_x(X, t) = X\sigma^2$.</p>
+
+<p>Although this is the derivation for a specific case of geometric Brownian motion, the general explanation is possible.</p>
+
+<p><strong>Explanation for the general case</strong> Now, going back considering the case</p>
+
+\[dX_t = f(X_t, t) dt + g(X_t, t) dW_t\]
+
+<p>Assume we work on a small interval $[0, h]$. And on this particular interval, $f(X_t, t) = f(X_0, 0), g(X_t,t) = g(X_0, 0)$. This leads to</p>
+
+\[X_t \approx X_0 + f(X_0, 0)t + g(X_0, 0) dW_t = X_0 + g(X_0, 0) W_t + \mathcal{O}(h)\]
+
+<p>On the other hand,</p>
+
+\[\begin{aligned}
+g(X_t, t) = &amp; g(X_0, 0) + g_x(X_0, 0)(X_t - X_)) + \mathcal{O}(h) \\
+= &amp; g(X_0, 0) + g_x(X_0, 0)g(X_0, 0)W_t + \mathcal{O}(h)
+\end{aligned}\]
+
+<p>We can then obtain</p>
+
+\[S_h = S_0 + f(X_0, 0)h + g(X_0, 0)W_h + gg_x(X_0,0)\int_0^hW_tdW_t + \mathcal{O}(h^{3/2})\]
+
+<p>Now, Ito calulus is used to derive $\int_0^h W_t dW_t = \frac{1}{2}W_h^2 - \frac{1}{2}h$. To this end, we can obtain the Milstein formular.</p>
+
+<p>Both strong and weak convergence is of order $1$ which is better than the Euler-Maruyama method. See <a href="https://hautahi.com/sde_simulation">this</a> for a simulation comparison between the two methods</p>
+
+<h2 id="kps-method">KPS method</h2>
+
+<p>For a better convergence, one may look for a stronger convergence. The following is the KPS method. Advanced method can be found like <a href="https://www.sciencedirect.com/science/article/abs/pii/S016892749600027X">high-order Runge-Kutta methods</a> which, however, will not discuss here.</p>
+
+<p>The update for KPS method follows</p>
+
+\[\begin{aligned}
+X_{t + \Delta t} = &amp; X_t + f\Delta t + g \Delta W_t + \frac{1}{2} gg_x ((\Delta W_t)^2 - \Delta t) \\
+&amp;+ gf_x \Delta U_t + \frac{1}{2}\left(ff_x + \frac{1}{2}g^2f_{xx}\right)\Delta t^2\\
+&amp; + \left(fg_x + \frac{1}{2}g^2gg_{xx}\right)(\Delta W_t \delta t - \Delta U_t) \\
+&amp; + \frac{1}{2}g(gg_x)_x\left(\frac{1}{3}(\Delta W_t)^3 -\Delta t\right) \Delta W_t
+\end{aligned}\]
+
+<p>where $\Delta W_t = \sqrt{\Delta t}\eta, \eta \sim \mathcal{N}(0,1)$ and $\Delta U_t = \int_{t}^{t + \Delta t} \int_t^s dW_s ds = \frac{1}{3}\Delta t^3 \lambda, \lambda \sim \mathcal{N}(0,1)$.</p>
+
+<p>Phew! The formula is complicated. Why am I bothering writing this down?</p>
+<h2 id="adaptive-timestep">Adaptive timestep</h2>
+<p>If there are adaptive learning rate in machine learning, numerical methods of differential equations have ways to pick adaptive timestep instead of fixed one. This analogy does not make sense since the approach is completely different.</p>
+
+<p>The procedure consists of two steps:</p>
+
+<ol>
+  <li>Propose a step size and estimate the error. Here, estimating error may consider the inherence of noise</li>
+  <li>Accept or reject the step size according to some criteria.</li>
+</ol>
+
+<p>A complete description is in <a href="https://www.aimsciences.org/article/doi/10.3934/dcdsb.2017133">this reference<a>.</a></a></p>]]></content><author><name></name></author><summary type="html"><![CDATA[Study some approximation methods in solving SDEs, i.e., Euler-Maruyama method, Milstein's method,...]]></summary></entry><entry><title type="html">From Neural ODEs to Neural SDEs</title><link href="/blog/2021/gradient_sde/" rel="alternate" type="text/html" title="From Neural ODEs to Neural SDEs" /><published>2021-10-21T00:00:00+00:00</published><updated>2021-10-21T00:00:00+00:00</updated><id>/blog/2021/gradient_sde</id><content type="html" xml:base="/blog/2021/gradient_sde/"><![CDATA[<p>When writing this series of stochastic calculus, there has been a much development among machine learning community adopting stochastic differential equation in neural networks. It starts with Neural Ordinary Equations <d-cite key="neural_ode"></d-cite> which opens a new research direction considering layer indices in neural networks as continuous values. Then, to model uncertainty, Neural Stochastic Differential Equation is proposed, potentially having many applications like generative time series modeling, financial modeling, etc.</p>
+
+<p>The key techniques include adjoint sentitivity method in performing backpropagragtion through time (not layers), and quering sample paths from forward-pass when solving backward SDEs. This post focuses more on the former, and just briefly mention the latter.</p>
+
+<h3 id="neural-odes">Neural ODEs</h3>
+
+<p>Neural Ordinary Differential Equations (Neural ODEs) are inspired by a model construction like residual networks, recurrent neural network, and based on the following generalization <d-cite key="neural_ode"></d-cite>:</p>
+
+\[h_{t + 1} = h_t + f(h_t, \theta_t) \quad \Rightarrow \quad \frac{dh(t)}{dt} = f(h(t), t; \theta)\]
+
+<p>By doing so, the discrete layer index in neural network is now understood as continous time index in dynamic systems modeled by an ODE.</p>
+
+<p><strong>Adjoint sentivity method for backpropagation</strong> In learning neural network, given an input, we need to forward it by feed to model to produce output. The goal is to compute a gradient w.r.t. $\theta$ so that the parameters will be optimized by gradient descent methods. Computing such a gradient is known as backpropagation, running backward from output through very layer. If there is no discrete layer, how do we backpropagate here?</p>
+
+<p>In fact, in neural ODEs, at the forward-pass, the output is obtained via a ODE solver which does discretize continuous into smaller time steps. Therefore, we can backpropagate via these intermediate steps. However, it is required to store all of information of these steps to perform normal backward-pass. Avoiding this is one of main contribution of neural ODE.</p>
+
+<p>Formally, we want to compute the gradient $dL/d\theta$ of</p>
+
+\[L(z(t_1)) = L\left(z(t_0) + \int_{t_0}^{t_1} f(z(t); \theta) dt\right) = L(\texttt{ODESolve}(z(t_0), f, t_0, t_1; \theta))\]
+
+<p>where $L(\cdot)$ is a loss function.</p>
+
+<p>The adjoint sensitivity method compute $dL/d\theta$ with an extra helping hand of a new guy called <em>adjoint</em> $a(t) = \partial L / \partial z(t)$ which agrees with a ODE (red texts use 1-chain rule, 2-Taylor expansion)</p>
+
+\[\begin{aligned}
+\frac{da(t)}{dt} = &amp; \lim_{\varepsilon \to 0} \frac{a(t + \varepsilon) - a(t)}{\varepsilon} \\
+= &amp; \lim_{\varepsilon \to 0} \frac{a(t + \varepsilon) - \textcolor{red}{\frac{dL}{dz(t)}}}{\varepsilon}\\
+= &amp; \lim_{\varepsilon \to 0} \frac{a(t + \varepsilon) - \textcolor{red}{\frac{dL}{dz(t + \varepsilon)} \frac{dz(t + \varepsilon)}{dz(t)}  }}{\varepsilon}\\
+= &amp; \lim_{\varepsilon \to 0} \frac{a(t + \varepsilon) - \textcolor{red}{a(t+\varepsilon) (I + \varepsilon f(z(t)) + \mathcal{O}(\varepsilon^2))}}{\varepsilon}\\
+= &amp; - a(t)^\top \frac{\partial f(z(t), t, \theta)}{\partial z}
+\end{aligned}\]
+
+<p>We then need to solve this new ODE to obtain the gradient w.r.t. $\theta$:</p>
+
+\[\frac{dL}{d\theta} = - \int_{t_1}^{t_0} a(t)^\top \frac{\partial f(z(t), t, \theta)}{\partial \theta} dt\]
+
+<p>So, this is the main technical background of Neural ODE.</p>
+
+<div>
+    <img class="center" src="/assets/img/neural_ode_reverse_mode.png" />
+</div>
+
+<div class="caption">
+Reverse-mode of Neural ODEs. Adjoint information is propagated backward-in-time (Source: <d-cite key="neural_ode"></d-cite>).
+</div>
+
+<h3 id="neural-sdes">Neural SDEs</h3>
+
+<p>With the same motivation, neural stochastic differential equations (Neural SDEs) is extended from Neural ODEs where randomness is injected to equations.</p>
+
+<p>Consider the following SDEs</p>
+
+\[dZ_t = \mu(t, Z_t) dt + \sigma(t, Z_t) \circ dW_t\]
+
+<p>where $\circ$ indicates Stratonovich-style stochastic integral.</p>
+
+<p><strong>Adjoint sensitivity with noise</strong> Similar to Neural ODEs, we define adjoint term as $A_t = dL(Z_T)/dZ_t$ which is now a stochastic process satisfying</p>
+
+\[dA_t^i = - A_t^j \frac{\partial \mu^j}{\partial Z^i}(t, Z_t) dt - \frac{\partial \sigma^{i,k}}{\partial Z^i}(t, Z_t) \circ dW^k_t\]
+
+<p>Here, we have to solve this new SDE backward from $t=T$ to $t=0$ conditioning on $A_T = dL(Z_T)/dZ_T$ where $Z_T$ is obtained from the forward-pass.</p>
+
+<p><strong>Challenge in solving backward SDE</strong> The main different with Neural ODEs lies in the stochastic part. The sample path of Browian motion to compute $Z_T$ in the forward-pass needs to be retrieved during backward-pass. <d-cite key="gradient_sde"></d-cite> proposes Virtual Brownian Tree based on a recursive procedure. Another work<d-cite key="efficient_gradient_sde"></d-cite> is based on a new SDE solver, <em>reversible Heun method</em> with algebraic resversibility. These are important techniques in implementing Neural SDEs. However, this post does not explore beyond this point.</p>
+<h2 id="current-related-ml-research">Current related ML research</h2>
+
+<p>Here are some hightlights of related research:</p>
+
+<ol>
+  <li>Deep limits<d-cite key="deep_limit_1,deep_limit_2"></d-cite>: Providing a contruction from discrete to continuous. However, diffusion function is considered as a constant.</li>
+  <li>Learning Neural SDEs with adversarial approach <d-cite key="neural_sde_gan"></d-cite>.</li>
+  <li>Uncertanty estimation for neural networks <d-cite key="kong2020sde"></d-cite> where the drift function (modeled by a neural network) is to make prediction and the diffusion function is to measure the uncertainty.</li>
+  <li>Application in Finance <d-cite key="neural_ode_finance"></d-cite>.</li>
+</ol>
+
+<h2 id="closing-thought">Closing thought</h2>
+
+<p>Many applications relying on SDEs often use a simple form of drift function $\mu$ and diffusion function $\sigma$. Now with the new approach in ML, we have a better tool to work with higher dimension of these functions as well as more expressive forms with more parameters. The strength of ML approach is that it can provide a nice estimations for such hyperparameters.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Understanding the method solving neural stochastic differential equations]]></summary></entry><entry><title type="html">Semimartingales</title><link href="/blog/2021/semimartingale/" rel="alternate" type="text/html" title="Semimartingales" /><published>2021-10-20T00:00:00+00:00</published><updated>2021-10-20T00:00:00+00:00</updated><id>/blog/2021/semimartingale</id><content type="html" xml:base="/blog/2021/semimartingale/"><![CDATA[<p>Simply, the definition is</p>
+<p style="text-align: center;">Semimartingale = local martingale + finite variation</p>
+
+<p>The importance of this concept is that it enables us to define stochastic integral in a more general sense. The local martingale part will be treated using integration with Brownian motion.</p>
+
+<h2 id="semimartingales">Semimartingales</h2>
+
+<p><strong>Formal definition</strong> A regular right-continuous with left limits adapted process $S(t)$ is <em>semimartingale</em> if it can be represented as a sum of two processes:</p>
+
+<ul>
+  <li>local martingale $M(t)$</li>
+  <li>and a process of finite variation $A(t)$</li>
+</ul>
+
+\[S(t) = S(0) + M(t) + A(t)\]
+
+<p><strong>Example of semimartingales</strong> It can be $S(t)=B^2(t)$, Poisson process, a diffusion which is a solution to a stochastic differential equation w.r.t. Brownian motion.</p>
+
+<h2 id="integrals-with-semimartingales">Integrals with semimartingales</h2>
+
+<p>The goal here is to compute</p>
+
+\[\int_0^T H(t)dS(t)\]
+
+<p>Taking advantage of the decomposition of semimartingale, the integral can be obtained as the sum of two integrals where the first $\int H(t) dM(t)$ uses the integral of local martingales and the second $\int H(t) dA(t) $ uses the Stieljes integral.</p>
+
+<p>If $M(t)$ is a Brownian motion, the work is simple. But for the general case, $M(t)$ is a local martingale, we need to deal with jumps if it has.</p>
+
+<h3 id="local-martingale-part">Local martingale part</h3>
+
+<p>Like the Brownian case, we start with the simple process</p>
+
+\[H(t) = H(0) I_0 + \sum_{i=0}^{n-1} H_i I_{(T_i, T_{i+1}]}(t)\]
+
+<p>The integral now is the sum</p>
+
+\[\int_0^T H(t) dS(t) = \sum_{i=0}^{n-1} H_i\left(M(T_{i+1}) - M(T_i)\right)\]
+
+<p>Now, we see the expression which is much related to quadratic variation, and all the properties evolve arount it.</p>
+
+<h3 id="finite-variation-part">Finite Variation part</h3>
+
+<p>The variation of $A(t)$ is finite, then</p>
+
+\[\int_0^T \lvert H(t) \rvert dV_A(t) &lt; \infty\]
+
+<p><strong>Note</strong> The decomposition of a semimartingale is not unique. So can the integral results differently? The answer is no. The integral is still unique because when considering another representation of decomposition, we have $A(t)-A_1(t)= M_1(t) - M(t)$ is a local martingale, then take integral we can see the integral is the same.</p>
+
+<h3 id="properties-of-integral-with-respect-to-semimartingales">Properties of Integral with respect to Semimartingales</h3>
+
+<p>$X(t)$ is a semimartingale, $H(t)$ is predictable process, the integral is</p>
+
+\[(H \cdot X)(t) = \int_0^t H(s) dX(s)\]
+
+<p>This integral has the following properties</p>
+
+<ul>
+  <li>Jump: If $X(t)$ has a jump, i.e. $\Delta X(t)$ , the jump of integral is $\Delta (H \cdot X)(t) = H(t) \Delta X(t)$</li>
+  <li>Stopping time: Transfer from integral to semimartingales</li>
+</ul>
+
+\[\int_0^{t \wedge \tau} H(s)dX(s) = \int_0^t H(s) I(s \leq \tau) dX(s) = \int_0^t H(s)dX(t \wedge \tau)\]
+
+<ul>
+  <li>Associativity: $K \cdot (H \cdot X) = (KH) \cdot X$</li>
+</ul>
+
+<h2 id="itos-formula-for-continuous-semimartingale">Ito’s Formula for Continuous Semimartingale</h2>
+
+<p>With $X(t)$ is a continuous semimartingale and $f$ is twice continuously differentiable, $Y(t) = f(X(t))$ is a semimartingale and</p>
+
+\[f(X(t)) - f(X(0)) = \int_0^t f'(X(s))dX(s) + \frac{1}{2} \int_0^t f''(X(s))d[X, X](s)\]
+
+<p>In differential form, it is</p>
+
+\[df(X(t)) = f'(X(t))dX(t) + \frac{1}{2}f''(X(t))d[X, X](t)\]
+
+<p>If the quadratic variation $ [X,X] (t)$ equals $0$, then it ends up just like ordinary calculus. If $X(t)$ is a Brownian motion, $ [X, X] (t) = t$</p>
+
+<h2 id="itos-formula-for-semimartingales">Ito’s Formula for Semimartingales</h2>
+
+<p>With $X(t)$ is a semimartingale, $f \in C^2$</p>
+
+\[\begin{aligned}
+f(X(t)) - f(X(0)) = &amp; \int_0^t f'(X(s-))dX(s) + \frac{1}{2}\int_0^t f''(X(s-))d[X,X] (s) + \\
+&amp; \sum_{s\leq t} \left(\Delta f(X(s)) - f'(X(s-))\Delta X(s) -\frac{1}{2}f''(X(s-))(\Delta X(s))^2\right)
+\end{aligned}\]
+
+<p>where $\Delta f(X(s)) = f(X(s)) - f(X(s-))$. So why does this look a little complicate? Well, there are possible jumps in the semimartingales. And the quadratic variation of the jump part has jumps $\Delta [X,X] (s) = (\Delta X(s))^2$. The above formula can be reduced to</p>
+
+\[\begin{aligned}
+f(X(t)) - f(X(0)) = &amp; \int_0^t f'(X(s-))dX(s) + \frac{1}{2}\int_0^t f''(X(s-))d[X,X]^c (s) + \\
+&amp; \sum_{s\leq t} \left(\Delta f(X(s)) - f'(X(s-))\Delta X(s)\right)
+\end{aligned}\]
+
+<h2 id="final-remark">Final remark</h2>
+<p>This is a simple note on how stochastic calculus is done with semimartingales. Most of the work on stochastic differential equations stops at the randomness assumption being semimartingale. Still, there are more advanced theories, for example, <a href="https://almostsuremath.com/2016/10/21/the-projection-theorems/"> the projection theorem </a> or <a href="https://en.wikipedia.org/wiki/Rough_path"> rough path </a> to deal with subjects beyond semimartingales.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[Note on semimartingales]]></summary></entry></feed>

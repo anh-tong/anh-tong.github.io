@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,7 +10,7 @@
   Anh  Tong
 
 
-  | blog
+  | Signature and Log Signature in rough path theory
 
 </title>
 <meta name="description" content="Anh Tong personal homepage
@@ -37,7 +36,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22></text></svg>">
 
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="/blog/">
+<link rel="canonical" href="/blog/2022/rough-path/">
 
 <!-- JQuery -->
 <!-- jQuery -->
@@ -67,7 +66,36 @@
 <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 
 
+    <script src="/assets/js/distillpub/template.v2.js"></script>
+    <script src="/assets/js/distillpub/transforms.v2.js"></script>
+    <script src="/assets/js/distillpub/overrides.js"></script>
+    
   </head>
+
+  <d-front-matter>
+    <script async type="text/json">{
+      "title": "Signature and Log Signature in rough path theory",
+      "description": "Quick review of the central quantities in rough path theory",
+      "published": "April 5, 2022",
+      "authors": [
+        
+      ],
+      "katex": {
+        "delimiters": [
+          {
+            "left": "$",
+            "right": "$",
+            "display": false
+          },
+          {
+            "left": "$$",
+            "right": "$$",
+            "display": true
+          }
+        ]
+      }
+    }</script>
+  </d-front-matter>
 
   <body class="fixed-top-nav ">
 
@@ -105,14 +133,10 @@
             <a class="nav-link" href="/blog/">
               Blog
               
-              <span class="sr-only">(current)</span>
-              
             </a>
           </li>
           
           <!-- Other pages -->
-          
-          
           
           
           
@@ -171,91 +195,69 @@
 
     <!-- Content -->
 
-    <div class="container mt-5">
-      <div class="post">
+    <div class="post distill">
 
-  <div class="header-bar">
-    <h1>Collection of notes</h1>
-    <h2>Machine Learning, Stats, Programming and Stuff</h2>
-  </div>
-
-
-  <ul class="post-list">
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2022/rough-path/">Signature and Log Signature in rough path theory</a></h3>
-        <p class="post-meta">April 5, 2022</p>
+      <d-title>
+        <h1>Signature and Log Signature in rough path theory</h1>
         <p>Quick review of the central quantities in rough path theory</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2022/quadratic-hawkes/">Hawkes processes and Applications in Finance</a></h3>
-        <p class="post-meta">March 21, 2022</p>
-        <p>Summarize a line of work in quantitative finance including scale limits of Hawkes processes and quadratic Hawkes processes</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2022/poincare-inequalities/">Markov process and Poincare inequality</a></h3>
-        <p class="post-meta">February 14, 2022</p>
-        <p>How to bound the variance of a Markov dynamical system?</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2021/intuitive-white-noise/">White noise - A more intuitive look</a></h3>
-        <p class="post-meta">December 9, 2021</p>
-        <p>A further note of white noise in functional view</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2021/deep-limit/">Theoretical aspect of variational infrence for Neural SDEs</a></h3>
-        <p class="post-meta">November 19, 2021</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2021/malliavin_calculus/">Malliavin Calculus</a></h3>
-        <p class="post-meta">November 10, 2021</p>
-        <p>(in progress) Some background of Mallivian Calculus</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2021/fractional-brownian-motion/">Self-similarity and long-range dependence in fractional Brownian motions</a></h3>
-        <p class="post-meta">November 3, 2021</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2021/numerical-sde/">Numerical methods for SDEs</a></h3>
-        <p class="post-meta">November 2, 2021</p>
-        <p>Study some approximation methods in solving SDEs, i.e., Euler-Maruyama method, Milstein's method,...</p>
-      </li>
-    
-  </ul>
+      </d-title>
 
-  
-<nav aria-label="Blog page naviation">
-  <ul class="pagination pagination-lg justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="" tabindex="-1" aria-disabled="">Newer</a>
-    </li>
-    
-      
-        <li class="page-item active"><a class="page-link" href="/blog/index.html" title="blog">1</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/2/index.html" title="blog - page 2">2</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/3/index.html" title="blog - page 3">3</a></li>
-      
-    
-    <li class="page-item ">
-      <a class="page-link" href="/blog/page/2/">Older</a>
-    </li>
-  </ul>
-</nav>
+      <d-byline></d-byline>
+
+      <d-article>
+        <p>I have some time to read some basic concepts in rough path theory <d-cite key="Lyons2014"></d-cite>.</p>
+
+<p>Simple speaking, signature or log signature can capture the characteristic of rough path. This is similar when we think about learning representations of images using convolutional neural networks (CNNs). Both (log) signatures and CNNs do extracts informations but focus on different objects (sequencing data vs image data).</p>
+
+\[y_{J_+} = \left(\sum_{n=0}^\infty A^n \iint_{u_1 \leq \dots \leq u_n} d\gamma_{u_1} \otimes \dots \otimes d\gamma_{u_n}\right)y_0\]
+
+<p>This equation looks intimidating but simply we can understand as solving differential equation iteratively starting from $u_1$ to $u_2$ (solution is $\int Ay_t d\gamma_{u_1} $). The solution on $[u_1, u_2]$ will be the initial conditional to solve differential equation on the next interval $[u_2, u_3]$.</p>
+
+<p>Inspired by the solution of linear controlled differential equations, the signature is defined as the integral part</p>
+
+\[\boxed{
+    S(\gamma) := \sum_{n=0}^\infty \iint_{u_1 \leq \dots \leq u_n} d\gamma_{u_1} \otimes \dots \otimes d\gamma_{u_n} \quad \in  \bigoplus_{n=0}^\infty E^{\otimes n}
+}\]
+
+<h3 id="how-to-compute-signature-in-practice">How to compute signature in practice</h3>
+
+<p>Here, time series data is the main focus as it is one of the promiment use cases of signatures.</p>
+
+<p>As noted in <d-cite key="Lyons2014"></d-cite>, the series of signatures converges very fast ( the power of variation over factorial of $n$). Therefore, truncated series carries enough information of a path.</p>
+
+<p>There are softwares already implemented efficiently how to compute (log) signatures from data <d-cite key="kidger2021signatory"></d-cite>. This post will try to demonstrate a simple example.</p>
+
+<p>Algebra structure defined by $T((\mathbb{R}^d)) = \prod_{k=0}^\infty (\mathbb{R}^d)^{\otimes k}$. (An example for this is $(\mathbb{R}^d)^{\otimes 3}  = \mathbb{R}^d \otimes \mathbb{R}^d \otimes \mathbb{R}^d$ is a tensor shape $(d, d, d)$).</p>
+
+<p>The product between tensors is denoted as $\otimes$ between $(a_1, a_2, \dots, a_m)$ and $(b_1, b_2, \dots, b_m)$ resulted in $(a_1, \dots, a_n, b_1, \dots, b_m)$.</p>
+
+<p>An product (denoted as $\otimes$ and let’s not be confused with the notation) between $A = (A_0, A_1, \dots)$ and $B=(B_0, B_1, \dots)$ is defined as</p>
+
+\[A \otimes B = \left(\sum_{j=0}^k A_j \otimes B_{k-j}\right)_{k\geq 0}\]
+
+<p><strong>Stop and breath</strong> Okay! This is also complicated. Maybe just think this an infinite many tensor $d \times d \times \dots $. The product should satisfy a closure property which its ouput should have size $d \times d \times \dots $</p>
+
+<p><strong>Proposition</strong> (Chen’s identity) Roughly speaking, concatenating two paths will result in signature as</p>
+
+\[\text{Sig}(X * Y) = \text{Sig}(X) \otimes \text{Sig}(Y)\]
+
+<p>Now, we can construct signature for stream data by Chen’s identity. Let $\mathbf{x} = (x_1, x_2, \dots, x_n)$. Probably the main assumption here is that the path is contructed by straight lines sequentially.</p>
+
+\[\text{Sig}(\mathbf{x}) = \exp(x_2 - x_1) \otimes \exp(x_3-x_2) \otimes \dots \otimes \exp(x_n - x_{n-1})\]
+
+<p>here $\exp(\cdot)$ is NOT the exponential function on real set but is defined with operator $\otimes$</p>
+
+\[\exp(x) = \left(1, x, \frac{x \otimes x}{2!}, \frac{x \otimes x \otimes x}{3!}, \dots\right)\]
+
+<p>which is an infinite-dimensional vector where components have increasing power orders.</p>
 
 
+      </d-article>
 
-</div>
+      <d-appendix>
+        <d-footnote-list></d-footnote-list>
+        <d-citation-list></d-citation-list>
+      </d-appendix>
 
     </div>
 
@@ -274,30 +276,13 @@
 
 
 
+    
+
   </body>
 
-  <!-- Bootsrap & MDB scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+  <d-bibliography src="/assets/bibliography/2022-04-05-rough-path.bib">
+  </d-bibliography>
 
   
-<!-- Mansory & imagesLoaded -->
-<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
-<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
-
-
-  
-
-
-<!-- Medium Zoom JS -->
-<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
-<script src="/assets/js/zoom.js"></script>
-
-
-<!-- Load Common JS -->
-<script src="/assets/js/common.js"></script>
-
 
 </html>

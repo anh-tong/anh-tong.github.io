@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>
+
+  Anh  Tong
+
+
+  | Stochastic Integral
+
+</title>
+<meta name="description" content="Anh Tong personal homepage
+">
+
+<!-- Open Graph -->
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="https://gitcdn.link/repo/jwarby/jekyll-pygments-themes/master/github.css" />
+
+<!-- Styles -->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22></text></svg>">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="/blog/2021/stochastic-integral/">
+
+<!-- JQuery -->
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+
+<!-- Theming-->
+
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/dark_mode.js"></script>
+
+
+
+
+
+
+    
+<!-- MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+    <script src="/assets/js/distillpub/template.v2.js"></script>
+    <script src="/assets/js/distillpub/transforms.v2.js"></script>
+    <script src="/assets/js/distillpub/overrides.js"></script>
+    
+  </head>
+
+  <d-front-matter>
+    <script async type="text/json">{
+      "title": "Stochastic Integral",
+      "description": "Note collection of Stochastic Integral",
+      "published": "September 6, 2021",
+      "authors": [
+        
+      ],
+      "katex": {
+        "delimiters": [
+          {
+            "left": "$",
+            "right": "$",
+            "display": false
+          },
+          {
+            "left": "$$",
+            "right": "$$",
+            "display": true
+          }
+        ]
+      }
+    }</script>
+  </d-front-matter>
+
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="/">
+       <span class="font-weight-bold">Anh</span>   Tong
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              About
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              Blog
+              
+            </a>
+          </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/experience/">
+                Experience
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/publications/">
+                Publications
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            <div class = "toggle-container">
+              <a id = "light-toggle">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+              </a>
+            </div>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="post distill">
+
+      <d-title>
+        <h1>Stochastic Integral</h1>
+        <p>Note collection of Stochastic Integral</p>
+      </d-title>
+
+      <d-byline></d-byline>
+
+      <d-article>
+        <h3 id="introduction">Introduction</h3>
+
+<p>This note is to summarize the stochastic integral of <a href="https://almostsuremath.com/stochastic-calculus/">AlmostSure’s blog</a>.</p>
+
+<p>By the Riemann-Stieltjes integral \(\int g df\) is well-defined if \(g\) is continuous and \(f\) is <strong>differentiable</strong>. However, stochastic processes do not always satisfy the differentiation condition, for example, Brownian motion which is nowhere differentiable. Therefore, we need new way to define integral involving stochastic process.</p>
+
+<p>The stochastic integration proposed by Kiyoshi Ito defines integrals for stochastic process including adapted processes then extending to martingales and semimartingales. The integral is in fact defined via Lebesgue  sense (or <a href="https://en.wikipedia.org/wiki/Dominated_convergence_theorem">dominated convergence theorem</a>), i.e,</p>
+
+\[\lim_{n \to \infty} \int \lvert f_n - f\rvert d\mu = 0 \quad \Rightarrow \quad \lim_{n \to \infty} \int f_n d\mu = \int f d\mu\]
+
+<p>Idea: to define the integrand of simple elementary process which statisfied the dominated convergence theorem.</p>
+
+<p>With an elementary predictable process $\xi$ defined as</p>
+
+\[\xi_t = Z_0 1_{\{t=0\}} + \sum_{k=1}^n Z_k 1_{\{s_k &lt; t\leq t_k\}}\]
+
+<p>then</p>
+
+\[\int_0^t \xi dX = \sum_{k=1}^n Z_k (X_{t_k \wedge t} - X_{s_{k} \wedge t})\]
+
+<p>If \(\xi^n \to \xi\) and bounded, then \(\int_0^t\xi^n dX \to \int_0^t \xi dX\)</p>
+
+<h3 id="quadratic-variations-and-integration-by-parts">Quadratic Variations and Integration by Parts</h3>
+
+<ul>
+  <li>Increment \(\delta X_t = X_{t + \delta t} - X_t\)</li>
+  <li>Consider product \(\delta (XY) = X\delta Y + Y\delta X + \delta X \delta Y\)</li>
+  <li>Chop \([0, t]\) into \(n\) parts and sum all terms</li>
+</ul>
+
+\[X_t Y_t - X_0Y_0 = \sum_{k=1}^n X_{t_k}\delta Y_{t_k} + \sum_{k=1}^n Y_{t_k}\delta X_{t_k} + \sum_{k=1}^n \delta X_{t_k} \delta Y_{t_k}\]
+
+<p>Observation:</p>
+<ul>
+  <li>If these processes are <strong>continuously differentiable</strong>, \(\delta X_{t_k} \delta Y_{t_k} = \mathcal{O}(1/n^2)\), while the first two first terms are \(\mathcal{O}(1/n)\).</li>
+</ul>
+
+\[X_t Y_t - X_0Y_0 = \sum_{k=1}^n \underbrace{X_{t_k}\delta Y_{t_k}}_{\mathcal{O}(1/n)} + \sum_{k=1}^n \underbrace{Y_{t_k}\delta X_{t_k}}_{\mathcal{O}(1/n)} + \sum_{k=1}^n \underbrace{\delta X_{t_k} \delta Y_{t_k}}_{\mathcal{O}(1/n^2) \to 0} = \int_0^t X dY + \int_0^t Y dX.\]
+
+<ul>
+  <li>On the other hand, if \(X, Y\) are Brownian motions, as we know, \(\delta X = \mathcal{O}(\sqrt{\delta t})\). So the last term does not vanish, is the reason for introducing <em>quadratic covariation</em> of \(X\) and \(Y\).</li>
+</ul>
+
+<p>Define:</p>
+<ul>
+  <li>
+\[[X]_t^P = \sum_{n=1}^\infty (X_{\tau_n \wedge t} - X_{\tau_{n-1} \wedge t})^2\]
+  </li>
+  <li>
+\[[X, Y]_t^P = \sum_{n=1}^\infty (X_{\tau_n \wedge t} - X_{\tau_{n-1} \wedge t})(Y_{\tau_n \wedge t} - Y_{\tau_{n-1} \wedge t})\]
+  </li>
+</ul>
+
+<p><strong>Theorem (Quadratic Variations and Covariations)</strong>
+Let \(X, Y\) be semimartingales. Then, there exist cadlag adapted process \([X]\) and \([X, Y]\). For any sequence \(P_n\) of stochastic partition on \(\mathbb{R}_+\),</p>
+<ul>
+  <li>
+\[[X]^{P_n} \to [X]\]
+  </li>
+  <li>
+\[[X, Y]^{P_n} \to [X, Y]\]
+  </li>
+</ul>
+
+<p>These convergences are of <a href="https://almostsuremath.com/2009/12/22/u-c-p-convergence/">uniform convergence on compacts in probability</a>(ucp)</p>
+
+<p><strong>Theorem (Integration by Parts)</strong> If \(X, Y\) are semimartingales then</p>
+
+\[XY = X_0Y_0 \int X_{-} dY + \int Y_{-}dX + [X,Y]\]
+
+<p><strong>Quadratic variation of Brownian motion</strong> 
+Because Brownian motion, \(B\), is a semimartingale, there exists quadratic varitions. Let us partition and define</p>
+
+\[V^n = \sum_{k=1}^n (B_{kt/n} - B_{(k-1)t/n})^2\]
+
+<p>By defintion of Brownian motion, \(B_{kt/n} - B_{(k-1)t/n} \sim \mathcal{N}(0, t/n)\).</p>
+
+<p>Squares of these differences have mean \(t/n\) and variance \(2t^2/n^2\) (in fact, it is somewhat similar to chi-squared distribution).</p>
+
+\[\mathbb{E}[V^n] = t \quad, \quad \text{Var}(V^n) = 2t^2/n \to 0 \quad \text{ when } n \to \infty\]
+
+<p>So we can say when \(n \to \infty\)</p>
+
+\[\mathbb{E}[(V^n - t)^2] \to 0 \quad \Rightarrow [B]_t = t\]
+
+<p>For covariations of two Brownian motions \(B^1, B^2\), the following resembles the above result</p>
+
+\[[B^1, B^2]_t = \rho t\]
+
+<p>where \(\rho\) is the correlation between \(B^1\) and \(B^2\)</p>
+
+<h3 id="properties-of-quadratic-variations">Properties of Quadratic Variations</h3>
+<p>Importance: Lead to Ito’s lemma</p>
+
+<p>Recall the notation \(\Delta [X]_t = [X]_t - [X]_{t-}\) is the jump of a process.</p>
+
+<p><strong>Lemma</strong> If \(X, Y\) are semimartingales then</p>
+
+\[\Delta [X,Y] = \Delta X \Delta Y\]
+
+<h3 id="itos-lemma">Ito’s Lemma</h3>
+
+<p>We do calculus with a function \(f(x)\) where \(x(t)\) is a stochastic process. Traditional calculus cannot apply here because we often do have \(x(t)\) differentiable.</p>
+
+<p>Ito’s lemma works on semimartingales (cadlag, adapted, exist integral), and can be expressed as</p>
+
+\[df(X) = f'(X)dX + \frac{1}{2}f''(X)dX^2\]
+
+<p>This can be derive from a Taylor expansion. Here, \(dX^2 = d[X]\) (quadratic variation).</p>
+
+<p><strong>Theorem (Ito’s Lemma)</strong> Let \(X=(X^1, \dots, X^d)\) be continous d-dimensional semimartingale. For any twice differential function \(f\), \(f(X)\) is a semimartingale and</p>
+
+\[df(X) = \sum D_if(X)dX^i + \frac{1}{2} \sum D_{ij}f(X)d[X^i, X^j]\]
+
+<p>Or in the integration form,</p>
+
+\[f(X) = f(X_0) + \sum_{i=1}^d \int D_if(X)dX^i + \frac{1}{2} \sum_{i,j=1}^d \int D_{ij}f(X)d[X^i, X^j]\]
+
+<p>Key obsevarion for the proof is the properties of covariations</p>
+
+\[[f(X), Y] = \sum_{i=1}^d \int D_i f(X)d[X^i, Y]\]
+
+<p><strong>Proof</strong> 
+Let \(\delta X = X_t - X_s\), and from Taylor expansion</p>
+
+\[f(X_t) = f(X_s) + D_if(X_s)\delta X^i + \frac{1}{2} D_{ij}f(X_s)\delta X^i \delta X^j + R_{st}\]
+
+<p>We can say that \(R_{st}\) vanishes faster than other term. We perform partition just like the variation and covariation,</p>
+
+\[f(X_T) = F(X_0) + \sum_k D_if(X_{t^n_{k-1}})\delta_{n,k} X^i + \frac{1}{2} \sum_k D_{ij}f(X_{t^n_{k-1}})\delta_{n,k} X^i \delta_{n,k} X^j + R_{t^n_{k-1},t^n_{k}}\]
+
+<p>Next, the proof is based on two results</p>
+
+\[\sum_{k=1}^n U_{t^n_{k-1}}\delta_{n, k}Y \to \int_0^T U_{-} dY \quad, \quad \sum_{k=1}^n U_{t^n_{k-1}}\delta_{n, k}Y\delta_{n, k}Z \to \int_0^T U_{-} d[Y, Z]\]
+
+<p>Replace \(U\) with respective terms, to obtain the finally result.</p>
+
+<h3 id="the-generalized-ito-formula">The generalized Ito Formula</h3>
+
+<p>Motivation: Ito’s lemma is applicable for continuous processes. This section will generalize to noncontinous semimartingales.</p>
+
+<p>Continous part of quadratic varations and covariations defined as</p>
+
+\[\begin{align*}
+[X]^c_t = &amp; [X]_t - \sum_{s\leq t} \Delta X_s^2 \\
+[X,Y]^c_t = &amp; [X,Y]_t - \sum_{s\leq t} \Delta X_s \Delta Y_s
+\end{align*}\]
+
+<p><strong>Theorem (Generalized Ito Formula)</strong> Let \(X=(X^1, \dots, X^d)\) be a semimartingales such that \(X_t, X_{t-}\) take values in an open subset. Then, for any twice differentiable functionn \(f\), \(f(X)\) is a semimartingales and</p>
+
+\[df(X) = D_if(X_{-})dX^i + \frac{1}{2}D_{ij}f(X)d[X^i, X^j]^c + (\Delta f(X)- D_i f(X_{-}) \Delta X^i)\]
+
+<p><strong>Example: The Doleans exponential</strong>
+The Dolean exponential of a semimartingales \(X\):</p>
+
+\[U = 1 + \int U_{-}dX\]
+
+<p>Continous part: \(d[U]^c = U_{-}d[X]^c\) and the jumps: \(\Delta U = U_{-}\Delta X\).</p>
+
+<p>By the generalized Ito formula,</p>
+
+\[\begin{align*}
+d\log (U) &amp;= U^{-1}_{-}dU - \frac{1}{2}U^{-2}_{-} d[U]^c + (\Delta \log(U) - U^{-1}_{-}\Delta U)\\
+&amp;= dX - \frac{1}{2}d[X]^c + (\log (1 + \Delta X) - \Delta X)
+\end{align*}\]
+
+<p>Then we can integrate above and get the solution w.r.t. \(X\)</p>
+
+<p><strong>Proof (Generalized Ito Formula)</strong></p>
+
+<p>Again, we use a Taylor expansion</p>
+
+\[f(X_t) = f(X_s) + D_i f(X_s)\delta X^i + \frac{1}{2}D_{ij}f(X_s) \delta X^i \delta X^j + R_{s,t}\]
+
+<p>Partitioning interval \([0, T]\), we have</p>
+
+\[f(X_T) = f(X_0) + \sum_{k=1}^n D_i f(X_{t^n_{k-1}})\delta_{n,k} X^i + \frac{1}{2} \sum_{k=1}^n D_{ij}f(X_{t^n_{k-1}})\delta_{n,k} X^i \delta_{n,k} X^j + \sum_{k=1}^n R_{t^n_{k-1}, t^n_k}\]
+
+<p>While the first two integral can be derived similarly to the proof of Ito formula, the remaining term \(\sum_{k=1}^n R_{t^n_{k-1}, t^n_k}\).</p>
+
+\[\begin{align*}
+R_{s,t} = &amp; f(X_t) - f(X_s) -D_i f(X_s) \delta X^i - \frac{1}{2}f(X_s)\delta X^i \delta X^j\\
+\to &amp; \Delta f(X_u) - D_i f(X_{u-})\Delta X_u^i - \frac{1}{2} D_{ij} f(X_{u-})\Delta X^i_u \Delta Y^i_u
+\end{align*}\]
+
+<p>The above result is obtained based on the following result.</p>
+
+<p><strong>Lemma</strong> Let \(X\) be a semimartingales and \(R_{s,t}\) be of size \(o(\lVert X_t - X_s \rVert^2)\). Suppose there is a process \(r_u\) satisfying</p>
+
+\[R_{s, t} \to r_u\]
+
+<p>Then, \(\sum_{t\leq T} \mid r_t \mid\) is almost surely finite and</p>
+
+\[\sum_{k=1}^n R_{t^n_{k-1}, t^n_k} \sum_{t\leq T}  r_t\]
+
+<p><strong>Proof</strong></p>
+
+<p>Because \(R_{s,t}=o(\lVert X_t - X_s \rVert^2)\), we have a random variable</p>
+
+\[U(\epsilon) = \sup \{\lVert X_t - X_s \rVert^2 R_{s,t}: 0 &lt; \lVert X_t - X_s \rVert \leq \epsilon\}\]
+
+<p>This goes to zero when \(\epsilon \to 0\).</p>
+
+\[\sum_{t\leq T} \mid r_t \mid \leq V \sum_{t\leq T} \lVert \Delta X_t \rVert^2 \leq V[X^i, X^i] \leq \infty\]
+
+<p>Consider two cases:</p>
+
+<ul>
+  <li>
+    <p>Case 1: \(R_{s,t} = 0\) when 
+\(\lVert X_t - X_s \rVert &lt; \epsilon\) 
+This case is however simple because each term in the sum consists of finite numbers of terms and each term goes to zero.</p>
+  </li>
+  <li>
+    <p>Case 2: \(R_{s,t} = 0\) when 
+\(\lVert X_t - X_s \rVert \geq \epsilon\)
+Then</p>
+  </li>
+</ul>
+
+\[\mid \sum_{k=1}^n R_{t^n_{k-1}, t^n_k}\mid \leq U(\epsilon) \sum_{k=1}^n \lVert \delta_{n,k} X \rVert^2 \to U(\epsilon) [X^i, X^i]_T\]
+
+<p>in probability as \(n \to \infty\)</p>
+
+
+      </d-article>
+
+      <d-appendix>
+        <d-footnote-list></d-footnote-list>
+        <d-citation-list></d-citation-list>
+      </d-appendix>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="fixed-bottom">
+  <div class="container mt-0">
+    &copy; Copyright 2025 Anh  Tong.
+    Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
+
+    
+    
+  </div>
+</footer>
+
+
+
+    
+
+  </body>
+
+  <d-bibliography src="/assets/bibliography/">
+  </d-bibliography>
+
+  
+
+</html>

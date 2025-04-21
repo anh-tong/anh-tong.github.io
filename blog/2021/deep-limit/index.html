@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,7 +10,7 @@
   Anh  Tong
 
 
-  | blog
+  | Theoretical aspect of variational infrence for Neural SDEs
 
 </title>
 <meta name="description" content="Anh Tong personal homepage
@@ -37,7 +36,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22></text></svg>">
 
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="/blog/">
+<link rel="canonical" href="/blog/2021/deep-limit/">
 
 <!-- JQuery -->
 <!-- jQuery -->
@@ -67,7 +66,36 @@
 <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 
 
+    <script src="/assets/js/distillpub/template.v2.js"></script>
+    <script src="/assets/js/distillpub/transforms.v2.js"></script>
+    <script src="/assets/js/distillpub/overrides.js"></script>
+    
   </head>
+
+  <d-front-matter>
+    <script async type="text/json">{
+      "title": "Theoretical aspect of variational infrence for Neural SDEs",
+      "description": "",
+      "published": "November 19, 2021",
+      "authors": [
+        
+      ],
+      "katex": {
+        "delimiters": [
+          {
+            "left": "$",
+            "right": "$",
+            "display": false
+          },
+          {
+            "left": "$$",
+            "right": "$$",
+            "display": true
+          }
+        ]
+      }
+    }</script>
+  </d-front-matter>
 
   <body class="fixed-top-nav ">
 
@@ -105,14 +133,10 @@
             <a class="nav-link" href="/blog/">
               Blog
               
-              <span class="sr-only">(current)</span>
-              
             </a>
           </li>
           
           <!-- Other pages -->
-          
-          
           
           
           
@@ -171,91 +195,100 @@
 
     <!-- Content -->
 
-    <div class="container mt-5">
-      <div class="post">
+    <div class="post distill">
 
-  <div class="header-bar">
-    <h1>Collection of notes</h1>
-    <h2>Machine Learning, Stats, Programming and Stuff</h2>
-  </div>
-
-
-  <ul class="post-list">
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2022/rough-path/">Signature and Log Signature in rough path theory</a></h3>
-        <p class="post-meta">April 5, 2022</p>
-        <p>Quick review of the central quantities in rough path theory</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2022/quadratic-hawkes/">Hawkes processes and Applications in Finance</a></h3>
-        <p class="post-meta">March 21, 2022</p>
-        <p>Summarize a line of work in quantitative finance including scale limits of Hawkes processes and quadratic Hawkes processes</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2022/poincare-inequalities/">Markov process and Poincare inequality</a></h3>
-        <p class="post-meta">February 14, 2022</p>
-        <p>How to bound the variance of a Markov dynamical system?</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2021/intuitive-white-noise/">White noise - A more intuitive look</a></h3>
-        <p class="post-meta">December 9, 2021</p>
-        <p>A further note of white noise in functional view</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2021/deep-limit/">Theoretical aspect of variational infrence for Neural SDEs</a></h3>
-        <p class="post-meta">November 19, 2021</p>
+      <d-title>
+        <h1>Theoretical aspect of variational infrence for Neural SDEs</h1>
         <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2021/malliavin_calculus/">Malliavin Calculus</a></h3>
-        <p class="post-meta">November 10, 2021</p>
-        <p>(in progress) Some background of Mallivian Calculus</p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2021/fractional-brownian-motion/">Self-similarity and long-range dependence in fractional Brownian motions</a></h3>
-        <p class="post-meta">November 3, 2021</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2021/numerical-sde/">Numerical methods for SDEs</a></h3>
-        <p class="post-meta">November 2, 2021</p>
-        <p>Study some approximation methods in solving SDEs, i.e., Euler-Maruyama method, Milstein's method,...</p>
-      </li>
-    
-  </ul>
+      </d-title>
 
-  
-<nav aria-label="Blog page naviation">
-  <ul class="pagination pagination-lg justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="" tabindex="-1" aria-disabled="">Newer</a>
-    </li>
-    
-      
-        <li class="page-item active"><a class="page-link" href="/blog/index.html" title="blog">1</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/2/index.html" title="blog - page 2">2</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/3/index.html" title="blog - page 3">3</a></li>
-      
-    
-    <li class="page-item ">
-      <a class="page-link" href="/blog/page/2/">Older</a>
-    </li>
-  </ul>
-</nav>
+      <d-byline></d-byline>
+
+      <d-article>
+        <h2 id="introduction">Introduction</h2>
+<p>In this note, I will take a short review for a part of <a href="https://arxiv.org/abs/1903.01608">this paper</a>. I will try to bring (learn) some necessary background of stochastic optimal control.</p>
+
+<p>The main object discussed shortly in the following is represented as a SDE</p>
+
+\[dX_t = b(X_t, t)dt + dW_t\]
+
+<h2 id="stochastic-control-problems">Stochastic control problems</h2>
+
+<h3 id="background-of-stochastic-optimal-control">Background of stochastic optimal control</h3>
+
+<p>Let’s consider a determistic control problem first</p>
+
+\[dx_t = F(x_t, u_t)dt\]
+
+<p>where $x_t$ is the state variable, $u_t$ is the control variable. The optimal control problem tries to mimimize a value function</p>
+
+\[V(x_t, t) = \int_t^T C(x_t, u_t) dt + D(x_T)\]
+
+<p>where $C$ is the control cost function and $D$ is the cost at the terminal time $T$. In fact, the value function here can be approximated with a small change of time, $dt$.</p>
+
+\[V(x_t, t) = \min_u \left\{C(x_t, u_t) + V(x_{t + dt}, t + dt)\right\}, \quad V(x, T) = D(x)\]
+
+<p>This result has a long history and is known as the Hamilton-Jacobian-Bellman equation in dynamic programming. The right-hand side is further approximated with Taylor expansion.</p>
+
+\[\frac{\partial V}{\partial t} + \min_u\left\{C(x_t, u_t) + \frac{\partial V}{\partial x} F(x_t, u_t)\right\} = 0\]
+
+<p>This is a ODE. However, it is nontrivial to solve this because it includes a minimization problem which we do not know exactly how to optimize it.</p>
+
+<p>Now, turn our attention with the extension of the above where we consider a stochastic version</p>
+
+\[dX_t = b(X_t, u_t)dt + \sigma(X_t, u_t)dW_t\]
+
+<p>and then value function here is</p>
+
+\[V(X_t, t) = \mathbb{E}\left[\int_t^T C(X_t, u_t) dt + D(X_T)\right]\]
+
+<p>Similarly, as we apply Ito’s rule when approximate $V(X_{t + dt}, t + dt)$ (just remember that second-order derivative involves here), we can derive</p>
+
+\[\frac{\partial V}{\partial t} + \min_u\left\{C(x_t, u_t) + \frac{\partial V}{\partial x} F(x_t, u_t) + \frac{1}{2} \sigma^2(X_t, u_t) \frac{\partial^2 V}{\partial x^2}\right\} = 0, \quad V(x, T) = D(x)\]
+
+<p>Again, this is difficult to solve in general.</p>
+
+<h3 id="the-stochastic-control-problem-in-the-paper">The stochastic control problem in the paper</h3>
+
+<p>The paper restricts the SDE with constant diffusion function</p>
+
+\[dX_t = b(X_t, t) dt + dW_t, \quad t\in [0, 1], X_0 = x_0\]
+
+<p>The corresponding control SDE being studied is</p>
+
+\[dX_t^u = (b(X^u_t, t) + u(X^u_t, t)) dt + dW_t, \quad t\in [0, 1], X_0^u = x_0\]
+
+<p>and the value function here will be denoted as $J$</p>
+
+\[J(x, t) = \mathbb{E}\left[\int_t^1 C(X_s^u, u_s) ds + D(X_1^u) \mid X_t^u=x\right]\]
+
+<p>With the above derivation in the previous section, we obtain</p>
+
+\[\frac{\partial J}{\partial t} + \min_u\left\{C(x, u) + (b + u) \frac{\partial J}{\partial x} + \frac{1}{2}\frac{\partial^2 J}{\partial x^2}\right\} = 0\]
+
+<p>Moving terms around we obtain</p>
+
+\[\frac{\partial J}{\partial t} + \mathcal{L}_tJ = -\min_u \left\{ C(x, u) + u \frac{\partial J}{\partial x}\right\}\]
+
+<p>In the paper, the control cost function is the norm of $u$, therefore, the solution is exact and $u(x, t) = \frac{1}{2}\frac{\partial J}{\partial x}$, resulting</p>
+
+\[\frac{\partial J}{\partial t} + \mathcal{L}_tJ = \frac{1}{2}\lvert\lvert \frac{\partial J}{\partial x} \rvert\rvert^2\]
+
+<p>Let $h(x, t) = \mathbb{E}[D(X_1) \mid X_t = x]$ is the value function of uncontrolled SDE, then</p>
+
+\[\frac{\partial h}{\partial t} + \mathcal{L_t}h = 0\]
+
+<p>If we pick $J(x,t) = -\log h(x, t)$, we can obtain the exact PDE for $J$. The we can say the two value functions are the same</p>
+
+\[\underbrace{-\log \mathbb{E}[D(X_1)|X_t=x]}_{ \text{uncontrolled SDE value function}} = \underbrace{\min_u \mathbb{E} \left[\int_t^1 C(X_s^u, u_s) ds + D(X_1^u) \mid X_t^u=x\right] }_{\text{controlled SDE value function}}\]
 
 
+      </d-article>
 
-</div>
+      <d-appendix>
+        <d-footnote-list></d-footnote-list>
+        <d-citation-list></d-citation-list>
+      </d-appendix>
 
     </div>
 
@@ -274,30 +307,13 @@
 
 
 
+    
+
   </body>
 
-  <!-- Bootsrap & MDB scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+  <d-bibliography src="/assets/bibliography/">
+  </d-bibliography>
 
   
-<!-- Mansory & imagesLoaded -->
-<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
-<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
-
-
-  
-
-
-<!-- Medium Zoom JS -->
-<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
-<script src="/assets/js/zoom.js"></script>
-
-
-<!-- Load Common JS -->
-<script src="/assets/js/common.js"></script>
-
 
 </html>
